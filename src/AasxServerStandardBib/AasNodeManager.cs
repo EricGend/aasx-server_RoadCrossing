@@ -34,6 +34,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using static AasOpcUaServer.AasUaBaseEntity;
 
 namespace AasOpcUaServer
 {
@@ -183,6 +186,27 @@ namespace AasOpcUaServer
 
                     // Root of whole structure is special, needs to link to external reference
                     builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
+
+                    //TODO: under construction
+                    var methodeFolder = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, builder.RootAAS, "MethodesFolder");
+
+                    Argument[] inputArgList = new Argument[1];
+                    inputArgList[0] = new Argument();
+                    inputArgList[0].Name = "RSUetsi";
+                    inputArgList[0].Description = "new messages to add to server";
+                    inputArgList[0].DataType = DataTypeIds.String;
+                    inputArgList[0].ValueRank = ValueRanks.Scalar;
+
+                    builder.CreateAddMethodState(methodeFolder, CreateMode.Instance, "Operation Instance",
+                            referenceTypeFromParentId: ReferenceTypeIds.HasComponent,
+                            onCalled: HandleRsuEtsiMessage,
+                            inputArgs: inputArgList
+                            //TBD.: send hole aas back to RSU outputArgs: outputArgList
+                            );
+
+                    //Under Construction
+
+
                     // Note: this is TOTALLY WEIRD, but it establishes an inverse reference .. somehow
                     this.AddExternalReferencePublic(new NodeId(85, 0), ReferenceTypeIds.Organizes, false,
                         builder.RootAAS.NodeId, externalReferences);
@@ -310,6 +334,112 @@ namespace AasOpcUaServer
                 Debug.WriteLine("Done creating custom address space!");
                 Utils.Trace("Done creating custom address space!");
             }
+        }
+
+        private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
+        {
+            //checkmate
+            //TODO: Add To coresponding AAS
+            string xmlString = "<root>" + inputArguments[0] + "</root>";
+            XElement messageFromRsu = XElement.Parse(xmlString);
+
+            var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
+
+            // Root of whole structure is special, needs to link to external reference
+            builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
+
+            foreach (XElement message in messageFromRsu.Elements())
+            {
+                switch (message.Name.ToString())
+                {
+                    case "CAM":
+
+                        //managing all CAMs and moving them to historical data after 1sec - new CAM should be available
+
+                        // Erstellen eines neuen Object Nodes + Subnodes für Informationen konform der Verwaltungsschale
+
+                        //1s Timer für Node erstellen
+
+                        //Nach ablauf des Timers node löschen und in DB Historical Data speichern
+
+                        break;
+                    case "DENM":
+                        var originateId = builder.LookupNodeRecordFromIdentification("AASROOT.RSU.DENM.denm.management.actionID.originatingStationID");
+                        if (originateId != null )   
+                            break;
+                        
+
+
+                        //Adding DENM when no other DENM with same ActionId is currentlx active //Was wenn denm inaktiv erklärt wird und zirkulärer bezug wieder auf active setzt?
+                        //Rermove when Cancallation DENM with same Action ID or Negation DENM // Was wenn fahrzeug abgeschleppt werden muss und DENM nicht aufgehoben wird?
+                        // Kann ic fahrzeug direklt anfunken ob es noch in reichweite ist?
+
+                        //je nach Inhalt :neuen Node fürm DENM erstellen //Node updaten // Node löschen // IMMER in historical Data aufnehmen 
+
+                        //wie mit aktiven DENMs umgehen, die nicht gelöscht wurden?
+
+
+                        break;
+                    case "MAPEM":
+
+                        //immer zusammmen mit spatem übertragen
+                        //sollte sich über die zeit wenig verändern 
+                        // ==> Prüfen ob Änderung besteht in Client um Load auf Server zu verringern?
+
+                        //MAPEM auf Änderungen prüfenj, bei Änderung VWS und historical Data updaten 
+
+                        break;
+                    case "SPATEM":
+                        // wird bei jedem TLM (Traffic Light maneuver zusammen mit MAPEM übertragen (also je ampelphase?)
+
+                        //immer VWS und historical data updaten
+
+                        break;
+                    case "IVIM":
+                        //Infrastructure to Vehoicle (bspw.: Straßenschilder, Bauarbeiten an Straßen, ...)
+                        //recht variable
+
+                        //Vorgehen wie bei MAPEM  
+
+
+                        break;
+                    case "CPM":
+                        //bereitstellung von Sensordaten andewrer Teilnehmer zum besseren Überblick
+                        //hochdynamisch 
+                        //wie umgehen mit verscheidenen Sensordaten unterschiedlicher Teilnehmer von einem anderen Teilnehmer?
+
+                        //Hioer müssen sensordaten zusammengefügt werden ... keine Ahnung, erstmalk außenm vor lassen
+
+
+                        break;
+                    case "SSEM":
+                        //Bestätigung des SREM 
+
+                        //SSEM eintrag anlegenin VWS
+                        //SSEM updaten
+                        //SSEM lösche 
+                        break;
+                    case "SREM":
+                        //Anfragen von Ampel priorisierung (ÖPNV) oder Schaltung von Ampeln durch Sicherheitsdienste (Krankenwagen)
+                        //Hochdynamisch
+
+                        //SREM eintrag anlegenin VWS
+                        //SREM updaten
+                        //SREM lösche 
+
+                        break;
+                    case "RTCMEM":
+                        //Positionierungskorrektur, bereitgestellt von STraßenequipment zur korrektur von mobilenen einheiten 
+                        //Hochdynamisch
+
+                        //eigentlich nur für historical data interessabt, evtl updaten des Modelles auf
+                        //Grundlagen von anderen Sensordaten, da Vehicle sonst mehrfach existiert?
+                        break;
+
+                }
+            }
+            return ServiceResult.Good;
+            throw new Exception("no Good Status");
         }
 
         public NodeStateCollection GenerateInjectNodeStates()
