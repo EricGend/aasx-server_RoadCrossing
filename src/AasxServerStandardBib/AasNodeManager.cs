@@ -47,7 +47,7 @@ namespace AasOpcUaServer
     {
         private AdminShellPackageEnv[] thePackageEnv = null;
         private AasxUaServerOptions theServerOptions = null;
-
+        
         #region Constructors
         /// <summary>
         /// Initializes the node manager.
@@ -187,7 +187,6 @@ namespace AasOpcUaServer
                     // Root of whole structure is special, needs to link to external reference
                     builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
 
-                    //TODO: under construction
                     var methodeFolder = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, builder.RootAAS, "MethodesFolder");
 
                     Argument[] inputArgList = new Argument[1];
@@ -364,8 +363,12 @@ namespace AasOpcUaServer
 
                         break;
                     case "DENM":
-                        var originateId = builder.LookupNodeRecordFromIdentification("AASROOT.RSU.DENM.denm.management.actionID.originatingStationID");
-                        if (originateId != null )   
+
+                        string originId = message.Descendants("originatingStationID").FirstOrDefault().Value; 
+                        NodeId node = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.DENM.originId=" + originId);
+                        var denmNodeInServer = Find(node);
+
+                        if (denmNodeInServer != null )  //TODO: Update der Node Berücksichtigen!  
                             break;
                         
 
