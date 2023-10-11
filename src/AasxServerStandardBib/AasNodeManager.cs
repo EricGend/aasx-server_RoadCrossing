@@ -42,6 +42,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using static AasOpcUaServer.AasUaBaseEntity;
+using static AasOpcUaServer.AasUaNodeHelper;
 
 namespace AasOpcUaServer
 {
@@ -370,58 +371,18 @@ namespace AasOpcUaServer
                     case "DENM":
 
                         string originId = message.Descendants("originatingStationID").FirstOrDefault().Value;
-                        NodeId node = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.DENM.originId=" + originId + "TestsoItDosntMatch");
+                        NodeId node = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.DENM.originId=" + originId);
                         var denmNodeInServer = Find(node);
 
-                        if (denmNodeInServer != null)  //TODO: Update der Node Berücksichtigen!  
+                        if (denmNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
                             break;
 
-                        SubmodelElementCollection denmCollection = XmlToSubmodellcollectonParser(message);
+                        SubmodelElementCollection denmCollection = XmlToSubmodellcollectionParser(message);
+                        denmCollection.IdShort = "originId = " + originId;
 
-                        /*var denmCollection = new SubmodelElementCollection(idShort: "originId" + originId);
-                        var denmHeaderCollection = new SubmodelElementCollection(idShort: "header");
-
-                        var protovolVersion = new Property(DataTypeDefXsd.Int, idShort: "ProtocolVersion");
-                        protovolVersion.Value = message.Descendants("protocolVersion").FirstOrDefault().Value;
-                        denmHeaderCollection.AddChild(protovolVersion);
-
-                        var messageId = new Property(DataTypeDefXsd.Int, idShort: "messageID");
-                        messageId.Value = message.Descendants("messageID").FirstOrDefault().Value;
-                        denmHeaderCollection.AddChild(messageId);
-
-                        var stationId = new Property(DataTypeDefXsd.Int, idShort: "stationID");
-                        stationId.Value = message.Descendants("stationID").FirstOrDefault().Value;
-                        denmHeaderCollection.AddChild(stationId);
-
-                        denmCollection.AddChild(denmHeaderCollection);
-
-                        var denmBody = new SubmodelElementCollection(idShort: "denm");
-                        var management = new SubmodelElementCollection(idShort: "management");
-                        var actionId = new SubmodelElementCollection(idShort: "actionId");
-
-                        var originatingStationID = new Property(DataTypeDefXsd.Int, idShort: "originatingStationID");
-                        originatingStationID.Value = originId;
-                        actionId.AddChild(originatingStationID);
-
-                        var sequenceNumber = new Property(DataTypeDefXsd.Int, idShort: "sequenceNumber");
-                        sequenceNumber.Value = message.Descendants("sequenceNumber").FirstOrDefault().Value;
-                        actionId.AddChild(sequenceNumber);
-                        management.AddChild(actionId);
-
-                        var detectionTime = new Property(DataTypeDefXsd.Int, idShort: "detectionTime");
-                        detectionTime.Value = message.Descendants("detectionTime").FirstOrDefault().Value;
-                        management.AddChild(detectionTime);
-
-                        var referenceTime = new Property(DataTypeDefXsd.Int, idShort: "referenceTime");
-                        referenceTime.Value = message.Descendants("referenceTime").FirstOrDefault().Value;
-                        management.Add(referenceTime);
-
-                        var eventPosition = new SubmodelElementCollection(idShort: "eventPosition");
-
-                        var latitude = new Property(DataTypeDefXsd.Int, idShort: "latitude");
-                        latitude.Value = message.Descendants("latitude").FirstOrDefault().Value;
-                        */
-
+                        node = new NodeId( "ns=3;s=AASROOT.RSU.EnvironmentModel.DENM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(node), CreateMode.Instance, denmCollection);
+                       
 
                         //Adding DENM when no other DENM with same ActionId is currentlx active //Was wenn denm inaktiv erklärt wird und zirkulärer bezug wieder auf active setzt?
                         //Rermove when Cancallation DENM with same Action ID or Negation DENM // Was wenn fahrzeug abgeschleppt werden muss und DENM nicht aufgehoben wird?
@@ -495,39 +456,60 @@ namespace AasOpcUaServer
             throw new Exception("no Good Status");
         }
 
-        private SubmodelElementCollection XmlToSubmodellcollectonParser(XElement message)
+        private SubmodelElementCollection XmlToSubmodellcollectionParser(XElement message)
         {
             var collection = new SubmodelElementCollection();
 
+            message.Name = "root"; //identify if something is diretcly under the root on every v2x message
             foreach (var element in message.Descendants())
             {
-                if (element.Elements().Count() > 1) //Hier eher nachd er TIefe im Baum schauen, sonst woird jede collection auf der Wurzel modelliert
+                if (element.Parent.Name.ToString() == "root")
                 {
                     collection.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                 }
-
                 else
                 {
-                    var parent = (SubmodelElementCollection)collection.FindFirstIdShortAs<SubmodelElementCollection>(element.Parent.Name.ToString());
+                    SubmodelElementCollection parent = FindParentByIdShort(collection, element.Parent.Name.ToString());
 
-                    if (element.Value.IsNullOrEmpty())
+                    if (element.HasElements) //Submodellcollections
                     {
-                        parent.AddChild(new Property(DataTypeDefXsd.String,
-                                                idShort: element.Parent.Name.ToString(),
-                                                value: element.Name.ToString()
-                                                ));
+                        parent.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                     }
                     else
                     {
-                        
-                        parent.AddChild(new Property(DataTypeDefXsd.String,
-                                                idShort: element.Name.ToString(),
-                                                value: element.Value.ToString()
-                                                ));
+                        if (element.Value.IsNullOrEmpty())  //Special items like ecoDrive: <type> <ecoDrive/> </type >
+                        {
+                            parent.AddChild(new Property(DataTypeDefXsd.String,
+                                                    idShort: element.Name.ToString(),
+                                                    value: element.Name.ToString()
+                                                    ));
+                        }
+                        else //normal Properties
+                        {
+                            parent.AddChild(new Property(DataTypeDefXsd.String,
+                                                    idShort: element.Name.ToString(),
+                                                    value: element.Value.ToString()
+                                                    ));
+                        }
                     }
-
                 }
             }
+            return collection;
+        }
+
+        private SubmodelElementCollection FindParentByIdShort(SubmodelElementCollection collection, string idShort)
+        {
+            foreach (var element in collection.Descend().OfType<SubmodelElementCollection>())
+            {
+                if (element.IdShort == idShort)
+                {
+                    return element;
+                }
+                else
+                {
+                    FindParentByIdShort(element, idShort);
+                }   
+            } 
             return null;
         }
 
