@@ -346,6 +346,11 @@ namespace AasOpcUaServer
             //checkmate
             //TODO: Add To coresponding AAS
             string xmlString = "<root>" + inputArguments[0] + "</root>";
+            string senderId = "";
+            NodeId parentNode = new NodeId();
+            NodeId instanceNode = new NodeId();
+            NodeState messageNodeInServer = Find(parentNode);     //Does this cause errors?
+            SubmodelElementCollection v2xMessageCollection = new SubmodelElementCollection();
             XElement messageFromRsu = XElement.Parse(xmlString);
 
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
@@ -355,9 +360,23 @@ namespace AasOpcUaServer
 
             foreach (XElement message in messageFromRsu.Elements())
             {
+                senderId = message.Descendants("stationID").FirstOrDefault().Value;
+
                 switch (message.Name.ToString())
                 {
                     case "CAM":
+
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.CAM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.CAM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
 
                         //managing all CAMs and moving them to historical data after 1sec - new CAM should be available
 
@@ -370,18 +389,19 @@ namespace AasOpcUaServer
                         break;
                     case "DENM":
 
-                        string originId = message.Descendants("originatingStationID").FirstOrDefault().Value;
-                        NodeId node = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.DENM.originId=" + originId);
-                        var denmNodeInServer = Find(node);
+                        //identify which stration senden the signal and not just which repeated it
+                        senderId = message.Descendants("originatingStationID").FirstOrDefault().Value;       
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.DENM.originId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
 
-                        if (denmNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
                             break;
 
-                        SubmodelElementCollection denmCollection = XmlToSubmodellcollectionParser(message);
-                        denmCollection.IdShort = "originId = " + originId;
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "originId = " + senderId;
 
-                        node = new NodeId( "ns=3;s=AASROOT.RSU.EnvironmentModel.DENM");
-                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(node), CreateMode.Instance, denmCollection);
+                        parentNode = new NodeId( "ns=3;s=AASROOT.RSU.EnvironmentModel.DENM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                        
 
                         //Adding DENM when no other DENM with same ActionId is currentlx active //Was wenn denm inaktiv erklärt wird und zirkulärer bezug wieder auf active setzt?
@@ -396,6 +416,18 @@ namespace AasOpcUaServer
                         break;
                     case "MAPEM":
 
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.MAPEM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.MAPEM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
+
                         //immer zusammmen mit spatem übertragen
                         //sollte sich über die zeit wenig verändern 
                         // ==> Prüfen ob Änderung besteht in Client um Load auf Server zu verringern?
@@ -404,12 +436,35 @@ namespace AasOpcUaServer
 
                         break;
                     case "SPATEM":
+
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SPATEM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SPATEM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         // wird bei jedem TLM (Traffic Light maneuver zusammen mit MAPEM übertragen (also je ampelphase?)
 
                         //immer VWS und historical data updaten
 
                         break;
                     case "IVIM":
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.IVIM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.IVIM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         //Infrastructure to Vehoicle (bspw.: Straßenschilder, Bauarbeiten an Straßen, ...)
                         //recht variable
 
@@ -418,6 +473,18 @@ namespace AasOpcUaServer
 
                         break;
                     case "CPM":
+
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.CPM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.CPM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         //bereitstellung von Sensordaten andewrer Teilnehmer zum besseren Überblick
                         //hochdynamisch 
                         //wie umgehen mit verscheidenen Sensordaten unterschiedlicher Teilnehmer von einem anderen Teilnehmer?
@@ -427,6 +494,17 @@ namespace AasOpcUaServer
 
                         break;
                     case "SSEM":
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SSEM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SSEM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         //Bestätigung des SREM 
 
                         //SSEM eintrag anlegenin VWS
@@ -434,6 +512,18 @@ namespace AasOpcUaServer
                         //SSEM lösche 
                         break;
                     case "SREM":
+
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SREM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SREM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         //Anfragen von Ampel priorisierung (ÖPNV) oder Schaltung von Ampeln durch Sicherheitsdienste (Krankenwagen)
                         //Hochdynamisch
 
@@ -443,6 +533,17 @@ namespace AasOpcUaServer
 
                         break;
                     case "RTCMEM":
+                        instanceNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SREM.stationId=" + senderId);
+                        messageNodeInServer = Find(instanceNode);
+
+                        if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
+                            break;
+
+                        v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                        v2xMessageCollection.IdShort = "stationId = " + senderId;
+
+                        parentNode = new NodeId("ns=3;s=AASROOT.RSU.EnvironmentModel.SREM");
+                        builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
                         //Positionierungskorrektur, bereitgestellt von STraßenequipment zur korrektur von mobilenen einheiten 
                         //Hochdynamisch
 
