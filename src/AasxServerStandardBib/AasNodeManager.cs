@@ -30,8 +30,12 @@
 using AdminShellNS;
 using Extensions;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
+using Namotion.Reflection;
 using Opc.Ua;
 using Opc.Ua.Sample;
+using Opc.Ua.Server;
+using Org.BouncyCastle.Cms;
 using Org.BouncyCastle.Crypto.Tls;
 using Org.BouncyCastle.Tls;
 using System;
@@ -39,6 +43,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading;
+using System.Timers;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using static AasOpcUaServer.AasUaBaseEntity;
@@ -341,14 +348,17 @@ namespace AasOpcUaServer
             }
         }
 
+        //TODO: Das muss noch woandersd hin
+        ISystemContext _context;
         private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
         {
+            _context = context;
             //Add To coresponding AAS
             string xmlString = "<root>" + inputArguments[0] + "</root>";
             string senderId = "";
             NodeId parentNode = new NodeId();
             NodeId instanceNode = new NodeId();
-            NodeState messageNodeInServer = Find(parentNode);     //Does this cause errors?
+            NodeState messageNodeInServer = Find(parentNode);
             SubmodelElementCollection v2xMessageCollection = new SubmodelElementCollection();
             XElement messageFromRsu = XElement.Parse(xmlString);
 
@@ -356,117 +366,114 @@ namespace AasOpcUaServer
 
             // Root of whole structure is special, needs to link to external reference
             builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
-
-            foreach (XElement message in messageFromRsu.Elements())
+            try
             {
-                string v2xMessageName = message.Name.ToString();
-                if (v2xMessageName.Equals("DENM"))
-                    senderId = message.Descendants("originatingStationID").FirstOrDefault().Value;
-                else
-                    senderId = message.Descendants("stationID").FirstOrDefault().Value;
+                foreach (XElement message in messageFromRsu.Elements())
+                {
+                    string v2xMessageName = message.Name.ToString();
+                    if (v2xMessageName.Equals("DENM"))
+                        senderId = message.Descendants("originatingStationID").FirstOrDefault().Value;
+                    else
+                        senderId = message.Descendants("stationID").FirstOrDefault().Value;
 
-                string instanceNodeString = "ns=3;s=AASROOT.RSU.EnvironmentModel." + v2xMessageName + ".originalStationId = " + senderId;
-                messageNodeInServer = Find(instanceNode);
-                if (messageNodeInServer != null)  //TODO: Update der Node Berücksichtigen!   
-                    break;
-                v2xMessageCollection = XmlToSubmodellcollectionParser(message);
-                v2xMessageCollection.IdShort = "originalStationId = " + senderId;
-                string parentNodeName = "ns=3;s=AASROOT.RSU.EnvironmentModel." + v2xMessageName;
-                parentNode = new NodeId(parentNodeName);
-                builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection);
+                    string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName + ".originalStationId = " + senderId;
+                    messageNodeInServer = Find(new NodeId(instanceNodeString));
+
+                    v2xMessageCollection = XmlToSubmodellcollectionParser(message);
+                    v2xMessageCollection.IdShort = "originalStationId = " + senderId;
+                    string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
+                    parentNode = new NodeId(parentNodeName);
+                    builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
+
+                    //preparation to delete from Submodell later
+                    switch (v2xMessageName)
+                    {
+                        case "CAM":
+                        case "CPM":
+                        case "VAM":
+                        case "SREM":
+                            TimerForV2xMessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value, 5000);
+                            break;
+
+                        case "DENM":
+                            if (message.Descendants("termination").FirstOrDefault().IsEmpty) //value is only set when DENM is cancelled (0) or negated (1)
+                            {
+                                break;
+                            }
+                            TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
+                            break;
+
+                        case "IVIM":
+                            string ivimStatus = message.Descendants("iviStatus").FirstOrDefault().Value;
+                            if (!(ivimStatus.Equals("0") || ivimStatus.Equals("1"))) //value is only set when IVIM is cancelled (0) or negated (1)
+                            {
+                                break;
+                            }
+                            TerminateV2Xmessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value);
+                            break;
+
+                        case "SSEM":
+                            string ssemStatus = message.Descendants("ssemStatus").FirstOrDefault().Value;
+                            if (!(ssemStatus.Equals("0") || ssemStatus.Equals("1"))) //value is only set when SSEM is cancelled (0) or negated (1)
+                            {
+                                break;
+                            }
+                            TerminateV2Xmessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value);
+                            break;
+                    }
+                }
+
+                return ServiceResult.Good;
             }
+            catch (Exception ex)
+            {
+                return new ServiceResult(0x80000000, ex.Message);
 
-            return ServiceResult.Good;
-            throw new Exception("no Good Status");
-            //switch (message.Name.ToString())
-            //{
-            //    case "CAM":
-
-            //        //managing all CAMs and moving them to historical data after 1sec - new CAM should be available
-
-            //        // Erstellen eines neuen Object Nodes + Subnodes für Informationen konform der Verwaltungsschale
-
-            //        //1s Timer für Node erstellen
-
-            //        //Nach ablauf des Timers node löschen und in DB Historical Data speichern
-
-            //        break;
-            //    case "DENM":
-
-            //        //Adding DENM when no other DENM with same ActionId is currentlx active //Was wenn denm inaktiv erklärt wird und zirkulärer bezug wieder auf active setzt?
-            //        //Rermove when Cancallation DENM with same Action ID or Negation DENM // Was wenn fahrzeug abgeschleppt werden muss und DENM nicht aufgehoben wird?
-            //        // Kann ic fahrzeug direklt anfunken ob es noch in reichweite ist?
-
-            //        //je nach Inhalt :neuen Node fürm DENM erstellen //Node updaten // Node löschen // IMMER in historical Data aufnehmen 
-
-            //        //wie mit aktiven DENMs umgehen, die nicht gelöscht wurden?
-
-
-            //        break;
-            //    case "MAPEM":
-
-            //        //immer zusammmen mit spatem übertragen
-            //        //sollte sich über die zeit wenig verändern 
-            //        // ==> Prüfen ob Änderung besteht in Client um Load auf Server zu verringern?
-
-            //        //MAPEM auf Änderungen prüfenj, bei Änderung VWS und historical Data updaten 
-
-            //        break;
-            //    case "SPATEM":
-
-            //        // wird bei jedem TLM (Traffic Light maneuver zusammen mit MAPEM übertragen (also je ampelphase?)
-
-            //        //immer VWS und historical data updaten
-
-            //        break;
-            //    case "IVIM":
-
-            //        //Infrastructure to Vehoicle (bspw.: Straßenschilder, Bauarbeiten an Straßen, ...)
-            //        //recht variable
-
-            //        //Vorgehen wie bei MAPEM  
-
-
-            //        break;
-            //    case "CPM":
-
-            //        //bereitstellung von Sensordaten andewrer Teilnehmer zum besseren Überblick
-            //        //hochdynamisch 
-            //        //wie umgehen mit verscheidenen Sensordaten unterschiedlicher Teilnehmer von einem anderen Teilnehmer?
-
-            //        //Hioer müssen sensordaten zusammengefügt werden ... keine Ahnung, erstmalk außenm vor lassen
-
-
-            //        break;
-            //    case "SSEM":
-            //        //Bestätigung des SREM 
-
-            //        //SSEM eintrag anlegenin VWS
-            //        //SSEM updaten
-            //        //SSEM lösche 
-            //        break;
-            //    case "SREM":
-
-            //        //Anfragen von Ampel priorisierung (ÖPNV) oder Schaltung von Ampeln durch Sicherheitsdienste (Krankenwagen)
-            //        //Hochdynamisch
-
-            //        //SREM eintrag anlegenin VWS
-            //        //SREM updaten
-            //        //SREM lösche 
-
-            //        break;
-            //    case "RTCMEM":
-
-            //        //Positionierungskorrektur, bereitgestellt von STraßenequipment zur korrektur von mobilenen einheiten 
-            //        //Hochdynamisch
-
-            //        //eigentlich nur für historical data interessabt, evtl updaten des Modelles auf
-            //        //Grundlagen von anderen Sensordaten, da Vehicle sonst mehrfach existiert?
-            //        break;
-
-            //}
-            //}
+            }
         }
+        //TODO; weiter hoch setzen
+        private Dictionary<string, string, System.Timers.Timer> activeV2xMessages = new Dictionary<string, string, System.Timers.Timer>();
+
+        private void TimerForV2xMessage(string messageType, string messageId, int timerInMills)
+        {
+            //keep message alive while constantly send
+            if (activeV2xMessages.ContainsKey(messageType, messageId))
+            {
+                var timer = activeV2xMessages[Tuple.Create(messageType, messageId)];
+                timer.Stop();
+                timer.AutoReset = false;
+                timer.Start();
+                Console.WriteLine("The Timer event was reset at {0:HH:mm:ss.fff}",
+                          DateTime.UtcNow);
+            }
+            //first appearance of message
+            else
+            {
+                var timer = new System.Timers.Timer(timerInMills);
+                activeV2xMessages.Add(messageType, messageId, timer);
+                timer.Elapsed += (sender, e) => OnTimedEvent(sender, e, messageType, messageId);
+                timer.Enabled = true;
+                timer.AutoReset=false;
+                Console.WriteLine("The Timer event was set at {0:HH:mm:ss.fff}",
+                          DateTime.UtcNow);
+                
+            }
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e, string v2xMessageType, string originatorId)
+        {
+            activeV2xMessages.Remove(Tuple.Create(v2xMessageType, originatorId));
+            TerminateV2Xmessage(v2xMessageType, originatorId);
+            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
+                              e.SignalTime);
+        }
+        private void TerminateV2Xmessage(string v2xMessageType, string originatorId)
+        {
+            string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
+            DeleteNode((ServerSystemContext) _context, new NodeId(instanceNodeString));
+            //TODO: Bei CAM wird beim updaten der timer der browsename nicht verändert, keine ahnung warum.
+        }
+
 
         private SubmodelElementCollection XmlToSubmodellcollectionParser(XElement message)
         {
@@ -636,4 +643,24 @@ namespace AasOpcUaServer
         private long m_lastUsedTypeId;
         #endregion
     }
+    public class Dictionary<TKey1, TKey2, TValue> : Dictionary<Tuple<TKey1, TKey2>, TValue>, IDictionary<Tuple<TKey1, TKey2>, TValue>
+    {
+
+        public TValue this[TKey1 key1, TKey2 key2]
+        {
+            get { return base[Tuple.Create(key1, key2)]; }
+            set { base[Tuple.Create(key1, key2)] = value; }
+        }
+
+        public void Add(TKey1 key1, TKey2 key2, TValue value)
+        {
+            base.Add(Tuple.Create(key1, key2), value);
+        }
+
+        public bool ContainsKey(TKey1 key1, TKey2 key2)
+        {
+            return base.ContainsKey(Tuple.Create(key1, key2));
+        }
+    }
+   
 }
