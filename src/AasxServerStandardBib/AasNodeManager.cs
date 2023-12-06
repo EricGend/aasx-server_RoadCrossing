@@ -396,11 +396,13 @@ namespace AasOpcUaServer
                             break;
 
                         case "DENM":
-                            if (message.Descendants("termination").FirstOrDefault().IsEmpty) //value is only set when DENM is cancelled (0) or negated (1)
-                            {
+                            var cancellationFlag = message.Descendants("termination").FirstOrDefault();
+                            if (cancellationFlag == null)
                                 break;
+                            if (cancellationFlag.Value.Equals("1")) //value is only set when DENM is cancelled (0) or negated (1)
+                            {
+                                TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
                             }
-                            TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
                             break;
 
                         case "IVIM":
