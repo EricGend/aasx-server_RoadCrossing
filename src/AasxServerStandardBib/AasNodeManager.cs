@@ -401,7 +401,14 @@ namespace AasOpcUaServer
                                 break;
                             if (cancellationFlag.Value.Equals("1")) //value is only set when DENM is cancelled (0) or negated (1)
                             {
-                                TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
+                                SubmodelElementCollection submodellElemet = (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageName);
+                                submodellElemet.Value.Remove(submodellElemet.Value.FirstOrDefault(x => x.IdShort.Equals("originalStationId = " + senderId)));
+                                v2xMessageCollection = submodellElemet;
+                                parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel";
+                                parentNode = new NodeId(parentNodeName);
+                                builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
+
+                                //TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
                             }
                             break;
 
