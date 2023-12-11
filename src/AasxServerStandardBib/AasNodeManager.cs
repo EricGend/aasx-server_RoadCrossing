@@ -351,7 +351,7 @@ namespace AasOpcUaServer
         //TODO: Das muss noch woandersd hin
         ISystemContext _context;
         private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
-        {
+        { //Todo: try catch errors
             _context = context;
             //Add To coresponding AAS
             string xmlString = "<root>" + inputArguments[0] + "</root>";
@@ -365,7 +365,7 @@ namespace AasOpcUaServer
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
 
             // Root of whole structure is special, needs to link to external reference
-            builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
+            //builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
             try
             {
                 foreach (XElement message in messageFromRsu.Elements())
@@ -381,6 +381,10 @@ namespace AasOpcUaServer
 
                     v2xMessageCollection = XmlToSubmodellcollectionParser(message);
                     v2xMessageCollection.IdShort = "originalStationId = " + senderId;
+                    //add to local AAS
+
+
+                    //add to OPC Model
                     string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
                     parentNode = new NodeId(parentNodeName);
                     builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
@@ -394,7 +398,7 @@ namespace AasOpcUaServer
                         case "SREM":
                             TimerForV2xMessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value, 5000);
                             break;
-
+                            
                         case "DENM":
                             var cancellationFlag = message.Descendants("termination").FirstOrDefault();
                             if (cancellationFlag == null)
