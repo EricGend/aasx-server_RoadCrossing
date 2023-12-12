@@ -362,30 +362,35 @@ namespace AasOpcUaServer
             SubmodelElementCollection v2xMessageCollection = new SubmodelElementCollection();
             XElement messageFromRsu = XElement.Parse(xmlString);
 
+
+
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
 
-            // Root of whole structure is special, needs to link to external reference
-            //builder.RootAAS = builder.CreateAddFolder(AasUaBaseEntity.CreateMode.Instance, null, "AASROOT");
             try
             {
                 foreach (XElement message in messageFromRsu.Elements())
                 {
+                    //handle v2x messages by their type
                     string v2xMessageName = message.Name.ToString();
-                    if (v2xMessageName.Equals("DENM"))
+                    if (v2xMessageName.Equals("DENM") || v2xMessageName.Equals("CPM"))
                         senderId = message.Descendants("originatingStationID").FirstOrDefault().Value;
                     else
                         senderId = message.Descendants("stationID").FirstOrDefault().Value;
 
-                    string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName + ".originalStationId = " + senderId;
+                    string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
+                    string instanceNodeString = parentNode + ".originalStationId = " + senderId;
+                    
                     messageNodeInServer = Find(new NodeId(instanceNodeString));
 
                     v2xMessageCollection = XmlToSubmodellcollectionParser(message);
                     v2xMessageCollection.IdShort = "originalStationId = " + senderId;
+                    
                     //add to local AAS
 
+                    SubmodelElementCollection messageTypeCollection = (SubmodelElementCollection)thePackageEnv[0].AasEnv.Submodels[0].FindSubmodelElementByIdShort(v2xMessageName);
+                    messageTypeCollection.Add(v2xMessageCollection);
 
-                    //add to OPC Model
-                    string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
+                    //add to OPC Modelsrc
                     parentNode = new NodeId(parentNodeName);
                     builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
 
