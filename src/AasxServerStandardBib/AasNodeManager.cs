@@ -399,14 +399,7 @@ namespace AasOpcUaServer
                                 break;
                             if (cancellationFlag.Value.Equals("1")) //value is only set when DENM is cancelled (0) or negated (1)
                             {
-                                SubmodelElementCollection submodellElemet = (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageName);
-                                submodellElemet.Value.Remove(submodellElemet.Value.FirstOrDefault(x => x.IdShort.Equals("originalStationId = " + senderId)));
-                                v2xMessageCollection = submodellElemet;
-                                parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel";
-                                parentNode = new NodeId(parentNodeName);
-                                builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
-
-                                //TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
+                                TerminateV2Xmessage(v2xMessageName, message.Descendants("originatingStationID").FirstOrDefault().Value);
                             }
                             break;
 
@@ -420,12 +413,15 @@ namespace AasOpcUaServer
                             break;
 
                         case "SSEM":
-                            string ssemStatus = message.Descendants("ssemStatus").FirstOrDefault().Value;
-                            if (!(ssemStatus.Equals("0") || ssemStatus.Equals("1"))) //value is only set when SSEM is cancelled (0) or negated (1)
+                            var cancellationFlagSSEM = message.Descendants("ssemStatus").FirstOrDefault();
+                            if (cancellationFlagSSEM == null)
                             {
                                 break;
                             }
-                            TerminateV2Xmessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value);
+                            if(cancellationFlagSSEM.Value.Equals("1") || cancellationFlagSSEM.Equals("0")) //value is only set when SSEM is cancelled (0) or negated (1)
+                            {
+                                TerminateV2Xmessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value);
+                            }
                             break;
                     }
                 }
@@ -476,8 +472,19 @@ namespace AasOpcUaServer
         }
         private void TerminateV2Xmessage(string v2xMessageType, string originatorId)
         {
-            string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
-            DeleteNode((ServerSystemContext) _context, new NodeId(instanceNodeString));
+            var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
+
+            SubmodelElementCollection submodellElemet = (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageType);
+            submodellElemet.Value.Remove(submodellElemet.Value.FirstOrDefault(x => x.IdShort.Equals("originalStationId = " + originatorId)));
+            var v2xMessageCollection = submodellElemet;
+            var parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel";
+            var parentNode = new NodeId(parentNodeName);
+            builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
+
+            //This should be wrong rn: 
+
+            //string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
+            //DeleteNode((ServerSystemContext) _context, new NodeId(instanceNodeString));
             //TODO: Bei CAM wird beim updaten der timer der browsename nicht verändert, keine ahnung warum.
         }
 
