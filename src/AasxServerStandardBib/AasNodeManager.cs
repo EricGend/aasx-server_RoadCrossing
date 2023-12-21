@@ -351,7 +351,7 @@ namespace AasOpcUaServer
         //TODO: Das muss noch woandersd hin
         ISystemContext _context;
         private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
-        { //Todo: try catch errors
+        {
             _context = context;
             //Add To coresponding AAS
             string xmlString = "<root>" + inputArguments[0] + "</root>";
@@ -362,35 +362,24 @@ namespace AasOpcUaServer
             SubmodelElementCollection v2xMessageCollection = new SubmodelElementCollection();
             XElement messageFromRsu = XElement.Parse(xmlString);
 
-
-
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
 
             try
             {
                 foreach (XElement message in messageFromRsu.Elements())
                 {
-                    //handle v2x messages by their type
                     string v2xMessageName = message.Name.ToString();
-                    if (v2xMessageName.Equals("DENM") || v2xMessageName.Equals("CPM"))
+                    if (v2xMessageName.Equals("DENM"))
                         senderId = message.Descendants("originatingStationID").FirstOrDefault().Value;
                     else
                         senderId = message.Descendants("stationID").FirstOrDefault().Value;
 
-                    string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
-                    string instanceNodeString = parentNode + ".originalStationId = " + senderId;
-                    
+                    string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName + ".originalStationId = " + senderId;
                     messageNodeInServer = Find(new NodeId(instanceNodeString));
 
                     v2xMessageCollection = XmlToSubmodellcollectionParser(message);
                     v2xMessageCollection.IdShort = "originalStationId = " + senderId;
-                    
-                    //add to local AAS
-
-                    SubmodelElementCollection messageTypeCollection = (SubmodelElementCollection)thePackageEnv[0].AasEnv.Submodels[0].FindSubmodelElementByIdShort(v2xMessageName);
-                    messageTypeCollection.Add(v2xMessageCollection);
-
-                    //add to OPC Modelsrc
+                    string parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageName;
                     parentNode = new NodeId(parentNodeName);
                     builder.AasTypes.SubmodelWrapper.CreateAddElements(Find(parentNode), CreateMode.Instance, v2xMessageCollection, modellingRule: ModellingRule.Mandatory);
 
@@ -403,7 +392,7 @@ namespace AasOpcUaServer
                         case "SREM":
                             TimerForV2xMessage(v2xMessageName, message.Descendants("stationID").FirstOrDefault().Value, 5000);
                             break;
-                            
+
                         case "DENM":
                             var cancellationFlag = message.Descendants("termination").FirstOrDefault();
                             if (cancellationFlag == null)
