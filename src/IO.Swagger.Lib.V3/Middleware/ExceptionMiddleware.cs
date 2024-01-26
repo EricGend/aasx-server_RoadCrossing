@@ -115,7 +115,7 @@ namespace IO.Swagger.Lib.V3.Middleware
                         message.MessageType = Message.MessageTypeEnum.ErrorEnum;
                         break;
                     }
-                case Exceptions.NotImplementedException:
+                /*TODO:case Exceptions.NotImplementedException:
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.NotImplemented;
                         message.Code = HttpStatusCode.NotImplemented.ToString();
@@ -123,7 +123,7 @@ namespace IO.Swagger.Lib.V3.Middleware
                         message.Timestamp = DateTime.Now.ToString();
                         message.MessageType = Message.MessageTypeEnum.ErrorEnum;
                         break;
-                    }
+                    }*/
                 case UnprocessableEntityException:
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;

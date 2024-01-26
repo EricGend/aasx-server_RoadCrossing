@@ -340,7 +340,7 @@ namespace AasOpcUaServer
             }
         }
 
-        //TODO: Das muss noch woandersd hin
+        //TODO: (ERIC) Das muss noch woandersd hin
         ISystemContext _context;
         private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
         {
@@ -426,7 +426,7 @@ namespace AasOpcUaServer
 
             }
         }
-        //TODO; weiter hoch setzen
+        //TODO: (ERIC) weiter hoch setzen
         private Dictionary<string, string, System.Timers.Timer> activeV2xMessages = new Dictionary<string, string, System.Timers.Timer>();
 
         private void TimerForV2xMessage(string messageType, string messageId, int timerInMills)
@@ -466,7 +466,7 @@ namespace AasOpcUaServer
         {
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
 
-            SubmodelElementCollection submodellElemet = (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageType);
+            SubmodelElementCollection submodellElemet = null; //TODO: (ERIC)  (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageType);
             submodellElemet.Value.Remove(submodellElemet.Value.FirstOrDefault(x => x.IdShort.Equals("originalStationId = " + originatorId)));
             var v2xMessageCollection = submodellElemet;
             var parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel";
@@ -477,7 +477,7 @@ namespace AasOpcUaServer
 
             //string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
             //DeleteNode((ServerSystemContext) _context, new NodeId(instanceNodeString));
-            //TODO: Bei CAM wird beim updaten der timer der browsename nicht verändert, keine ahnung warum.
+            //TODO: (ERIC) Bei CAM wird beim updaten der timer der browsename nicht verändert, keine ahnung warum.
         }
 
 
@@ -490,7 +490,7 @@ namespace AasOpcUaServer
             {
                 if (element.Parent.Name.ToString() == "root")
                 {
-                    collection.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
+                    //TODO: (ERIC) collection.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                 }
                 else
                 {
@@ -498,23 +498,23 @@ namespace AasOpcUaServer
 
                     if (element.HasElements) //Submodellcollections
                     {
-                        parent.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
+                        //TODO:(ERIC)  parent.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                     }
                     else
                     {
-                        if (element.Value.IsNullOrEmpty())  //Special items like ecoDrive: <type> <ecoDrive/> </type >
+                        //TODO:(ERIC) if (element.Value.IsNullOrEmpty())  //Special items like ecoDrive: <type> <ecoDrive/> </type >
                         {
-                            parent.AddChild(new Property(DataTypeDefXsd.String,
+                            /*/TODO:(ERIC) parent.AddChild(new Property(DataTypeDefXsd.String,
                                                     idShort: element.Name.ToString(),
                                                     value: element.Name.ToString()
                                                     ));
                         }
                         else //normal Properties
                         {
-                            parent.AddChild(new Property(DataTypeDefXsd.String,
+                            //TODO:(ERIC) parent.AddChild(new Property(DataTypeDefXsd.String,
                                                     idShort: element.Name.ToString(),
                                                     value: element.Value.ToString()
-                                                    ));
+                                                    ));*/
                         }
                     }
                 }

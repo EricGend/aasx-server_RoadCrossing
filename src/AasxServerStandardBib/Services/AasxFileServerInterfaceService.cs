@@ -1,19 +1,19 @@
 ﻿using AasxRestServerLibrary;
 using AasxServer;
-<<<<<<<< HEAD:src/IO.Swagger.V1RC03/Services/AasxFileServerInterfaceService.cs
+//<<<<<<<< HEAD:src/IO.Swagger.V1RC03/Services/AasxFileServerInterfaceService.cs
 using AasxServerStandardBib.Logging;
 using AdminShellNS;
 using Extensions;
-using IO.Swagger.V1RC03.ApiModel;
-using IO.Swagger.V1RC03.Exceptions;
-========
+//using IO.Swagger.V1RC03.ApiModel;
+//using IO.Swagger.V1RC03.Exceptions;
+//========
 using AasxServerStandardBib.Exceptions;
 using AasxServerStandardBib.Interfaces;
 using AasxServerStandardBib.Logging;
 using AdminShellNS;
 using AdminShellNS.Models;
 using Extensions;
->>>>>>>> upstream/main:src/AasxServerStandardBib/Services/AasxFileServerInterfaceService.cs
+//>>>>>>>> upstream/main:src/AasxServerStandardBib/Services/AasxFileServerInterfaceService.cs
 using System;
 using System.Collections.Generic;
 using System.IO;
