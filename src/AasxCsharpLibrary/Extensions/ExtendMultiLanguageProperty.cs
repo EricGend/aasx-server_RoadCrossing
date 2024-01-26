@@ -30,7 +30,7 @@ namespace Extensions
                 return null;
             }
 
-            if (sourceProperty.valueId != null)
+            if (sourceProperty.valueId != null && !sourceProperty.valueId.IsEmpty)
             {
                 var keyList = new List<IKey>();
                 foreach (var refKey in sourceProperty.valueId.Keys)
@@ -49,11 +49,14 @@ namespace Extensions
                 property.ValueId = new Reference(ReferenceTypes.ExternalReference, keyList);
             }
 
-            var newLangStrings = new List<ILangStringTextType>();
+            if (sourceProperty.value != null && !sourceProperty.value.IsEmpty)
+            {
+                var newLangStrings = new List<ILangStringTextType>();
 
-            List<ILangStringTextType> newLangStringSet = new(newLangStrings);
+                List<ILangStringTextType> newLangStringSet = new(newLangStrings);
 
-            property.Value = newLangStringSet.ConvertFromV20(sourceProperty.value);
+                property.Value = newLangStringSet.ConvertFromV20(sourceProperty.value);
+            }
 
             return property;
 

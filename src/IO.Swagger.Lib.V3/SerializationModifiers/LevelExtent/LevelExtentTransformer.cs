@@ -23,19 +23,25 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
                 {
                     if (context.Level == LevelEnum.Core)
                     {
-                        output.Annotations = new List<IDataElement>();
-                        foreach (var child in that.Annotations)
+                        if (that.Annotations != null)
                         {
-                            context.IncludeChildren = false;
-                            output.Annotations.Add((IDataElement)Transform(child, context));
+                            output.Annotations = new List<IDataElement>();
+                            foreach (var child in that.Annotations)
+                            {
+                                context.IncludeChildren = false;
+                                output.Annotations.Add((IDataElement)Transform(child, context));
+                            }
                         }
                     }
                     else
                     {
-                        output.Annotations = new List<IDataElement>();
-                        foreach (var child in that.Annotations)
+                        if (that.Annotations != null)
                         {
-                            output.Annotations.Add((IDataElement)Transform(child, context));
+                            output.Annotations = new List<IDataElement>();
+                            foreach (var child in that.Annotations)
+                            {
+                                output.Annotations.Add((IDataElement)Transform(child, context));
+                            }
                         }
                     }
                 }
@@ -123,19 +129,25 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
                 {
                     if (context.Level == LevelEnum.Core)
                     {
-                        output.Statements = new List<ISubmodelElement>();
-                        foreach (var child in that.Statements)
+                        if (that.Statements != null)
                         {
-                            context.IncludeChildren = false;
-                            output.Statements.Add((ISubmodelElement)Transform(child, context));
+                            output.Statements = new List<ISubmodelElement>();
+                            foreach (var child in that.Statements)
+                            {
+                                context.IncludeChildren = false;
+                                output.Statements.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                     else
                     {
-                        output.Statements = new List<ISubmodelElement>();
-                        foreach (var child in that.Statements)
+                        if (that.Statements != null)
                         {
-                            output.Statements.Add((ISubmodelElement)Transform(child, context));
+                            output.Statements = new List<ISubmodelElement>();
+                            foreach (var child in that.Statements)
+                            {
+                                output.Statements.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                 }
@@ -232,12 +244,86 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
 
         public override IClass TransformOperation(IOperation that, LevelExtentModifierContext context)
         {
-            throw new System.NotImplementedException();
+            var output = Copying.Deep(that);
+
+            if (output != null)
+            {
+                context.IsRoot = false;
+                if (context.Level == LevelEnum.Core)
+                {
+                    if (that.InputVariables != null)
+                    {
+                        output.InputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.InputVariables)
+                        {
+                            context.IncludeChildren = false;
+                            output.InputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+
+                    if (that.OutputVariables != null)
+                    {
+                        output.OutputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.OutputVariables)
+                        {
+                            context.IncludeChildren = false;
+                            output.OutputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+
+                    if (that.InoutputVariables != null)
+                    {
+                        output.InoutputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.InoutputVariables)
+                        {
+                            context.IncludeChildren = false;
+                            output.OutputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+                }
+                else
+                {
+                    if (that.InputVariables != null)
+                    {
+                        output.InputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.InputVariables)
+                        {
+                            output.InputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+
+                    if (that.OutputVariables != null)
+                    {
+                        output.OutputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.OutputVariables)
+                        {
+                            output.OutputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+
+                    if (that.InoutputVariables != null)
+                    {
+                        output.InoutputVariables = new List<IOperationVariable>();
+                        foreach (var child in that.InoutputVariables)
+                        {
+                            output.OutputVariables.Add((IOperationVariable)Transform(child, context));
+                        }
+                    }
+                }
+            }
+
+            return output;
         }
 
         public override IClass TransformOperationVariable(IOperationVariable that, LevelExtentModifierContext context)
         {
-            throw new System.NotImplementedException();
+            var output = Copying.Deep(that);
+            if (output != null)
+            {
+                output.Value = (ISubmodelElement)Transform(that.Value, context);
+            }
+
+            return output;
         }
 
         public override IClass TransformProperty(IProperty that, LevelExtentModifierContext context)
@@ -333,19 +419,25 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
                 context.IsRoot = false;
                 if (context.Level == LevelEnum.Core)
                 {
-                    output.SubmodelElements = new List<ISubmodelElement>();
-                    foreach (var child in that.SubmodelElements)
+                    if (that.SubmodelElements != null)
                     {
-                        context.IncludeChildren = false;
-                        output.SubmodelElements.Add((ISubmodelElement)Transform(child, context));
+                        output.SubmodelElements = new List<ISubmodelElement>();
+                        foreach (var child in that.SubmodelElements)
+                        {
+                            context.IncludeChildren = false;
+                            output.SubmodelElements.Add((ISubmodelElement)Transform(child, context));
+                        }
                     }
                 }
                 else
                 {
-                    output.SubmodelElements = new List<ISubmodelElement>();
-                    foreach (var child in that.SubmodelElements)
+                    if (that.SubmodelElements != null)
                     {
-                        output.SubmodelElements.Add((ISubmodelElement)Transform(child, context));
+                        output.SubmodelElements = new List<ISubmodelElement>();
+                        foreach (var child in that.SubmodelElements)
+                        {
+                            output.SubmodelElements.Add((ISubmodelElement)Transform(child, context));
+                        }
                     }
                 }
             }
@@ -364,19 +456,25 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
                 {
                     if (context.Level == LevelEnum.Core)
                     {
-                        output.Value = new List<ISubmodelElement>();
-                        foreach (var child in that.Value)
+                        if (that.Value != null)
                         {
-                            context.IncludeChildren = false;
-                            output.Value.Add((ISubmodelElement)Transform(child, context));
+                            output.Value = new List<ISubmodelElement>();
+                            foreach (var child in that.Value)
+                            {
+                                context.IncludeChildren = false;
+                                output.Value.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                     else
                     {
-                        output.Value = new List<ISubmodelElement>();
-                        foreach (var child in that.Value)
+                        if (that.Value != null)
                         {
-                            output.Value.Add((ISubmodelElement)Transform(child, context));
+                            output.Value = new List<ISubmodelElement>();
+                            foreach (var child in that.Value)
+                            {
+                                output.Value.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                 }
@@ -400,19 +498,25 @@ namespace IO.Swagger.Lib.V3.SerializationModifiers.LevelExtent
                 {
                     if (context.Level == LevelEnum.Core)
                     {
-                        output.Value = new List<ISubmodelElement>();
-                        foreach (var child in that.Value)
+                        if (that.Value != null)
                         {
-                            context.IncludeChildren = false;
-                            output.Value.Add((ISubmodelElement)Transform(child, context));
+                            output.Value = new List<ISubmodelElement>();
+                            foreach (var child in that.Value)
+                            {
+                                context.IncludeChildren = false;
+                                output.Value.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                     else
                     {
-                        output.Value = new List<ISubmodelElement>();
-                        foreach (var child in that.Value)
+                        if (that.Value != null)
                         {
-                            output.Value.Add((ISubmodelElement)Transform(child, context));
+                            output.Value = new List<ISubmodelElement>();
+                            foreach (var child in that.Value)
+                            {
+                                output.Value.Add((ISubmodelElement)Transform(child, context));
+                            }
                         }
                     }
                 }

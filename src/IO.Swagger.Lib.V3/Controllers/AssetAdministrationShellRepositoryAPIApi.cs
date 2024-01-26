@@ -714,6 +714,7 @@ namespace IO.Swagger.Controllers
 
             var aas = _aasService.GetAssetAdministrationShellById(decodedAasIdentifier);
 
+            /* Turn off AAS security to have existing demos run
             var authResult = _authorizationService.AuthorizeAsync(User, aas, "SecurityPolicy").Result;
             if (!authResult.Succeeded)
             {
@@ -723,6 +724,7 @@ namespace IO.Swagger.Controllers
                     throw new NotAllowed(failedReasons.First().Message);
                 }
             }
+            */
             return new ObjectResult(aas);
         }
 
@@ -852,6 +854,8 @@ namespace IO.Swagger.Controllers
 
             HttpContext.Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
             HttpContext.Response.ContentLength = fileSize;
+            if (fileName.ToLower().EndsWith(".svg"))
+                HttpContext.Response.ContentType = "image/svg+xml";
             HttpContext.Response.Body.WriteAsync(content);
             return new EmptyResult();
         }
@@ -2323,7 +2327,7 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="0">Default error handling for unmentioned status codes</response>
         [HttpPut]
-        [Route("/shells/{aasIdentifier}/submodels/{submodelIdentifier}/submodelelements/{idShortPath}/attachment")]
+        [Route("/shells/{aasIdentifier}/submodels/{submodelIdentifier}/submodel-elements/{idShortPath}/attachment")]
         [ValidateModelState]
         [SwaggerOperation("PutFileByPath")]
         [SwaggerResponse(statusCode: 204, type: typeof(Result), description: "Submodel element updated successfully")]
@@ -2342,6 +2346,38 @@ namespace IO.Swagger.Controllers
 
             _aasService.ReplaceFileByPath(decodedAasId, decodedSubmodelId, idShortPath, fileName, contentType, stream);
 
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Replaces the thumbnail file
+        /// </summary>
+        /// <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+        /// <param name="file">Thumbnail to upload</param>
+        /// <response code="204">Thumbnail updated successfully</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="403">Forbidden</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="404">Internal Server Error</response>
+        /// <response code="0">Default error handling for unmentioned status codes</response>
+        [HttpPut]
+        [Route("/shells/{aasIdentifier}/asset-information/thumbnail")]
+        [ValidateModelState]
+        [SwaggerOperation("PutThumbnail")]
+        [SwaggerResponse(statusCode: 204, type: typeof(Result), description: "Thumbnail updated successfully")]
+        [SwaggerResponse(statusCode: 400, type: typeof(Result), description: "Bad Request")]
+        [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
+        [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
+        public virtual IActionResult PutThumbnail([FromRoute][Required] string aasIdentifier, IFormFile file)
+        {
+            var decodedAasIdentifier = _decoderService.Decode("aasIdentifier", aasIdentifier);
+
+            var stream = new MemoryStream();
+            file.CopyTo(stream);
+            string fileName = file.FileName;
+            string contentType = file.ContentType;
+
+            _aasService.UpdateThumbnail(decodedAasIdentifier, fileName, contentType, stream);
             return NoContent();
         }
 

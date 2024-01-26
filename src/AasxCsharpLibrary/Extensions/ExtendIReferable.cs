@@ -329,9 +329,10 @@ namespace Extensions
         public static void SetTimeStamp(this IReferable referable, DateTime timeStamp)
         {
             IReferable newReferable = referable;
+            newReferable.TimeStamp = timeStamp;
             do
             {
-                newReferable.TimeStamp = timeStamp;
+                newReferable.TimeStampTree = timeStamp;
                 if (newReferable != newReferable.Parent)
                 {
                     newReferable = (IReferable)newReferable.Parent;
@@ -429,11 +430,12 @@ namespace Extensions
 
         public static void SetAllParentsAndTimestamps(this IReferable referable, IReferable parent, DateTime timeStamp, DateTime timeStampCreate)
         {
-            if (parent == null)
-                return;
+            // if (parent == null)
+            //    return;
 
             referable.Parent = parent;
             referable.TimeStamp = timeStamp;
+            referable.TimeStampTree = timeStamp;
             referable.TimeStampCreate = timeStampCreate;
 
             foreach (var submodelElement in referable.EnumerateChildren())

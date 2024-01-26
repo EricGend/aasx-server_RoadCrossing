@@ -6,6 +6,7 @@ using Grapevine.Interfaces.Server;
 using Grapevine.Server;
 using Grapevine.Server.Attributes;
 using Grapevine.Shared;
+using IdentityModel;
 using Jose;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -21,6 +22,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -3375,29 +3377,38 @@ namespace AasxRestServerLibrary
             string objPath = "", string aasOrSubmodel = null, object objectAasOrSubmodel = null)
         {
             string error = "";
+            string getPolicy = null;
             bool withAllow = false;
-            return checkAccessLevelWithError(out error, currentRole, operation, neededRights, out withAllow,
+            return checkAccessLevelWithError(out error, currentRole, operation, neededRights, out withAllow, out getPolicy,
                 objPath, aasOrSubmodel, objectAasOrSubmodel);
         }
         public static bool checkAccessLevelWithAllow(string currentRole, string operation, string neededRights,
-            out bool withAllow, string objPath = "", string aasOrSubmodel = null, object objectAasOrSubmodel = null)
+            out bool withAllow, string objPath = "", string aasOrSubmodel = null, object objectAasOrSubmodel = null,
+            string policy = null)
         {
             string error = "";
+            string getPolicy = null;
             withAllow = false;
-            return checkAccessLevelWithError(out error, currentRole, operation, neededRights, out withAllow,
-                objPath, aasOrSubmodel, objectAasOrSubmodel);
+            return checkAccessLevelWithError(out error, currentRole, operation, neededRights, out withAllow, out getPolicy,
+                objPath, aasOrSubmodel, objectAasOrSubmodel, policy);
         }
         public static bool checkAccessLevelWithError(out string error, string currentRole, string operation,
-            string neededRights, out bool withAllow,
-            string objPath = "", string aasOrSubmodel = null, object objectAasOrSubmodel = null)
+            string neededRights, out bool withAllow, out string getPolicy,
+            string objPath = "", string aasOrSubmodel = null, object objectAasOrSubmodel = null, string policy = null)
         {
             error = "";
+            getPolicy = null;
             withAllow = false;
+            
             if (Program.secretStringAPI != null)
             {
+                /*
                 if (neededRights == "READ")
                     return true;
                 if ((neededRights == "UPDATE" || neededRights == "DELETE") && currentRole == "UPDATE")
+                    return true;
+                */
+                if (currentRole == "CREATE")
                     return true;
             }
 
@@ -3442,7 +3453,7 @@ namespace AasxRestServerLibrary
                         {
                             if (securityRole[iRole].permission == neededRights)
                             {
-                                return checkUsage(out error, securityRole[iRole]);
+                                return checkPolicy(out error, securityRole[iRole], out getPolicy);
                             }
                         }
                     }
@@ -3455,6 +3466,7 @@ namespace AasxRestServerLibrary
                 // no objects below must have deny
                 string deepestDeny = "";
                 string deepestAllow = "";
+                securityRoleClass deepestAllowRole = null;
                 foreach (var role in securityRole)
                 {
                     if (role.name != currentRole)
@@ -3474,6 +3486,7 @@ namespace AasxRestServerLibrary
                                         {
                                             deepestAllow = s.IdShort;
                                             withAllow = true;
+                                            deepestAllowRole = role;
                                         }
                                     }
                                     if (role.kind == "deny")
@@ -3496,6 +3509,7 @@ namespace AasxRestServerLibrary
                                         {
                                             deepestAllow = objPath;
                                             withAllow = true;
+                                            deepestAllowRole = role;
                                         }
                                     }
                                     if (role.kind == "deny")
@@ -3534,6 +3548,7 @@ namespace AasxRestServerLibrary
                                 {
                                     deepestAllow = role.objPath;
                                     withAllow = true;
+                                    deepestAllowRole = role;
                                 }
                             }
                         }
@@ -3549,16 +3564,19 @@ namespace AasxRestServerLibrary
                     error = "DENY " + deepestDeny;
                     return false;
                 }
-                return true;
+                return checkPolicy(out error, deepestAllowRole, out getPolicy, policy);
             }
 
             error = "ALLOW not defined";
             return false;
         }
 
-        public static bool checkUsage(out string error, securityRoleClass sr)
+        public static bool checkPolicy(out string error, securityRoleClass sr, out string getPolicy, string policy = null)
         {
             error = "";
+            getPolicy= null;
+            Property pPolicy = null;
+            AasCore.Aas3_0.File fPolicy = null;
 
             if (sr.usage == null)
                 return true;
@@ -3643,10 +3661,51 @@ namespace AasxRestServerLibrary
                             }
                         }
                         break;
+                    case "policy":
+                        pPolicy = sme as Property;
+                        break;
+                    case "license":
+                        fPolicy = sme as AasCore.Aas3_0.File;
+                        break;
+                    case "policyRequestedResource":
+                        break;
                 }
             }
 
-            Program.signalNewData(0);
+            if (pPolicy != null)
+            {
+                if (!Program.withPolicy)
+                    return true;
+
+                getPolicy = pPolicy.Value;
+                if (getPolicy == "" && fPolicy != null)
+                {
+                    try
+                    {
+                        using (System.IO.Stream s = Program.env[sr.usageEnvIndex].GetLocalStreamFromPackage(fPolicy.Value))
+                        using (SHA256 mySHA256 = SHA256.Create())
+                        {
+                            if (s != null)
+                            {
+                                s.Position= 0;
+                                byte[] hashValue = mySHA256.ComputeHash(s);
+                                getPolicy = Convert.ToHexString(hashValue);
+                                Console.WriteLine("hash: " + getPolicy);
+                                pPolicy.Value = getPolicy;
+                            }
+                        }
+                    }
+                    catch { }
+                }
+
+                if (policy == null || policy.Contains(getPolicy))
+                {
+                    // Program.signalNewData(0);
+                    return true;
+                }
+            }
+
+            // Program.signalNewData(0);
             return false;
         }
 
@@ -3655,12 +3714,16 @@ namespace AasxRestServerLibrary
         {
             if (Program.secretStringAPI != null)
             {
+                /*
                 if (neededRights == "READ")
                     return true;
                 if ((neededRights == "UPDATE" || neededRights == "DELETE") && currentRole == "UPDATE")
                     return true;
+                */
+                if (currentRole == "CREATE")
+                    return true;
             }
-            else
+            // else
             {
                 if (checkAccessLevel(currentRole, operation, neededRights,
                     objPath, aasOrSubmodel, objectAasOrSubmodel))
@@ -3716,9 +3779,28 @@ namespace AasxRestServerLibrary
         }
         public static string SecurityCheck(NameValueCollection queryString, NameValueCollection headers, ref int index)
         {
+            string policy = "";
+            string policyRequestedResource = "";
+
+            return SecurityCheckWithPolicy(queryString, headers, ref index, out policy, out policyRequestedResource);
+        }
+
+        class userCert
+        {
+            public string userName = "";
+            public X509Certificate2 certificate = null;
+        }
+
+        static List<userCert> certList = new List<userCert>();
+        public static object lockCertList = new object();
+        public static string SecurityCheckWithPolicy(NameValueCollection queryString, NameValueCollection headers, ref int index,
+            out string policy, out string policyRequestedResource)
+        {
             Console.WriteLine("SecurityCheck");
             bool error = false;
             string accessrights = null;
+            policy = "";
+            policyRequestedResource = "";
 
             // receive token with sessionID inside
             // check if token is signed by sessionRandom
@@ -3731,38 +3813,29 @@ namespace AasxRestServerLibrary
             string random = null;
             string bearerToken = null;
             string user = null;
+            string certificate = null;
 
             index = -1; // not found
 
             string[] split = null;
 
             // check for secret
-            if (Program.secretStringAPI != null)
-            {
-                accessrights = "READ";
 
-                // Query string with Secret?
-                string s = queryString["s"];
-                if (s != null && s != "")
+            string s = queryString["s"];
+            if (s != null && s != "")
+            {
+                if (Program.secretStringAPI != null)
                 {
-                    if (s == Program.secretStringAPI)
-                        accessrights = "UPDATE";
-                }
-                /*
-                split = request.Url.ToString().Split(new char[] { '?' });
-                if (split != null && split.Length > 1 && split[1] != null)
-                {
-                    Console.WriteLine("Received query string = " + split[1]);
-                    string secret = split[1];
-                    if (secret.Length > 2 && secret.Substring(0, 2) == "s=")
+                    // accessrights = "READ";
+
+                    // Query string with Secret?
                     {
-                        secret = secret.Replace("s=", "");
-                        if (secret == Program.secretStringAPI)
-                            accessrights = "UPDATE";
+                        if (s == Program.secretStringAPI)
+                            accessrights = "CREATE";
                     }
+
+                    return accessrights;
                 }
-                */
-                return accessrights;
             }
 
             // string headers = request.Headers.ToString();
@@ -3783,6 +3856,26 @@ namespace AasxRestServerLibrary
                     {
                         try
                         {
+                            if (Program.secretStringAPI != null)
+                            {
+                                var credentialBytes = Convert.FromBase64String(split[1]);
+                                var credentials = Encoding.UTF8.GetString(credentialBytes).Split(new[] { ':' }, 2);
+                                string u = credentials[0];
+                                string p = credentials[1];
+                                Console.WriteLine("Received username+password http header = " + u + " : " + p);
+
+                                if (u == "secret")
+                                {
+                                    // accessrights = "READ";
+                                    {
+                                        if (p == Program.secretStringAPI)
+                                            accessrights = "CREATE";
+                                    }
+                                    Console.WriteLine("accessrights " + accessrights);
+                                    return accessrights;
+                                }
+                            }
+
                             string username = checkUserPW(split[1]);
                             if (username != null)
                             {
@@ -3868,12 +3961,32 @@ namespace AasxRestServerLibrary
                         }
                         catch
                         {
-                            serverName = "keycloak";
+                            // serverName = "keycloak";
                         }
+                        try
+                        {
+                            policy = parsed2.SelectToken("policy").Value<string>();
+                        }
+                        catch { }
+                        try
+                        {
+                            policyRequestedResource = parsed2.SelectToken("policyRequestedResource").Value<string>();
+                        }
+                        catch { }
+
                         if (email != "")
                         {
                             user = email.ToLower();
                         }
+
+
+                        try
+                        {
+                            user = parsed2.SelectToken("userName").Value<string>();
+                            user = user.ToLower();
+                        }
+                        catch { }
+
                         if (serverName != "") // token from Auth Server
                         {
                             X509Certificate2 cert = serverCertFind(serverName);
@@ -3899,10 +4012,66 @@ namespace AasxRestServerLibrary
 
                             try
                             {
-                                user = parsed2.SelectToken("userName").Value<string>();
-                                user = user.ToLower();
+                                certificate = parsed2.SelectToken("certificate").Value<string>();
                             }
                             catch { }
+
+                            if (certificate != "")
+                            {
+                                lock (lockCertList)
+                                {
+                                    Byte[] certFileBytes = Convert.FromBase64String(certificate);
+                                    var x509 = new X509Certificate2(certFileBytes);
+                                    int i = 0;
+                                    for (i = 0; i < certList.Count; i++)
+                                    {
+                                        if (certList[i].userName == user)
+                                        {
+                                            if (certList[i].certificate != null)
+                                                certList[i].certificate.Dispose();
+                                            certList[i].certificate = x509;
+                                            break;
+                                        }
+                                    }
+                                    if (i == certList.Count)
+                                    {
+                                        var cl = new userCert();
+                                        cl.userName = user;
+                                        cl.certificate = x509;
+                                        certList.Add(cl);
+                                    }
+                                }
+                            }
+                        }
+                        else // client token
+                        {
+                            X509Certificate2 x509 = null;
+                            lock (lockCertList)
+                            {
+                                int i = 0;
+                                for (i = 0; i < certList.Count; i++)
+                                {
+                                    if (certList[i].userName == user)
+                                    {
+                                        x509 = certList[i].certificate;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            try
+                            {
+                                Jose.JWT.Decode(bearerToken, x509.GetRSAPublicKey(), JwsAlgorithm.RS256); // correctly signed by stored client cert?
+                            }
+                            catch
+                            {
+                                x509 = null;
+                            }
+                            if (x509 == null)
+                            {
+                                Console.WriteLine("Invalid client token!");
+                                return null;
+                            }
                         }
                     }
                 }
@@ -4305,6 +4474,7 @@ namespace AasxRestServerLibrary
             public Submodel submodel = null;
             public string semanticId = "";
             public SubmodelElementCollection usage = null;
+            public int usageEnvIndex = -1;
             public securityRoleClass() { }
         }
         public static List<securityRoleClass> securityRole = null;
@@ -4408,7 +4578,7 @@ namespace AasxRestServerLibrary
                                                             var f = sme2 as AasCore.Aas3_0.File;
                                                             serverCertfileNames = new string[1];
                                                             serverCerts = new X509Certificate2[1];
-                                                            var s = Program.env[i].GetLocalStreamFromPackage(f.Value);
+                                                            var s = Program.env[i].GetLocalStreamFromPackage(f.Value, init: true);
                                                             if (s != null)
                                                             {
                                                                 using (var m = new MemoryStream())
@@ -4551,7 +4721,10 @@ namespace AasxRestServerLibrary
                                             {
                                                 securityRoleClass src = new securityRoleClass();
                                                 if (smc9 != null)
+                                                {
                                                     src.usage = smc9;
+                                                    src.usageEnvIndex = i;
+                                                }
                                                 if (r.IdShort.Contains(":"))
                                                 {
                                                     split = r.IdShort.Split(':');

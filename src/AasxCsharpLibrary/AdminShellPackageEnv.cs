@@ -7,13 +7,18 @@ This source code is licensed under the Apache License 2.0 (see LICENSE.txt).
 This source code may use other Open Source software components (see LICENSE.txt).
 */
 
+
+
 using Extensions;
 using Newtonsoft.Json;
+// using ScottPlot.Drawing.Colormaps;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.IO.Packaging;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
@@ -112,7 +117,8 @@ namespace AdminShellNS
             }
 
             // return to zero pos
-            s.Seek(0, SeekOrigin.Begin);
+            //s.Seek(0, SeekOrigin.Begin);
+            s.Position = 0;
 
             // give back
             return res;
@@ -256,10 +262,28 @@ namespace AdminShellNS
 
         private AasCore.Aas3_0.Environment _aasEnv = new AasCore.Aas3_0.Environment(new List<IAssetAdministrationShell>(), new List<ISubmodel>(), new List<IConceptDescription>());
         private Package _openPackage = null;
+        private string _envXml = null;
         private readonly ListOfAasSupplementaryFile _pendingFilesToAdd = new ListOfAasSupplementaryFile();
         private readonly ListOfAasSupplementaryFile _pendingFilesToDelete = new ListOfAasSupplementaryFile();
 
+        private bool write = false;
+
         public AdminShellPackageEnv() { }
+
+        public bool getWrite()
+        {
+            return write;
+        }
+
+        public void setWrite(bool status)
+        {
+            write = status;
+        }
+
+        public string getEnvXml()
+        {
+            return _envXml;
+        }
 
         public AdminShellPackageEnv(AasCore.Aas3_0.Environment env)
         {
@@ -267,9 +291,10 @@ namespace AdminShellNS
                 _aasEnv = env;
         }
 
-        public AdminShellPackageEnv(string fn, bool indirectLoadSave = false)
+        public AdminShellPackageEnv(string fn, bool indirectLoadSave = false, bool loadXml = false)
         {
-            Load(fn, indirectLoadSave);
+            Load(fn, indirectLoadSave, loadXml);
+            SetTempFn(fn);
         }
 
         public bool IsOpen
@@ -352,15 +377,16 @@ namespace AdminShellNS
         }
 
         /// <remarks><paramref name="fn"/> is unequal <paramref name="fnToLoad"/> if indirectLoadSave is used.</remarks>
-        private static (AasCore.Aas3_0.Environment, Package) LoadPackageAasx(string fn, string fnToLoad)
+        private static (AasCore.Aas3_0.Environment, Package, String) LoadPackageAasx(string fn, string fnToLoad, bool loadXml = false)
         {
             AasCore.Aas3_0.Environment aasEnv;
             Package openPackage = null;
+            string envXml = null;
 
             Package package;
             try
             {
-                package = Package.Open(fnToLoad, FileMode.Open);
+                package = Package.Open(fnToLoad, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
             }
             catch (Exception ex)
             {
@@ -381,7 +407,12 @@ namespace AdminShellNS
                 foreach (var x in xs)
                     if (x.SourceUri.ToString() == "/")
                     {
-                        originPart = package.GetPart(x.TargetUri);
+                        //originPart = package.GetPart(x.TargetUri);
+                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                        if (package.PartExists(absoluteURI))
+                        {
+                            originPart = package.GetPart(absoluteURI);
+                        }
                         break;
                     }
 
@@ -393,7 +424,12 @@ namespace AdminShellNS
                 xs = originPart.GetRelationshipsByType("http://www.admin-shell.io/aasx/relationships/aas-spec");
                 foreach (var x in xs)
                 {
-                    specPart = package.GetPart(x.TargetUri);
+                    //specPart = package.GetPart(x.TargetUri);
+                    var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                    if (package.PartExists(absoluteURI))
+                    {
+                        specPart = package.GetPart(absoluteURI);
+                    }
                     break;
                 }
 
@@ -432,6 +468,15 @@ namespace AdminShellNS
 
                             if (aasEnv == null)
                                 throw new Exception("Type error for XML file!");
+
+                            if (loadXml)
+                            {
+                                s.Position = 0;
+                                using (StreamReader reader = new StreamReader(s, Encoding.UTF8))
+                                {
+                                    envXml = reader.ReadToEnd();
+                                }
+                            }
                         }
                     }
                 }
@@ -462,12 +507,10 @@ namespace AdminShellNS
                 }
             }
 
-
-
-            return (aasEnv, openPackage);
+            return (aasEnv, openPackage, envXml);
         }
 
-        public void Load(string fn, bool indirectLoadSave = false)
+        public void Load(string fn, bool indirectLoadSave = false, bool loadXml = false)
         {
             _fn = fn;
             _openPackage?.Close();
@@ -508,7 +551,7 @@ namespace AdminShellNS
                         }
 
                         // load package AASX
-                        (_aasEnv, _openPackage) = LoadPackageAasx(fn, fnToLoad);
+                        (_aasEnv, _openPackage, _envXml) = LoadPackageAasx(fn, fnToLoad, loadXml);
 
                         //Assign default thumbnail path
                         AssignDefaultThumbnailPath();
@@ -533,7 +576,12 @@ namespace AdminShellNS
             foreach (var x in xs)
                 if (x.SourceUri.ToString() == "/")
                 {
-                    thumbPart = _openPackage.GetPart(x.TargetUri);
+                    //thumbPart = _openPackage.GetPart(x.TargetUri);
+                    var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                    if (_openPackage.PartExists(absoluteURI))
+                    {
+                        thumbPart = _openPackage.GetPart(absoluteURI);
+                    }
                     thumbUri = x.TargetUri;
                     break;
                 }
@@ -762,7 +810,12 @@ namespace AdminShellNS
                     foreach (var x in xs)
                         if (x.SourceUri.ToString() == "/")
                         {
-                            originPart = package.GetPart(x.TargetUri);
+                            //originPart = package.GetPart(x.TargetUri);
+                            var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                            if (package.PartExists(absoluteURI))
+                            {
+                                originPart = package.GetPart(absoluteURI);
+                            }
                             break;
                         }
                     if (originPart == null)
@@ -788,7 +841,12 @@ namespace AdminShellNS
                     foreach (var x in xs)
                     {
                         specRel = x;
-                        specPart = package.GetPart(x.TargetUri);
+                        //specPart = package.GetPart(x.TargetUri);
+                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                        if (package.PartExists(absoluteURI))
+                        {
+                            specPart = package.GetPart(absoluteURI);
+                        }
                         break;
                     }
 
@@ -938,7 +996,12 @@ namespace AdminShellNS
                                 foreach (var x in xs)
                                     if (x.TargetUri == psfAdd.Uri)
                                     {
-                                        filePart = package.GetPart(x.TargetUri);
+                                        //filePart = package.GetPart(x.TargetUri);
+                                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                                        if (package.PartExists(absoluteURI))
+                                        {
+                                            filePart = package.GetPart(absoluteURI);
+                                        }
                                         break;
                                     }
                             }
@@ -950,7 +1013,12 @@ namespace AdminShellNS
                                 foreach (var x in xs)
                                     if (x.SourceUri.ToString() == "/" && x.TargetUri == psfAdd.Uri)
                                     {
-                                        filePart = package.GetPart(x.TargetUri);
+                                        //filePart = package.GetPart(x.TargetUri);
+                                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                                        if (package.PartExists(absoluteURI))
+                                        {
+                                            filePart = package.GetPart(absoluteURI);
+                                        }
                                         break;
                                     }
                             }
@@ -1015,7 +1083,7 @@ namespace AdminShellNS
                         {
                             package.Close();
                             System.IO.File.Copy(_tempFn, _fn, overwrite: true);
-                            _openPackage = Package.Open(_tempFn, FileMode.OpenOrCreate);
+                            _openPackage = Package.Open(_tempFn, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
                         }
                         catch (Exception ex)
                         {
@@ -1175,8 +1243,33 @@ namespace AdminShellNS
             return isLocal;
         }
 
-        public Stream GetLocalStreamFromPackage(string uriString, FileMode mode = FileMode.Open, FileAccess access = FileAccess.Read)
+        public static bool withDb = false;
+        public static bool withDbFiles = false;
+        public static string dataPath = "";
+        public static void setGlobalOptions(bool _withDb, bool _withDbFiles, string _dataPath)
         {
+            withDb = _withDb;
+            withDbFiles = _withDbFiles;
+            dataPath = _dataPath;
+        }
+
+        public Stream GetLocalStreamFromPackage(string uriString, FileMode mode = FileMode.Open, FileAccess access = FileAccess.ReadWrite, bool init = false)
+        {
+            // DB
+            if (withDb && !init)
+            {
+                using (var fileStream = new FileStream(dataPath + "/files/" + Path.GetFileName(Filename) + ".zip", FileMode.Open))
+                using (var archive = new ZipArchive(fileStream, ZipArchiveMode.Read))
+                {
+                    var archiveFile = archive.GetEntry(uriString);
+                    var stream = archiveFile.Open();
+                    var ms = new MemoryStream();
+                    stream.CopyTo(ms);
+                    ms.Position = 0;
+                    return ms;
+                }
+            }
+
             // access
             if (_openPackage == null)
                 throw (new Exception(string.Format($"AASX Package {_fn} not opened. Aborting!")));
@@ -1221,10 +1314,19 @@ namespace AdminShellNS
             {
                 if (_openPackage == null)
                     return 0;
-                var part = _openPackage.GetPart(new Uri(uriString, UriKind.RelativeOrAbsolute));
-                using (var s = part.GetStream(FileMode.Open))
+                var uri = new Uri(uriString, UriKind.RelativeOrAbsolute);
+
+                PackagePart part = null;
+                if (_openPackage.PartExists(uri))
                 {
-                    res = s.Length;
+                    part = _openPackage.GetPart(uri);
+                }
+                if (part != null)
+                {
+                    using (var s = part.GetStream(FileMode.Open))
+                    {
+                        res = s.Length;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1239,8 +1341,18 @@ namespace AdminShellNS
         /// Ensures:
         /// <ul><li><c>result == null || result.CanRead</c></li></ul>
         /// </remarks>
-        public Stream GetLocalThumbnailStream(ref Uri thumbUri)
+        public Stream GetLocalThumbnailStream(ref Uri thumbUri, bool init = false)
         {
+            // DB
+            if (withDb && withDbFiles && !init)
+            {
+                string fcopy = Path.GetFileName(Filename) + "__thumbnail";
+                fcopy = fcopy.Replace("/", "_");
+                fcopy = fcopy.Replace(".", "_");
+                var s = System.IO.File.OpenRead(dataPath + "/files/" + fcopy + ".dat");
+                return s;
+            }
+
             // access
             if (_openPackage == null)
                 throw (new Exception(string.Format($"AASX Package {_fn} not opened. Aborting!")));
@@ -1251,19 +1363,26 @@ namespace AdminShellNS
             foreach (var x in xs)
                 if (x.SourceUri.ToString() == "/")
                 {
-                    thumbPart = _openPackage.GetPart(x.TargetUri);
+                    //thumbPart = _openPackage.GetPart(x.TargetUri);
+                    var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                    if (_openPackage.PartExists(absoluteURI))
+                    {
+                        thumbPart = _openPackage.GetPart(absoluteURI);
+                    }
                     thumbUri = x.TargetUri;
                     break;
                 }
             if (thumbPart == null)
-                throw (new Exception("Unable to find AASX thumbnail. Aborting!"));
+                // throw (new Exception("Unable to find AASX thumbnail. Aborting!"));
+                return null;
 
             var result = thumbPart.GetStream(FileMode.Open);
 
             // Post-condition
             if (!(result == null || result.CanRead))
             {
-                throw new InvalidOperationException("Unexpected unreadable result stream");
+                // throw new InvalidOperationException("Unexpected unreadable result stream");
+                return null;
             }
 
             return result;
@@ -1281,7 +1400,8 @@ namespace AdminShellNS
             // Post-condition
             if (!(result == null || result.CanRead))
             {
-                throw new InvalidOperationException("Unexpected unreadable result stream");
+                // throw new InvalidOperationException("Unexpected unreadable result stream");
+                return null;
             }
 
             return result;
@@ -1315,7 +1435,12 @@ namespace AdminShellNS
                 foreach (var x in xs)
                     if (x.SourceUri.ToString() == "/")
                     {
-                        originPart = _openPackage.GetPart(x.TargetUri);
+                        //originPart = _openPackage.GetPart(x.TargetUri);
+                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                        if (_openPackage.PartExists(absoluteURI))
+                        {
+                            originPart = _openPackage.GetPart(absoluteURI);
+                        }
                         break;
                     }
 
@@ -1326,7 +1451,12 @@ namespace AdminShellNS
                     xs = originPart.GetRelationshipsByType("http://www.admin-shell.io/aasx/relationships/aas-spec");
                     foreach (var x in xs)
                     {
-                        specPart = _openPackage.GetPart(x.TargetUri);
+                        //specPart = _openPackage.GetPart(x.TargetUri);
+                        var absoluteURI = PackUriHelper.ResolvePartUri(x.SourceUri, x.TargetUri);
+                        if (_openPackage.PartExists(absoluteURI))
+                        {
+                            specPart = _openPackage.GetPart(absoluteURI);
+                        }
                         break;
                     }
 
@@ -1531,29 +1661,37 @@ namespace AdminShellNS
 
         public void EmbeddAssetInformationThumbnail(IResource defaultThumbnail, Stream fileContent)
         {
-            // access
-            if (_openPackage == null)
-                throw (new Exception(string.Format($"AASX Package {_fn} not opened. Aborting!")));
-
-            if (!string.IsNullOrEmpty(defaultThumbnail.Path))
+            try
             {
-                var sourceUri = defaultThumbnail.Path.Replace(Path.DirectorySeparatorChar, '/');
-                _openPackage.DeletePart(new Uri(sourceUri, UriKind.RelativeOrAbsolute));
+                // access
+                if (_openPackage == null)
+                    throw (new Exception(string.Format($"AASX Package {_fn} not opened. Aborting!")));
 
+                if (!string.IsNullOrEmpty(defaultThumbnail.Path))
+                {
+                    var sourceUri = defaultThumbnail.Path.Replace(Path.DirectorySeparatorChar, '/');
+                    _openPackage.DeletePart(new Uri(sourceUri, UriKind.RelativeOrAbsolute));
+
+                }
+                var targetUri = PackUriHelper.CreatePartUri(new Uri(defaultThumbnail.Path, UriKind.RelativeOrAbsolute));
+
+                PackagePart packagePart = _openPackage.CreatePart(targetUri, defaultThumbnail.ContentType, compressionOption: CompressionOption.Maximum);
+
+                _openPackage.CreateRelationship(packagePart.Uri, TargetMode.Internal,
+                                            "http://schemas.openxmlformats.org/package/2006/" +
+                                            "relationships/metadata/thumbnail");
+
+                //Write to the part
+                fileContent.Position = 0;
+                using (Stream dest = packagePart.GetStream())
+                {
+                    fileContent.CopyTo(dest);
+                }
             }
-            var targetUri = PackUriHelper.CreatePartUri(new Uri(defaultThumbnail.Path, UriKind.RelativeOrAbsolute));
-
-            PackagePart packagePart = _openPackage.CreatePart(targetUri, defaultThumbnail.ContentType, compressionOption: CompressionOption.Maximum);
-
-            _openPackage.CreateRelationship(packagePart.Uri, TargetMode.Internal,
-                                        "http://schemas.openxmlformats.org/package/2006/" +
-                                        "relationships/metadata/thumbnail");
-
-            //Write to the part
-            fileContent.Position = 0;
-            using (Stream dest = packagePart.GetStream())
+            catch (Exception ex)
             {
-                fileContent.CopyTo(dest);
+                throw new Exception(ex.Message);
+                throw new Exception(ex.StackTrace);
             }
         }
 

@@ -1,5 +1,21 @@
-﻿
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json.Nodes;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using AasCore.Aas3_0;
 using AasxRestServerLibrary;
+using AasxServer;
 using AdminShellNS;
 using Extensions;
 using IdentityModel;
@@ -7,17 +23,17 @@ using IdentityModel.Client;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+using MimeKit.Cryptography;
+using Org.BouncyCastle.Crypto;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Threading.Channels;
+using System.CommandLine.Parsing;
+using Microsoft.EntityFrameworkCore;
+using static QRCoder.PayloadGenerator;
+using Microsoft.AspNetCore.Components;
 
 namespace AasxServer
 {
@@ -196,6 +212,12 @@ namespace AasxServer
                         case "calculate_cfp":
                             operation_calculate_cfp(op, envIndex, timeStamp);
                             break;
+                        default:
+                            if (idShort.Substring(0, 3) == "get")
+                            {
+                                operation_get_put(op, envIndex, timeStamp);
+                            }
+                            break;
                     }
                 }
             }
@@ -218,6 +240,7 @@ namespace AasxServer
             Property accessToken = null;
             Property userName = null;
             Property passWord = null;
+            Property clientToken = null;
 
             var smec = new SubmodelElementCollection();
             foreach (var input in op.InputVariables)
@@ -225,7 +248,7 @@ namespace AasxServer
                 var inputRef = input.Value;
                 if (!(inputRef is ReferenceElement))
                     return;
-                var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).GetModelReference());
+                var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).Value);
                 if (refElement is SubmodelElementCollection re)
                     smec = re;
             }
@@ -254,6 +277,12 @@ namespace AasxServer
                         if (sme2 is Property)
                         {
                             accessToken = sme2 as Property;
+                        }
+                        break;
+                    case "clienttoken":
+                        if (sme2 is Property)
+                        {
+                            clientToken = sme2 as Property;
                         }
                         break;
                     case "username":
@@ -306,153 +335,269 @@ namespace AasxServer
                                 if (valid) return;
                             }
 
-                            var handler = new HttpClientHandler();
-                            if (proxy != null)
-                                handler.Proxy = proxy;
-                            else
-                                handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
-                            var client = new HttpClient(handler);
-                            DiscoveryDocumentResponse disco = null;
-
-                            var task = Task.Run(async () => { disco = await client.GetDiscoveryDocumentAsync(authServerEndPoint.Value); });
-                            task.Wait();
-                            if (disco.IsError) return;
-                            Console.WriteLine("OpenID Discovery JSON:");
-                            Console.WriteLine(disco.Raw);
-
-                            var serverCert = new X509Certificate2();
-                            Stream s = null;
-                            try
-                            {
-                                s = AasxServer.Program.env[envIndex].GetLocalStreamFromPackage(authServerCertificate.Value);
-                            }
-                            catch { }
-                            if (s == null) return;
-
-                            using (var m = new System.IO.MemoryStream())
-                            {
-                                s.CopyTo(m);
-                                var b = m.GetBuffer();
-                                serverCert = new X509Certificate2(b);
-                                Console.WriteLine("Auth server certificate: " + authServerCertificate.Value);
-                            }
-
-                            string[] x5c = null;
-                            X509Certificate2 certificate = null;
-                            string certificatePassword = clientCertificatePassWord.Value;
-                            Stream s2 = null;
-                            try
-                            {
-                                s2 = AasxServer.Program.env[envIndex].GetLocalStreamFromPackage(clientCertificate.Value);
-                            }
-                            catch { }
-                            if (s2 == null) return;
-                            if (s2 != null)
-                            {
-                                X509Certificate2Collection xc = new X509Certificate2Collection();
-                                using (var m = new System.IO.MemoryStream())
-                                {
-                                    s2.CopyTo(m);
-                                    var b = m.GetBuffer();
-                                    xc.Import(b, certificatePassword, X509KeyStorageFlags.PersistKeySet);
-                                    certificate = new X509Certificate2(b, certificatePassword);
-                                    Console.WriteLine("Client certificate: " + clientCertificate.Value);
-                                }
-
-                                string[] X509Base64 = new string[xc.Count];
-
-                                int j = xc.Count;
-                                var xce = xc.GetEnumerator();
-                                for (int i = 0; i < xc.Count; i++)
-                                {
-                                    xce.MoveNext();
-                                    X509Base64[--j] = Convert.ToBase64String(xce.Current.GetRawCertData());
-                                }
-                                x5c = X509Base64;
-
-                                var credential = new X509SigningCredentials(certificate);
-                                string clientId = "client.jwt";
-                                string email = "";
-                                string subject = certificate.Subject;
-                                var split = subject.Split(new Char[] { ',' });
-                                if (split[0] != "")
-                                {
-                                    var split2 = split[0].Split(new Char[] { '=' });
-                                    if (split2[0] == "E")
-                                    {
-                                        email = split2[1];
-                                    }
-                                }
-                                Console.WriteLine("email: " + email);
-
-                                var now = DateTime.UtcNow;
-                                var token = new JwtSecurityToken(
-                                        clientId,
-                                        disco.TokenEndpoint,
-                                        new List<Claim>()
-                                        {
-                                                        new Claim(JwtClaimTypes.JwtId, Guid.NewGuid().ToString()),
-                                                        new Claim(JwtClaimTypes.Subject, clientId),
-                                                        new Claim(JwtClaimTypes.IssuedAt, now.ToEpochTime().ToString(), ClaimValueTypes.Integer64),
-                                                        // OZ
-                                                        new Claim(JwtClaimTypes.Email, email)
-                                        },
-                                        now,
-                                        now.AddMinutes(1),
-                                        credential)
-                                ;
-
-                                token.Header.Add("x5c", x5c);
-                                var tokenHandler = new JwtSecurityTokenHandler();
-                                string clientToken = tokenHandler.WriteToken(token);
-
-                                TokenResponse response = null;
-                                task = Task.Run(async () =>
-                                {
-                                    response = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-                                    {
-                                        Address = disco.TokenEndpoint,
-                                        Scope = "resource1.scope1",
-
-                                        ClientAssertion =
-                                        {
-                                            Type = OidcConstants.ClientAssertionTypes.JwtBearer,
-                                            Value = clientToken
-                                        }
-                                    });
-                                });
-                                task.Wait();
-
-                                if (response.IsError) return;
-
-                                accessToken.Value = response.AccessToken;
+                            if (createAccessToken(envIndex, authServerEndPoint, authServerCertificate,
+                                clientCertificate, clientCertificatePassWord,
+                                accessToken, clientToken))
                                 accessToken.SetTimeStamp(timeStamp);
-                            }
                         }
                         break;
                 }
             }
         }
 
+        static bool createAccessToken(int envIndex, Property authServerEndPoint, AasCore.Aas3_0.File authServerCertificate,
+            AasCore.Aas3_0.File clientCertificate, Property clientCertificatePassWord,
+            Property accessToken, Property clientToken,
+            string policy = "", string policyRequestedResource = "")
+        {
+            var handler = new HttpClientHandler();
+
+            if (proxy != null)
+                handler.Proxy = proxy;
+            else
+                handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
+            var client = new HttpClient(handler);
+            DiscoveryDocumentResponse disco = null;
+
+            if (authServerEndPoint == null)
+                return false;
+
+            client.Timeout = TimeSpan.FromSeconds(20);
+            Task task;
+
+            var serverCert = new X509Certificate2();
+            Stream s = null;
+            try
+            {
+                s = AasxServer.Program.env[envIndex].GetLocalStreamFromPackage(authServerCertificate.Value, access: FileAccess.Read);
+            }
+            catch { }
+            if (s == null)
+            {
+                Console.WriteLine("Stream error!");
+                return false;
+            }
+
+            using (var m = new System.IO.MemoryStream())
+            {
+                s.CopyTo(m);
+                var b = m.GetBuffer();
+                serverCert = new X509Certificate2(b);
+                Console.WriteLine("Auth server certificate: " + authServerCertificate.Value);
+                s.Close();
+            }
+
+            string[] x5c = null;
+            X509Certificate2 certificate = null;
+            string certificatePassword = clientCertificatePassWord.Value;
+            Stream s2 = null;
+            try
+            {
+                s2 = AasxServer.Program.env[envIndex].GetLocalStreamFromPackage(clientCertificate.Value, access: FileAccess.Read);
+            }
+            catch { }
+            if (s2 == null)
+            {
+                Console.WriteLine("Stream error!");
+                return false;
+            }
+
+            X509Certificate2Collection xc = new X509Certificate2Collection();
+            using (var m = new System.IO.MemoryStream())
+            {
+                s2.CopyTo(m);
+                var b = m.GetBuffer();
+                xc.Import(b, certificatePassword, X509KeyStorageFlags.PersistKeySet);
+                certificate = new X509Certificate2(b, certificatePassword);
+                Console.WriteLine("Client certificate: " + clientCertificate.Value);
+                s2.Close();
+            }
+
+            // get new access token
+            if (policy == "" && accessToken.Value == "")
+            {
+                task = Task.Run(async () => { disco = await client.GetDiscoveryDocumentAsync(authServerEndPoint.Value); });
+                task.Wait();
+                if (disco.IsError) return false;
+                Console.WriteLine("Get OpenID Discovery JSON");
+                // Console.WriteLine(disco.Raw);
+
+                string[] X509Base64 = new string[xc.Count];
+
+                int j = xc.Count;
+                var xce = xc.GetEnumerator();
+                for (int i = 0; i < xc.Count; i++)
+                {
+                    xce.MoveNext();
+                    X509Base64[--j] = Convert.ToBase64String(xce.Current.GetRawCertData());
+                    // X509Base64[--j] = Base64UrlEncoder.Encode(xce.Current.GetRawCertData());
+                }
+                x5c = X509Base64;
+
+                var credential = new X509SigningCredentials(certificate);
+                string clientId = "client.jwt";
+                string email = "";
+                string subject = certificate.Subject;
+                var split = subject.Split(new Char[] { ',' });
+                if (split[0] != "")
+                {
+                    var split2 = split[0].Split(new Char[] { '=' });
+                    if (split2[0] == "E")
+                    {
+                        email = split2[1];
+                    }
+                }
+                Console.WriteLine("email: " + email);
+
+                var now = DateTime.UtcNow;
+                var claimList =
+                    new List<Claim>()
+                        {
+                                                        new Claim(JwtClaimTypes.JwtId, Guid.NewGuid().ToString()),
+                                                        new Claim(JwtClaimTypes.Subject, clientId),
+                                                        new Claim(JwtClaimTypes.IssuedAt, now.ToEpochTime().ToString(), ClaimValueTypes.Integer64),
+                                                        // OZ
+                                                        new Claim(JwtClaimTypes.Email, email),
+                        };
+                if (policy != "")
+                    claimList.Add(new Claim("policy", policy, ClaimValueTypes.String));
+                if (policyRequestedResource != "")
+                    claimList.Add(new Claim("policyRequestedResource", policyRequestedResource, ClaimValueTypes.String));
+                var token = new JwtSecurityToken(
+                        clientId,
+                        disco.TokenEndpoint,
+                        claimList,
+                        now,
+                        now.AddMinutes(1),
+                        credential)
+                ;
+
+                token.Header.Add("x5c", x5c);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                string clientLongToken = tokenHandler.WriteToken(token);
+
+                TokenResponse response = null;
+                // client.Timeout = TimeSpan.FromSeconds(20);
+                task = Task.Run(async () =>
+                {
+                    response = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+                    {
+                        Address = disco.TokenEndpoint,
+                        Scope = "resource1.scope1",
+
+                        ClientAssertion =
+                                    {
+                                            Type = OidcConstants.ClientAssertionTypes.JwtBearer,
+                                            Value = clientLongToken
+                                    }
+                    });
+                });
+                task.Wait();
+
+                if (response.IsError) return false;
+
+                var t = response.AccessToken;
+
+                // create clientToken
+                if (t != null)
+                {
+                    accessToken.Value = t;
+                }
+
+                return true;
+            }
+
+            // create client token
+            if (policy != "" && accessToken.Value != "" && clientToken.Value == "")
+            {
+                var parsed = JObject.Parse(Jose.JWT.Payload(accessToken.Value));
+
+                string userName = "";
+                try
+                {
+                    userName = parsed.SelectToken("userName").Value<string>();
+                }
+                catch { }
+
+                string expires = "";
+                try
+                {
+                    expires = parsed.SelectToken("exp").Value<string>();
+                }
+                catch { }
+
+                if (userName != "" && expires != "")
+                {
+                    var credential = new X509SigningCredentials(certificate);
+                    string clientId = "client.jwt";
+                    string email = "";
+                    string subject = certificate.Subject;
+                    var now = DateTime.UtcNow;
+                    var claimList =
+                        new List<Claim>()
+                            {
+                                                        new Claim(JwtClaimTypes.JwtId, Guid.NewGuid().ToString()),
+                                                        new Claim(JwtClaimTypes.Subject, clientId),
+                                                        new Claim(JwtClaimTypes.IssuedAt, now.ToEpochTime().ToString(), ClaimValueTypes.Integer64),
+
+                                                        new Claim("userName", userName),
+                            };
+                    if (policy != "")
+                        claimList.Add(new Claim("policy", policy, ClaimValueTypes.String));
+                    if (policyRequestedResource != "")
+                        claimList.Add(new Claim("policyRequestedResource", policyRequestedResource, ClaimValueTypes.String));
+                    var token = new JwtSecurityToken(
+                            clientId,
+                            policyRequestedResource,
+                            claimList,
+                            now,
+                            now.AddDays(1),
+                            credential)
+                    ;
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var t = tokenHandler.WriteToken(token);
+                    if (t != null)
+                    {
+                        clientToken.Value = t;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
         static void operation_get_put(Operation op, int envIndex, DateTime timeStamp)
         {
             // inputVariable reference authentication: collection
             // inputVariable sourceEndPoint: property
-            // inputVariable reference sourcePath: property
+            // inputVariable  sourcePath: property
             // inputVariable reference destinationElement: collection
+            // inputVariable HEAD: property
 
             string opName = op.IdShort.ToLower();
+            if (opName.Substring(0, 4) == "get-")
+                opName = "get";
 
             SubmodelElementCollection authentication = null;
             Property authType = null;
+            Property authServerEndPoint = null;
             Property accessToken = null;
             Property userName = null;
             Property passWord = null;
             AasCore.Aas3_0.File authServerCertificate = null;
+            AasCore.Aas3_0.File clientCertificate = null;
+            Property clientCertificatePassWord = null;
+            Property clientToken = null;
+
             Property endPoint = null;
             Property path = null;
             SubmodelElementCollection elementCollection = null;
             Submodel elementSubmodel = null;
+            Property steps = null;
+            Property loop = null;
+            Property duration = null;
+
             Property lastDiff = null;
             Property status = null;
             Property mode = null;
@@ -460,6 +605,10 @@ namespace AasxServer
             SubmodelElementCollection smec = null;
             Submodel sm = null;
             Property p = null;
+
+            HttpClient client = null;
+            HttpClientHandler handler = null;
+
             foreach (var input in op.InputVariables)
             {
                 smec = null;
@@ -472,7 +621,7 @@ namespace AasxServer
                 }
                 if (inputRef is ReferenceElement)
                 {
-                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).GetModelReference());
+                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).Value);
                     if (refElement is SubmodelElementCollection)
                         smec = refElement as SubmodelElementCollection;
                     if (refElement is Submodel)
@@ -502,6 +651,14 @@ namespace AasxServer
                         if (p != null)
                             mode = p;
                         break;
+                    case "steps":
+                        if (p != null)
+                            steps = p;
+                        break;
+                    case "loop":
+                        if (p != null)
+                            loop = p;
+                        break;
                 }
             }
             foreach (var output in op.OutputVariables)
@@ -516,7 +673,7 @@ namespace AasxServer
                 }
                 if (outputRef is ReferenceElement)
                 {
-                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((outputRef as ReferenceElement).GetModelReference());
+                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((outputRef as ReferenceElement).Value);
                     if (refElement is SubmodelElementCollection)
                         smec = refElement as SubmodelElementCollection;
                     if (refElement is Submodel)
@@ -531,6 +688,10 @@ namespace AasxServer
                     case "status":
                         if (p != null)
                             status = p;
+                        break;
+                    case "duration":
+                        if (p != null)
+                            duration = p;
                         break;
                 }
             }
@@ -558,6 +719,12 @@ namespace AasxServer
                                 accessToken = sme2 as Property;
                             }
                             break;
+                        case "clienttoken":
+                            if (sme2 is Property)
+                            {
+                                clientToken = sme2 as Property;
+                            }
+                            break;
                         case "username":
                             if (sme2 is Property)
                             {
@@ -576,444 +743,645 @@ namespace AasxServer
                                 authServerCertificate = sme2 as AasCore.Aas3_0.File;
                             }
                             break;
-                    }
-                }
-            }
-
-            var handler = new HttpClientHandler();
-            if (proxy != null)
-                handler.Proxy = proxy;
-            else
-                handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
-            var client = new HttpClient(handler);
-            if (accessToken != null)
-                client.SetBearerToken(accessToken.Value);
-
-            string requestPath = endPoint.Value + "/" + path.Value;
-            HttpResponseMessage response = null;
-            Task task = null;
-            string diffPath = "";
-            var splitPath = path.Value.Split('.');
-            string aasPath = splitPath[0];
-            string subPath = "";
-            int i = 1;
-            string pre = "";
-            while (i < splitPath.Length)
-            {
-                subPath += pre + splitPath[i];
-                pre = ".";
-                i++;
-            }
-
-            if (status != null)
-                status.Value = "OK";
-            if (opName == "get" || opName == "getdiff")
-            {
-                if (splitPath.Length < 2)
-                    return;
-
-                DateTime last = new DateTime();
-                if (opName == "getdiff")
-                {
-                    if (lastDiff == null)
-                        return;
-                    if (elementCollection == null)
-                        return;
-
-                    if (lastDiff.Value == "")
-                    {
-                        opName = "get";
-                        requestPath = endPoint.Value + "/aas/" + aasPath +
-                            "/submodels/" + splitPath[1] + "/elements";
-                        i = 2;
-                        while (i < splitPath.Length)
-                        {
-                            requestPath += "/" + splitPath[i];
-                            i++;
-                        }
-                        requestPath += "/complete";
-                    }
-                    else
-                    {
-                        last = DateTime.Parse(lastDiff.Value).ToUniversalTime();
-                        requestPath = endPoint.Value +
-                            "/diffjson/aas/" + splitPath[0] +
-                            "?path=" + subPath;
-                        requestPath += "."; // to avoid wrong data by prefix only
-                        requestPath += "&time=" + lastDiff.Value;
-                    }
-                }
-
-                try
-                {
-                    task = Task.Run(async () => { response = await client.GetAsync(requestPath, HttpCompletionOption.ResponseHeadersRead); });
-                    task.Wait();
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        if (status != null)
-                        {
-                            status.Value = response.StatusCode.ToString() + " ; " +
-                                response.Content.ReadAsStringAsync().Result + " ; " +
-                                "GET " + requestPath;
-                            Program.signalNewData(1);
-                        }
-                        return;
-                    }
-                }
-                catch
-                {
-                    return;
-                }
-
-                string json = response.Content.ReadAsStringAsync().Result;
-                SubmodelElementCollection receiveCollection = null;
-                Submodel receiveSubmodel = null;
-                try
-                {
-                    if (opName == "get")
-                    {
-                        if (elementCollection != null)
-                        {
-                            JObject parsed = JObject.Parse(json);
-                            foreach (JProperty jp1 in (JToken)parsed)
+                        case "authserverendpoint":
+                            if (sme2 is Property)
                             {
-                                if (jp1.Name == "elem")
-                                {
-                                    string text = jp1.Value.ToString();
-                                    receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
-                                        text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
-                                    elementCollection.Value = receiveCollection.Value;
-                                    elementCollection.SetAllParentsAndTimestamps(elementCollection, timeStamp, elementCollection.TimeStampCreate);
-                                    elementCollection.SetTimeStamp(timeStamp);
-                                }
+                                authServerEndPoint = sme2 as Property;
                             }
-                        }
-                        if (elementSubmodel != null)
-                        {
-                            receiveSubmodel = Newtonsoft.Json.JsonConvert.DeserializeObject<Submodel>(
-                                json, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
-                            receiveSubmodel.SetTimeStamp(timeStamp);
-                            receiveSubmodel.SetAllParents(timeStamp);
-
-                            // need id for idempotent behaviour
-                            if (receiveSubmodel.Id == null || receiveSubmodel.Id != elementSubmodel.Id)
-                                return;
-
-                            var aas = Program.env[envIndex].AasEnv.FindAasWithSubmodelId(receiveSubmodel.Id);
-
-                            // datastructure update
-                            if (Program.env == null || Program.env[envIndex].AasEnv == null /*|| Program.env[envIndex].AasEnv.Assets == null*/)
-                                return;
-
-                            // add Submodel
-                            var existingSm = Program.env[envIndex].AasEnv.FindSubmodelById(receiveSubmodel.Id);
-                            if (existingSm != null)
-                                Program.env[envIndex].AasEnv.Submodels.Remove(existingSm);
-                            Program.env[envIndex].AasEnv.Submodels.Add(receiveSubmodel);
-                        }
+                            break;
+                        case "clientcertificate":
+                            if (sme2 is AasCore.Aas3_0.File)
+                            {
+                                clientCertificate = sme2 as AasCore.Aas3_0.File;
+                            }
+                            break;
+                        case "clientcertificatepassword":
+                            if (sme2 is Property)
+                            {
+                                clientCertificatePassWord = sme2 as Property;
+                            }
+                            break;
                     }
+                }
+            }
+
+            int loopCount = 1;
+            if (loop != null)
+            {
+                loopCount = Convert.ToInt32(loop.Value);
+            }
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            for (int l = 0; l < loopCount; l++)
+            {
+                if (loop != null)
+                {
+                    loop.Value = l + 1 + "";
+                    loop.SetTimeStamp(timeStamp);
+                }
+                if (duration != null)
+                {
+                    duration.Value = watch.ElapsedMilliseconds + " ms";
+                    duration.TimeStamp = timeStamp;
+                }
+                Program.signalNewData(0);
+
+                string requestPath = endPoint.Value;
+                if (path.Value != "")
+                    requestPath += "/" + path.Value;
+                HttpResponseMessage response = null;
+                Task task = null;
+                string diffPath = "";
+                var splitPath = path.Value.Split('/');
+                string aasPath = splitPath[0];
+                string subPath = "";
+                int i = 1;
+                string pre = "";
+                while (i < splitPath.Length)
+                {
+                    subPath += pre + splitPath[i];
+                    pre = ".";
+                    i++;
+                }
+
+                if (status != null)
+                {
+                    status.Value = "OK";
+                    status.TimeStamp = timeStamp;
+                }
+
+                if (opName == "get" || opName == "getdiff")
+                {
+                    // if (splitPath.Length < 2)
+                    // return;
+
+                    DateTime last = new DateTime();
                     if (opName == "getdiff")
                     {
-                        // lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
-                        List<AasxRestServer.TestResource.diffEntry> diffList = new List<AasxRestServer.TestResource.diffEntry>();
-                        diffList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AasxRestServer.TestResource.diffEntry>>(json);
-                        foreach (var d in diffList)
+                        if (lastDiff == null)
+                            continue;
+                        if (elementCollection == null)
+                            continue;
+
+                        if (lastDiff.Value == "")
                         {
-                            if (d.type == "SMEC")
+                            opName = "get";
+                            requestPath = endPoint.Value + "/aas/" + aasPath +
+                                "/submodels/" + splitPath[1] + "/elements";
+                            i = 2;
+                            while (i < splitPath.Length)
                             {
-                                if (d.path.Length > subPath.Length && subPath == d.path.Substring(0, subPath.Length))
-                                {
-                                    switch (d.mode)
-                                    {
-                                        case "CREATE":
-                                        case "UPDATE":
-                                            splitPath = d.path.Split('.');
-                                            if (splitPath.Length < 2)
-                                                return;
-                                            requestPath = endPoint.Value + "/aas/" + aasPath +
-                                                "/submodels/" + splitPath[0] + "/elements";
-                                            i = 1;
-                                            while (i < splitPath.Length)
-                                            {
-                                                requestPath += "/" + splitPath[i];
-                                                i++;
-                                            }
-                                            requestPath += "/complete";
-                                            try
-                                            {
-                                                task = Task.Run(async () => { response = await client.GetAsync(requestPath, HttpCompletionOption.ResponseHeadersRead); });
-                                                task.Wait();
-                                                if (!response.IsSuccessStatusCode)
-                                                {
-                                                    if (status != null)
-                                                    {
-                                                        status.Value = response.StatusCode.ToString() + " ; " +
-                                                            response.Content.ReadAsStringAsync().Result + " ; " +
-                                                            "GET " + requestPath;
-                                                        Program.signalNewData(1);
-                                                    }
-                                                    return;
-                                                }
-                                            }
-                                            catch
-                                            {
-                                                return;
-                                            }
-
-                                            json = response.Content.ReadAsStringAsync().Result;
-                                            JObject parsed = JObject.Parse(json);
-                                            foreach (JProperty jp1 in (JToken)parsed)
-                                            {
-                                                if (jp1.Name == "elem")
-                                                {
-                                                    string text = jp1.Value.ToString();
-                                                    receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
-                                                        text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
-                                                    break;
-                                                }
-                                            }
-
-                                            bool found = false;
-                                            foreach (var smew in elementCollection.Value)
-                                            {
-                                                var sme = smew;
-                                                if (sme.IdShort == receiveCollection.IdShort)
-                                                {
-                                                    if (sme is SubmodelElementCollection smc)
-                                                    {
-                                                        if (d.mode == "UPDATE")
-                                                        {
-                                                            smc.Value = receiveCollection.Value;
-                                                            smc.SetAllParentsAndTimestamps(elementCollection, timeStamp, elementCollection.TimeStampCreate);
-                                                            smc.SetTimeStamp(timeStamp);
-                                                        }
-                                                        found = true;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                            if (!found && d.mode == "CREATE")
-                                            {
-                                                elementCollection.Value.Add(receiveCollection);
-                                                receiveCollection.SetAllParentsAndTimestamps(elementCollection, timeStamp, timeStamp);
-                                                receiveCollection.SetTimeStamp(timeStamp);
-                                                Program.signalNewData(2);
-                                            }
-                                            break;
-                                    }
-                                }
+                                requestPath += "/" + splitPath[i];
+                                i++;
                             }
+                            requestPath += "/complete";
+                        }
+                        else
+                        {
+                            last = DateTime.Parse(lastDiff.Value).ToUniversalTime();
+                            requestPath = endPoint.Value +
+                                "/diffjson/aas/" + splitPath[0] +
+                                "?path=" + subPath;
+                            requestPath += "."; // to avoid wrong data by prefix only
+                            requestPath += "&time=" + lastDiff.Value;
                         }
                     }
-                }
-                catch
-                {
-                    return;
-                }
-                if (lastDiff != null)
-                    lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
-                Program.signalNewData(1);
-            }
-            if (opName == "put" || opName == "putdiff")
-            {
-                SubmodelElementCollection diffCollection = null;
-                DateTime last = new DateTime();
-                int count = 1;
-                if (mode != null && mode.Value == "clear")
-                    opName = "put";
-                if (opName == "putdiff")
-                {
-                    if (lastDiff == null)
-                        return;
-                    if (elementCollection == null)
-                        return;
-                    diffCollection = elementCollection;
-                    count = elementCollection.Value.Count;
-                    if (lastDiff.Value == "")
+
+                    handler = new HttpClientHandler();
+
+                    if (!requestPath.Contains("localhost"))
                     {
-                        // get "latestData" from server
-                        bool error = false;
-                        splitPath = path.Value.Split('/');
-                        requestPath = endPoint.Value + "/aas/" + splitPath[1] +
-                            "/submodels/" + splitPath[3];
-                        requestPath += "/elements/" + elementCollection.IdShort;
-                        requestPath += "/latestData/complete";
+                        if (proxy != null)
+                            handler.Proxy = proxy;
+                        else
+                            handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
+                    }
+                    client = new HttpClient(handler);
+                    client.Timeout = TimeSpan.FromSeconds(20);
+
+                    string policy = "";
+                    string policyRequestedResource = "";
+                    // test, if usage policy is needed
+                    if (steps != null && steps.Value != "")
+                    {
+                        if (steps.Value.Contains("11") || (accessToken != null && accessToken.Value == ""))
+                        {
+                            accessToken.Value = "";
+
+                            if (!createAccessToken(envIndex, authServerEndPoint, authServerCertificate,
+                                clientCertificate, clientCertificatePassWord,
+                                accessToken, clientToken,
+                                "", ""))
+                                continue;
+                            accessToken.TimeStamp = timeStamp;
+                            Console.WriteLine("Create Token1");
+                        }
+
+                        if (steps.Value.Contains("1"))
+                        {
+                            client.SetBearerToken(accessToken.Value);
+                        }
+
+                        if (steps.Value.Contains("H"))
+                        {
+                            try
+                            {
+                                task = Task.Run(async () => { response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Head, requestPath)); });
+                                task.Wait();
+                                if (!response.IsSuccessStatusCode)
+                                {
+                                    if (status != null)
+                                    {
+                                        status.Value = response.StatusCode.ToString() + " ; " +
+                                            response.Content.ReadAsStringAsync().Result + " ; " +
+                                            "HEAD " + requestPath;
+                                        status.TimeStamp= timeStamp;
+                                        Program.signalNewData(0);
+                                    }
+                                    continue;
+                                }
+
+                                foreach (var kvp in response.Headers)
+                                {
+                                    if (kvp.Key == "policy")
+                                        policy = kvp.Value.FirstOrDefault();
+                                    if (kvp.Key == "policyRequestedResource")
+                                        policyRequestedResource = kvp.Value.FirstOrDefault();
+                                }
+
+                                if (policy == "" || policyRequestedResource == "")
+                                {
+                                    Console.WriteLine("HEAD: No policy!");
+                                }
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                        }
+
+                        if ((steps.Value.Contains("22") && steps.Value.Contains("1H"))
+                            || (clientToken != null && clientToken.Value == ""))
+                        {
+                            clientToken.Value = "";
+                            if (!createAccessToken(envIndex, authServerEndPoint, authServerCertificate,
+                                clientCertificate, clientCertificatePassWord,
+                                accessToken, clientToken,
+                                policy, policyRequestedResource))
+                                continue;
+                            clientToken.TimeStamp = timeStamp;
+                            Console.WriteLine("Create Token2");
+                        }
+                        if (steps.Value.Contains("2"))
+                        {
+                            client.SetBearerToken(clientToken.Value);
+                        }
+                    }
+
+                    if (steps.Value.Contains("G"))
+                    {
                         try
                         {
-                            task = Task.Run(async () => { response = await client.GetAsync(requestPath, HttpCompletionOption.ResponseHeadersRead); });
-                            task.Wait();
-                            if (!response.IsSuccessStatusCode)
+                            using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestPath))
                             {
-                                if (status != null)
+                                task = Task.Run(async () => { response = await client.SendAsync(requestMessage); });
+                                task.Wait();
+                                if (!response.IsSuccessStatusCode)
                                 {
-                                    status.Value = response.StatusCode.ToString() + " ; " +
-                                        response.Content.ReadAsStringAsync().Result + " ; " +
-                                        "GET " + requestPath;
+                                    if (status != null)
+                                    {
+                                        status.Value = response.StatusCode.ToString() + " ; " +
+                                            response.Content.ReadAsStringAsync().Result + " ; " +
+                                            "GET " + requestPath;
+                                        status.TimeStamp = timeStamp;
+                                        Program.signalNewData(0);
+                                    }
+                                    continue;
                                 }
-                                error = true;
                             }
                         }
                         catch
                         {
-                            error = true;
+                            continue;
                         }
 
-                        int highDataIndex = -1;
-                        int lowDataIndex = 0;
-                        int totalSamples = 0;
-                        if (!error)
+                        string json = response.Content.ReadAsStringAsync().Result;
+                        SubmodelElementCollection receiveCollection = null;
+                        Submodel receiveSubmodel = null;
+                        try
                         {
-                            try
+                            if (opName == "get")
                             {
-                                string json = response.Content.ReadAsStringAsync().Result;
-                                JObject parsed = JObject.Parse(json);
-                                foreach (JProperty jp1 in (JToken)parsed)
+                                if (elementCollection != null)
                                 {
-                                    if (jp1.Name == "elem")
+                                    JObject parsed = JObject.Parse(json);
+                                    foreach (JProperty jp1 in (JToken)parsed)
                                     {
-                                        string text = jp1.Value.ToString();
-                                        var receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
-                                            text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
-                                        foreach (var sme in receiveCollection.Value)
+                                        if (jp1.Name == "elem")
                                         {
-                                            var e = sme;
-                                            if (e is Property ep)
-                                            {
-                                                if (ep.IdShort == "highDataIndex")
-                                                {
-                                                    highDataIndex = Convert.ToInt32(ep.Value);
-                                                    lowDataIndex = highDataIndex + 1;
-                                                }
-                                                if (ep.IdShort == "totalSamples")
-                                                {
-                                                    totalSamples = Convert.ToInt32(ep.Value);
-                                                }
-                                            }
+                                            string text = jp1.Value.ToString();
+                                            receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
+                                                text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
+                                            elementCollection.Value = receiveCollection.Value;
+                                            elementCollection.SetAllParentsAndTimestamps(elementCollection, timeStamp, elementCollection.TimeStampCreate);
+                                            elementCollection.SetTimeStamp(timeStamp);
                                         }
-                                        if (elementCollection.Value.Count == 1)
+                                    }
+                                }
+                                if (elementSubmodel != null)
+                                {
+                                    // receiveSubmodel = Newtonsoft.Json.JsonConvert.DeserializeObject<Submodel>(
+                                    //    json, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
+                                    MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json));
+                                    JsonNode node = System.Text.Json.JsonSerializer.DeserializeAsync<JsonNode>(mStrm).Result;
+                                    receiveSubmodel = Jsonization.Deserialize.SubmodelFrom(node);
+
+                                    receiveSubmodel.SetTimeStamp(timeStamp);
+                                    receiveSubmodel.SetAllParents(timeStamp);
+
+                                    // need id for idempotent behaviour
+                                    if (receiveSubmodel.Id == null /*|| receiveSubmodel.Id != elementSubmodel.Id*/)
+                                        continue;
+                                    receiveSubmodel.Id = elementSubmodel.Id;
+
+                                    var aas = Program.env[envIndex].AasEnv.FindAasWithSubmodelId(elementSubmodel.Id);
+
+                                    // datastructure update
+                                    if (Program.env == null || Program.env[envIndex].AasEnv == null /*|| Program.env[envIndex].AasEnv.Assets == null*/)
+                                        continue;
+
+                                    // add Submodel
+                                    var existingSm = Program.env[envIndex].AasEnv.FindSubmodelById(elementSubmodel.Id);
+                                    if (existingSm != null)
+                                        Program.env[envIndex].AasEnv.Submodels.Remove(existingSm);
+                                    Program.env[envIndex].AasEnv.Submodels.Add(receiveSubmodel);
+                                    for (int s = 0; s < aas.Submodels.Count; s++)
+                                    {
+                                        if (aas.Submodels[s].Keys[0].Value == existingSm.Id)
                                         {
-                                            if (elementCollection.Value[0] is SubmodelElementCollection smc)
+                                            aas.Submodels.RemoveAt(s);
+                                            break;
+                                        }
+                                    }
+                                    aas.Submodels.Add(receiveSubmodel.GetModelReference());
+
+                                    continue;
+                                }
+                            }
+                            if (opName == "getdiff")
+                            {
+                                // lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                                List<AasxRestServer.TestResource.diffEntry> diffList = new List<AasxRestServer.TestResource.diffEntry>();
+                                diffList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AasxRestServer.TestResource.diffEntry>>(json);
+                                foreach (var d in diffList)
+                                {
+                                    if (d.type == "SMEC")
+                                    {
+                                        if (d.path.Length > subPath.Length && subPath == d.path.Substring(0, subPath.Length))
+                                        {
+                                            switch (d.mode)
                                             {
-                                                if (smc.IdShort == "latestData")
-                                                {
-                                                    if (smc.Value.Count == 0)
-                                                        return;
-                                                    foreach (var sme in smc.Value)
+                                                case "CREATE":
+                                                case "UPDATE":
+                                                    splitPath = d.path.Split('.');
+                                                    if (splitPath.Length < 2)
+                                                        continue;
+                                                    requestPath = endPoint.Value + "/aas/" + aasPath +
+                                                        "/submodels/" + splitPath[0] + "/elements";
+                                                    i = 1;
+                                                    while (i < splitPath.Length)
                                                     {
-                                                        var e = sme;
-                                                        if (e is Property ep)
+                                                        requestPath += "/" + splitPath[i];
+                                                        i++;
+                                                    }
+                                                    requestPath += "/complete";
+                                                    try
+                                                    {
+                                                        task = Task.Run(async () => { response = await client.GetAsync(requestPath, HttpCompletionOption.ResponseHeadersRead); });
+                                                        task.Wait();
+                                                        if (!response.IsSuccessStatusCode)
                                                         {
-                                                            if (ep.IdShort == "highDataIndex")
+                                                            if (status != null)
                                                             {
-                                                                ep.Value = highDataIndex.ToString();
+                                                                status.Value = response.StatusCode.ToString() + " ; " +
+                                                                    response.Content.ReadAsStringAsync().Result + " ; " +
+                                                                    "GET " + requestPath;
+                                                                Program.signalNewData(0);
                                                             }
-                                                            if (ep.IdShort == "lowDataIndex")
+                                                            continue;
+                                                        }
+                                                    }
+                                                    catch
+                                                    {
+                                                        continue;
+                                                    }
+
+                                                    json = response.Content.ReadAsStringAsync().Result;
+                                                    JObject parsed = JObject.Parse(json);
+                                                    foreach (JProperty jp1 in (JToken)parsed)
+                                                    {
+                                                        if (jp1.Name == "elem")
+                                                        {
+                                                            string text = jp1.Value.ToString();
+                                                            receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
+                                                                text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
+                                                            break;
+                                                        }
+                                                    }
+
+                                                    bool found = false;
+                                                    foreach (var smew in elementCollection.Value)
+                                                    {
+                                                        var sme = smew;
+                                                        if (sme.IdShort == receiveCollection.IdShort)
+                                                        {
+                                                            if (sme is SubmodelElementCollection smc)
                                                             {
-                                                                ep.Value = lowDataIndex.ToString();
-                                                            }
-                                                            if (ep.IdShort == "totalSamples")
-                                                            {
-                                                                ep.Value = totalSamples.ToString();
+                                                                if (d.mode == "UPDATE")
+                                                                {
+                                                                    smc.Value = receiveCollection.Value;
+                                                                    smc.SetAllParentsAndTimestamps(elementCollection, timeStamp, elementCollection.TimeStampCreate);
+                                                                    smc.SetTimeStamp(timeStamp);
+                                                                }
+                                                                found = true;
+                                                                break;
                                                             }
                                                         }
                                                     }
-                                                }
+                                                    if (!found && d.mode == "CREATE")
+                                                    {
+                                                        elementCollection.Value.Add(receiveCollection);
+                                                        receiveCollection.SetAllParentsAndTimestamps(elementCollection, timeStamp, timeStamp);
+                                                        receiveCollection.SetTimeStamp(timeStamp);
+                                                    }
+                                                    break;
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (lastDiff != null)
+                        lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                    Program.signalNewData(0);
+                }
+
+                handler = new HttpClientHandler();
+
+                if (!requestPath.Contains("localhost") && !requestPath.Contains("192.168."))
+                {
+                    if (proxy != null)
+                        handler.Proxy = proxy;
+                    else
+                        handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
+                }
+                client = new HttpClient(handler);
+                client.Timeout = TimeSpan.FromSeconds(20);
+                if (accessToken != null)
+                    client.SetBearerToken(accessToken.Value);
+
+                if (opName == "put" || opName == "putdiff")
+                {
+                    SubmodelElementCollection diffCollection = null;
+                    DateTime last = new DateTime();
+                    int count = 1;
+                    if (mode != null && mode.Value == "clear")
+                        opName = "put";
+                    if (opName == "putdiff")
+                    {
+                        if (lastDiff == null)
+                            continue;
+                        if (elementCollection == null)
+                            continue;
+                        diffCollection = elementCollection;
+                        count = elementCollection.Value.Count;
+                        if (lastDiff.Value == "")
+                        {
+                            // get "latestData" from server
+                            bool error = false;
+                            splitPath = path.Value.Split('/');
+                            /*
+                            requestPath = endPoint.Value + "/aas/" + splitPath[1] +
+                                "/submodels/" + splitPath[3];
+                            requestPath += "/elements/" + elementCollection.IdShort;
+                            requestPath += "/latestData/complete";
+                            */
+                            try
+                            {
+                                task = Task.Run(async () => { response = await client.GetAsync(requestPath + ".latestData", HttpCompletionOption.ResponseHeadersRead); });
+                                task.Wait();
+                                if (!response.IsSuccessStatusCode)
+                                {
+                                    if (status != null)
+                                    {
+                                        status.Value = response.StatusCode.ToString() + " ; " +
+                                            response.Content.ReadAsStringAsync().Result + " ; " +
+                                            "GET " + requestPath;
+                                    }
+                                    error = true;
                                 }
                             }
                             catch
                             {
                                 error = true;
                             }
-                        }
-                        if (error || highDataIndex == -1)
-                        {
-                            opName = "put";
+
+                            int highDataIndex = -1;
+                            int lowDataIndex = 0;
+                            int totalSamples = 0;
+                            if (!error)
+                            {
+                                try
+                                {
+                                    string json = response.Content.ReadAsStringAsync().Result;
+                                    MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json));
+                                    JsonNode node = System.Text.Json.JsonSerializer.DeserializeAsync<JsonNode>(mStrm).Result;
+                                    var receiveCollection = Jsonization.Deserialize.SubmodelElementCollectionFrom(node);
+
+                                    // JObject parsed = JObject.Parse(json);
+                                    // foreach (JProperty jp1 in (JToken)parsed)
+                                    {
+                                        // if (jp1.Name == "elem")
+                                        {
+                                            // string text = jp1.Value.ToString();
+                                            // var receiveCollection = Newtonsoft.Json.JsonConvert.DeserializeObject<SubmodelElementCollection>(
+                                            //    text, new AdminShellConverters.JsonAasxConverter("modelType", "name"));
+                                            foreach (var sme in receiveCollection.Value)
+                                            {
+                                                var e = sme;
+                                                if (e is Property ep)
+                                                {
+                                                    if (ep.IdShort == "highDataIndex")
+                                                    {
+                                                        highDataIndex = Convert.ToInt32(ep.Value);
+                                                        lowDataIndex = highDataIndex + 1;
+                                                    }
+                                                    if (ep.IdShort == "totalSamples")
+                                                    {
+                                                        totalSamples = Convert.ToInt32(ep.Value);
+                                                    }
+                                                }
+                                            }
+                                            if (elementCollection.Value.Count == 1)
+                                            {
+                                                if (elementCollection.Value[0] is SubmodelElementCollection smc)
+                                                {
+                                                    if (smc.IdShort == "latestData")
+                                                    {
+                                                        if (smc.Value.Count == 0)
+                                                            continue;
+                                                        foreach (var sme in smc.Value)
+                                                        {
+                                                            var e = sme;
+                                                            if (e is Property ep)
+                                                            {
+                                                                if (ep.IdShort == "highDataIndex")
+                                                                {
+                                                                    ep.Value = highDataIndex.ToString();
+                                                                }
+                                                                if (ep.IdShort == "lowDataIndex")
+                                                                {
+                                                                    ep.Value = lowDataIndex.ToString();
+                                                                }
+                                                                if (ep.IdShort == "totalSamples")
+                                                                {
+                                                                    ep.Value = totalSamples.ToString();
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                catch
+                                {
+                                    error = true;
+                                }
+                            }
+                            if (error || highDataIndex == -1)
+                            {
+                                opName = "put";
+                            }
+                            else
+                            {
+                                if (lastDiff != null)
+                                    lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                            }
                         }
                         else
                         {
-                            if (lastDiff != null)
-                                lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                            last = DateTime.Parse(lastDiff.Value).ToUniversalTime();
                         }
                     }
-                    else
-                    {
-                        last = DateTime.Parse(lastDiff.Value).ToUniversalTime();
-                    }
-                }
 
-                for (i = 0; i < count; i++)
-                {
-                    bool error = false;
-                    string statusValue = "";
-                    string json = "";
-                    try
+                    for (i = 0; i < count; i++)
                     {
-                        if (opName == "putdiff")
-                        {
-                            var sme = diffCollection.Value[i];
-                            if (!(sme is SubmodelElementCollection))
-                                return;
-                            elementCollection = sme as SubmodelElementCollection;
-                            diffPath = "/" + diffCollection.IdShort;
-                            if (elementCollection.TimeStamp <= last)
-                                elementCollection = null;
-                        }
-                        if (elementCollection != null)
-                            json = JsonConvert.SerializeObject(elementCollection, Formatting.Indented);
-                        if (elementSubmodel != null)
-                            json = JsonConvert.SerializeObject(elementSubmodel, Formatting.Indented);
-                    }
-                    catch
-                    {
-                        statusValue = "error PUTDIFF index: " + i + " old " + count +
-                            " new " + diffCollection.Value.Count;
-                        Console.WriteLine(statusValue);
-                        error = true;
-                    }
-                    if (json != "")
-                    {
+                        bool error = false;
+                        string statusValue = "";
+                        string json = "";
                         try
                         {
-                            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-                            task = Task.Run(async () =>
+                            if (opName == "putdiff")
                             {
-                                response = await client.PutAsync(
-                                    requestPath + diffPath, content);
-                            });
-                            task.Wait();
+                                var sme = diffCollection.Value[i];
+                                if (!(sme is SubmodelElementCollection))
+                                    continue;
+                                elementCollection = sme as SubmodelElementCollection;
+                                diffPath = "." + elementCollection.IdShort;
+                                if (elementCollection.TimeStamp <= last)
+                                    elementCollection = null;
+                            }
+                            if (elementCollection != null)
+                            {
+                                var j = Jsonization.Serialize.ToJsonObject(elementCollection);
+                                json = j.ToJsonString();
+                            }
+                            if (elementSubmodel != null)
+                            {
+                                var j = Jsonization.Serialize.ToJsonObject(elementSubmodel);
+                                json = j.ToJsonString();
+                            }
                         }
                         catch
                         {
+                            statusValue = "error PUTDIFF index: " + i + " old " + count +
+                                " new " + diffCollection.Value.Count;
+                            Console.WriteLine(statusValue);
                             error = true;
                         }
-                        if (error || !response.IsSuccessStatusCode)
+                        if (json != "")
                         {
-                            if (response != null)
+                            try
                             {
-                                statusValue = response.StatusCode.ToString() + " ; " +
-                                    response.Content.ReadAsStringAsync().Result + " ; " +
-                                    "PUT " + requestPath;
+                                var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                                if (opName == "put" || (elementCollection != null && elementCollection.IdShort == "latestData"))
+                                {
+                                    task = Task.Run(async () =>
+                                    {
+                                        response = await client.PutAsync(
+                                            requestPath + diffPath, content);
+                                    });
+                                } else
+                                if (opName == "putdiff")
+                                {
+                                    task = Task.Run(async () =>
+                                    {
+                                        response = await client.PostAsync(
+                                            requestPath, content);
+                                    });
+                                }
+                                task.Wait();
                             }
-                            error = true;
+                            catch
+                            {
+                                error = true;
+                            }
+                            if (error || !response.IsSuccessStatusCode)
+                            {
+                                if (response != null)
+                                {
+                                    statusValue = response.StatusCode.ToString() + " ; " +
+                                        response.Content.ReadAsStringAsync().Result + " ; " +
+                                        "PUT " + requestPath;
+                                }
+                                error = true;
+                            }
                         }
-                    }
-                    if (error)
-                    {
-                        if (status != null)
+                        if (error)
                         {
-                            status.Value = statusValue;
-                            Program.signalNewData(1);
+                            if (status != null)
+                            {
+                                status.Value = statusValue;
+                                Program.signalNewData(0);
+                            }
+                            continue;
                         }
-                        return;
                     }
-                }
 
-                if (lastDiff != null)
-                    lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                    if (lastDiff != null)
+                        lastDiff.Value = "" + timeStamp.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                }
             }
+            if (loop != null)
+            {
+                loop.Value = loopCount + "";
+                loop.TimeStamp = timeStamp;
+            }
+            watch.Stop();
+            if (duration != null)
+            {
+                duration.Value = watch.ElapsedMilliseconds + " ms";
+                duration.TimeStamp = timeStamp;
+            }
+            Program.signalNewData(2); // new tree, nodes opened
         }
         static void operation_limitCount(Operation op, int envIndex, DateTime timeStamp)
         {
@@ -1042,7 +1410,7 @@ namespace AasxServer
                 }
                 if (inputRef is ReferenceElement)
                 {
-                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).GetModelReference());
+                    var refElement = Program.env[envIndex].AasEnv.FindReferableByReference((inputRef as ReferenceElement).Value);
                     if (refElement is SubmodelElementCollection)
                         smec = refElement as SubmodelElementCollection;
                 }
@@ -1116,18 +1484,179 @@ namespace AasxServer
             public AasCore.Aas3_0.File productImage = null;
             public string productDesignation = "";
             public List<string> bom = new List<string>();
+            public DateTime bomTimestamp = new DateTime();
             public List<cfpNode> children = new List<cfpNode>();
             public int iChild = 0;
         }
 
         public static cfpNode root = null;
+        public static string asbuilt_total = null;
+        public static bool cfpValid = false;
+        public static DateTime lastCreateTimestamp = new DateTime();
+        public static bool credentialsChanged = false;
 
-        public static void createCfpTree(int envIndex, DateTime timeStamp)
+        public static void resetTimeStamp()
         {
-            Dictionary<string, cfpNode> assetCfp = new Dictionary<string, cfpNode>();
-            // cfpNode root = new cfpNode();
+            lastCreateTimestamp = new DateTime();
+            credentialsChanged = true;
+        }
+
+        static string cleanupIdShort(String text)
+        {
+            if (text.Contains(" - EXTERNAL"))
+                text = text.Replace(" - EXTERNAL", "");
+            if (text.Contains(" - NO ACCESS"))
+                text = text.Replace(" - NO ACCESS", "");
+            if (text.Contains(" - COPY"))
+                text = text.Replace(" - COPY", "");
+            return text;
+        }
+
+        public static string hashBOM = "";
+        public static long logCount = 0;
+        public static bool createCfpTree(int envIndex, DateTime timeStamp)
+        {
+            bool changed = false;
+            string digest = "";
+            cfpValid = true;
+
+            if (logCount % 10 == 0)
+            {
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Write(logCount % 10 + " ");
+            }
+
+            // GET actual BOM
             AdminShellPackageEnv env = null;
             int aascount = AasxServer.Program.env.Length;
+
+            for (int i = 0; i < aascount; i++)
+            {
+                env = AasxServer.Program.env[i];
+                if (env != null)
+                {
+                    var aas = env.AasEnv.AssetAdministrationShells[0];
+                    // if (aas.IdShort != "ZveiControlCabinetAas - EXTERNAL")
+                    //    continue;
+
+                    Submodel newsm = null;
+                    if (aas.Submodels != null && aas.Submodels.Count > 0)
+                    {
+                        // foreach (var smr in aas.Submodels)
+                        for (int j = 0; j < aas.Submodels.Count; j++)
+                        {
+                            var smr = aas.Submodels[j];
+                            var sm = env.AasEnv.FindSubmodel(smr);
+                            if (sm != null && sm.IdShort != null)
+                            {
+                                if (sm.IdShort.Contains("BillOfMaterial"))
+                                {
+                                    if (sm.Extensions != null && sm.Extensions.Count != 0 && sm.Extensions[0].Name == "endpoint")
+                                    {
+                                        var requestPath = sm.Extensions[0].Value;
+
+                                        var handler = new HttpClientHandler();
+                                        if (!requestPath.Contains("localhost"))
+                                        {
+                                            if (AasxServer.AasxTask.proxy != null)
+                                                handler.Proxy = AasxServer.AasxTask.proxy;
+                                            else
+                                                handler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
+                                        }
+
+                                        var client = new HttpClient(handler);
+
+                                        string clientToken = "";
+                                        if (sm.Extensions != null && sm.Extensions.Count > 1 && sm.Extensions[1].Name == "clientToken")
+                                            clientToken = sm.Extensions[1].Value;
+                                        if (clientToken != "")
+                                            client.SetBearerToken(clientToken);
+
+                                        string queryPara = "";
+                                        string userPW = "";
+                                        string urlEdcWrapper = "";
+                                        string replace = "";
+                                        client.DefaultRequestHeaders.Clear();
+                                        if (AasxCredentials.get(cs.credentials, requestPath, out queryPara, out userPW, out urlEdcWrapper, out replace))
+                                        {
+                                            if (replace != "")
+                                                requestPath = replace;
+                                            if (queryPara != "")
+                                                queryPara = "?" + queryPara;
+                                            if (userPW != "")
+                                                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", userPW);
+                                            if (urlEdcWrapper != "")
+                                                requestPath = urlEdcWrapper;
+                                        }
+                                        bool success = false;
+                                        HttpResponseMessage response = new HttpResponseMessage();
+                                        try
+                                        {
+                                            requestPath += queryPara;
+                                            if (logCount % 10 == 0)
+                                                Console.WriteLine("GET Submodel " + requestPath);
+                                            client.Timeout = TimeSpan.FromSeconds(3);
+                                            var task1 = Task.Run(async () =>
+                                            {
+                                                response = await client.GetAsync(requestPath);
+                                            });
+                                            task1.Wait();
+                                            if (response.IsSuccessStatusCode)
+                                            {
+                                                var json = response.Content.ReadAsStringAsync().Result;
+                                                byte[] buffer = Encoding.UTF8.GetBytes(json);
+                                                digest += Convert.ToBase64String(SHA256.HashData(buffer));
+                                                // if (digest != hashBOM)
+                                                //    changed= true;
+                                                // hashBOM = digest;
+                                                MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json));
+                                                JsonNode node = System.Text.Json.JsonSerializer.DeserializeAsync<JsonNode>(mStrm).Result;
+                                                newsm = new Submodel("");
+                                                newsm = Jsonization.Deserialize.SubmodelFrom(node);
+                                                newsm.IdShort += " - COPY";
+                                                newsm.Extensions = sm.Extensions;
+                                                newsm.SetAllParentsAndTimestamps(null, timeStamp, timeStamp);
+                                                env.AasEnv.Submodels.Remove(sm);
+                                                env.AasEnv.Submodels.Add(newsm);
+                                                success = true;
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            success = false;
+                                        }
+                                        if (!success)
+                                        {
+                                            if (sm.IdShort != "BillOfMaterial - NO ACCESS")
+                                            {
+                                                if (hashBOM != "")
+                                                    changed = true;
+                                                hashBOM = "";
+                                                newsm = new Submodel(sm.Id);
+                                                newsm.IdShort = "BillOfMaterial - NO ACCESS";
+                                                newsm.Extensions = sm.Extensions;
+                                                newsm.SetAllParentsAndTimestamps(null, timeStamp, timeStamp);
+                                                env.AasEnv.Submodels.Remove(sm);
+                                                env.AasEnv.Submodels.Add(newsm);
+                                            }
+                                            Console.WriteLine("NO ACCESS: aas " + aas.IdShort + " sm " + sm.IdShort);
+                                            cfpValid = false;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Dictionary<string, cfpNode> assetCfp = new Dictionary<string, cfpNode>();
+            // cfpNode root = new cfpNode();
+            aascount = AasxServer.Program.env.Length;
             root = null;
 
             // Collect data from all AAS into cfpNode(s)
@@ -1137,6 +1666,7 @@ namespace AasxServer
                 if (env != null)
                 {
                     var aas = env.AasEnv.AssetAdministrationShells[0];
+
                     //var assetId = aas.assetRef.Keys[0].Value;
                     var assetId = aas.AssetInformation.GlobalAssetId;
                     var cfp = new cfpNode();
@@ -1153,158 +1683,193 @@ namespace AasxServer
                             if (sm != null && sm.IdShort != null)
                             {
                                 // ZVEI Level 1
-                                if (sm.IdShort.Contains("ProductCarbonFootprint") && sm.SubmodelElements != null)
+                                if (sm.IdShort.Contains("ProductCarbonFootprint"))
                                 {
-                                    foreach (var v in sm.SubmodelElements)
+                                    if (sm.IdShort.Contains(" - NO ACCESS"))
                                     {
-                                        if (v is SubmodelElementCollection c)
+                                        Console.WriteLine("NO ACCESS: aas " + aas.IdShort + " sm " + sm.IdShort);
+                                        cfpValid = false;
+                                    }
+                                    if (sm.SubmodelElements != null)
+                                    {
+                                        foreach (var v in sm.SubmodelElements)
                                         {
-                                            if (c.IdShort.Contains("FootprintInformationModule")
-                                                    || c.IdShort.Contains("FootprintInformationCombination"))
+                                            if (v is SubmodelElementCollection c)
                                             {
-                                                string lifeCyclePhase = "";
-                                                Property co2eq = null;
-                                                foreach (var v2 in c.Value)
+                                                if (c.IdShort.Contains("FootprintInformationModule")
+                                                        || c.IdShort.Contains("FootprintInformationCombination"))
                                                 {
-                                                    switch (v2.IdShort)
+                                                    string lifeCyclePhase = "";
+                                                    Property co2eq = null;
+                                                    foreach (var v2 in c.Value)
                                                     {
-                                                        case "LifeCyclePhase":
-                                                            lifeCyclePhase = v2.ValueAsText();
+                                                        switch (v2.IdShort)
+                                                        {
+                                                            case "LifeCyclePhase":
+                                                                lifeCyclePhase = v2.ValueAsText();
+                                                                break;
+                                                            case "CO2eq":
+                                                                co2eq = v2 as Property;
+                                                                break;
+                                                        }
+                                                    }
+                                                    switch (lifeCyclePhase)
+                                                    {
+                                                        case "Cradle-to-gate":
+                                                            if (c.IdShort.Contains("FootprintInformationModule"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.cradleToGateModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.cradleToGateCombination = co2eq;
+                                                            }
                                                             break;
-                                                        case "CO2eq":
-                                                            co2eq = v2 as Property;
+                                                        case "Production":
+                                                            if (c.IdShort.Contains("FootprintInformationModule"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.productionModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.productionCombination = co2eq;
+                                                            }
+                                                            break;
+                                                        case "Distribution":
+                                                            if (c.IdShort.Contains("FootprintInformationModule"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.distributionModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.distributionCombination = co2eq;
+                                                            }
                                                             break;
                                                     }
-                                                }
-                                                switch (lifeCyclePhase)
-                                                {
-                                                    case "Cradle-to-gate":
-                                                        if (c.IdShort.Contains("FootprintInformationModule"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.cradleToGateModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.cradleToGateCombination = co2eq;
-                                                        }
-                                                        break;
-                                                    case "Production":
-                                                        if (c.IdShort.Contains("FootprintInformationModule"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.productionModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.productionCombination = co2eq;
-                                                        }
-                                                        break;
-                                                    case "Distribution":
-                                                        if (c.IdShort.Contains("FootprintInformationModule"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.distributionModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.distributionCombination = co2eq;
-                                                        }
-                                                        break;
                                                 }
                                             }
                                         }
                                     }
                                 }
                                 // ZVEI Level 2
-                                if (sm.IdShort.Contains("CarbonFootprint") && sm.SubmodelElements != null)
+                                if (sm.IdShort.Contains("CarbonFootprint"))
                                 {
-                                    foreach (var v in sm.SubmodelElements)
+                                    if (sm.IdShort.Contains(" - NO ACCESS"))
                                     {
-                                        if (v is SubmodelElementCollection c)
+                                        Console.WriteLine("NO ACCESS: aas " + aas.IdShort + " sm " + sm.IdShort);
+                                        cfpValid = false;
+                                    }
+                                    if (sm.SubmodelElements != null)
+                                    {
+                                        foreach (var v in sm.SubmodelElements)
                                         {
-                                            if (c.IdShort.Contains("ProductCarbonFootprint"))
+                                            if (v is SubmodelElementCollection c)
                                             {
-                                                string lifeCyclePhase = "";
-                                                Property co2eq = null;
-                                                foreach (var v2 in c.Value)
+                                                if (c.IdShort.Contains("ProductCarbonFootprint"))
                                                 {
-                                                    switch (v2.IdShort)
+                                                    string lifeCyclePhase = "";
+                                                    Property co2eq = null;
+                                                    foreach (var v2 in c.Value)
                                                     {
-                                                        case "PCFLifeCyclePhase":
-                                                            lifeCyclePhase = v2.ValueAsText();
+                                                        switch (v2.IdShort)
+                                                        {
+                                                            case "PCFLifeCyclePhase":
+                                                            case "PCFLiveCyclePhase":
+                                                                lifeCyclePhase = v2.ValueAsText();
+                                                                break;
+                                                            case "PCFCO2eq":
+                                                                co2eq = v2 as Property;
+                                                                break;
+                                                        }
+                                                    }
+                                                    switch (lifeCyclePhase)
+                                                    {
+                                                        case "Cradle-to-gate":
+                                                        case "A1-A3":
+                                                            if (c.IdShort.Contains("ProductCarbonFootprint"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.cradleToGateModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.cradleToGateCombination = co2eq;
+                                                            }
                                                             break;
-                                                        case "PCFCO2eq":
-                                                            co2eq = v2 as Property;
+                                                        case "Production":
+                                                        case "A3":
+                                                        case "A3 - production":
+                                                            if (c.IdShort.Contains("ProductCarbonFootprint"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.productionModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.productionCombination = co2eq;
+                                                            }
+                                                            break;
+                                                        case "Distribution":
+                                                        case "A2":
+                                                        case "A1 – raw material supply (and upstream production)":
+                                                            if (c.IdShort.Contains("ProductCarbonFootprint"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.distributionModule = co2eq;
+                                                            }
+                                                            if (c.IdShort.Contains("FootprintInformationCombination"))
+                                                            {
+                                                                co2eq.Value = co2eq.Value.Replace(",", ".");
+                                                                cfp.distributionCombination = co2eq;
+                                                            }
                                                             break;
                                                     }
-                                                }
-                                                switch (lifeCyclePhase)
-                                                {
-                                                    case "Cradle-to-gate":
-                                                    case "A1-A3":
-                                                        if (c.IdShort.Contains("ProductCarbonFootprint"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.cradleToGateModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.cradleToGateCombination = co2eq;
-                                                        }
-                                                        break;
-                                                    case "Production":
-                                                    case "A3":
-                                                        if (c.IdShort.Contains("ProductCarbonFootprint"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.productionModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.productionCombination = co2eq;
-                                                        }
-                                                        break;
-                                                    case "Distribution":
-                                                    case "A2":
-                                                        if (c.IdShort.Contains("ProductCarbonFootprint"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.distributionModule = co2eq;
-                                                        }
-                                                        if (c.IdShort.Contains("FootprintInformationCombination"))
-                                                        {
-                                                            co2eq.Value = co2eq.Value.Replace(",", ".");
-                                                            cfp.distributionCombination = co2eq;
-                                                        }
-                                                        break;
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                if (sm.IdShort.Contains("BillOfMaterial") && sm.SubmodelElements != null)
+                                if (sm.IdShort.Contains("BillOfMaterial"))
                                 {
-                                    List<string> bom = new List<string>();
-                                    foreach (var v in sm.SubmodelElements)
+                                    if (sm.IdShort.Contains(" - NO ACCESS"))
                                     {
-                                        if (v is Entity e)
+                                        Console.WriteLine("NO ACCESS: aas " + aas.IdShort + " sm " + sm.IdShort);
+                                        cfpValid = false;
+                                    }
+                                    if (sm.SubmodelElements != null)
+                                    {
+                                        cfp.bomTimestamp = sm.TimeStampTree;
+                                        List<string> bom = new List<string>();
+                                        foreach (var v in sm.SubmodelElements)
                                         {
                                             string s = "";
-                                            s = e?.GlobalAssetId;
-                                            if (s != "")
+                                            if (v is Entity e)
                                             {
-                                                bom.Add(s);
+                                                s = e?.GlobalAssetId;
+                                                if (s != "")
+                                                {
+                                                    // check if first entity is newer than last cfp creation
+                                                    //TODO jtikekar:Whether to use GlobalAssetId or SpecificAssetId
+                                                    //s = e?.assetRef?.Keys?[0].Value;
+                                                    s = e?.GlobalAssetId;
+                                                    if (s != "")
+                                                    {
+                                                        bom.Add(s);
+                                                    }
+                                                }
                                             }
                                         }
+                                        // assetBOM.Add(assetId, bom);
+                                        cfp.bom = bom;
                                     }
-                                    // assetBOM.Add(assetId, bom);
-                                    cfp.bom = bom;
                                 }
                                 if (sm.IdShort.Contains("TechnicalData") && sm.SubmodelElements != null)
                                 {
@@ -1344,6 +1909,7 @@ namespace AasxServer
                                                         if (ls.Language.ToLower() == "en")
                                                         {
                                                             s = ls.Text;
+                                                            break; //english has priority over German
                                                         }
                                                         if (ls.Language.ToLower() == "de")
                                                         {
@@ -1364,10 +1930,21 @@ namespace AasxServer
                     if (!assetCfp.ContainsKey(assetId))
                     {
                         assetCfp.Add(assetId, cfp);
-
                     }
+                    /*
                     if (i == envIndex)
+                    {
                         root = cfp;
+                    }
+                    */
+                    if (aas.IdShort == "ZveiControlCabinetAas - EXTERNAL")
+                    {
+                        root = cfp;
+                        if(asbuilt_total == null && root.cradleToGateCombination!=null) {
+                            //TODO: elements need proper deep clone method implemented within AAS metamodel classes
+                            asbuilt_total = new String(root.cradleToGateCombination.Value);
+                        }
+                    }
                 }
             }
 
@@ -1388,24 +1965,33 @@ namespace AasxServer
                 }
             }
 
-            // return root;
+            logCount++;
+
+            if (digest != hashBOM)
+            {
+                changed = true;
+                hashBOM = digest;
+            }
+
+            return changed;
         }
 
-        static bool once = false;
+        public static bool once = false;
+
         public static void operation_calculate_cfp(Operation op, int envIndex, DateTime timeStamp)
         {
+            if (AasxServer.Program.initializingRegistry)
+            {
+                // once = false; // one more again
+                return;
+            }
+
             if (once)
                 return;
 
-            if (AasxServer.Program.initializingRegistry)
-                return;
-
-            // Dictionary<string, cfpNode> assetCfp = new Dictionary<string, cfpNode>();
-            // cfpNode root = null;
-
             // Iterate tree and calculate CFP values
-            // cfpNode node = createCfpTree(envIndex, timeStamp);
-            createCfpTree(envIndex, timeStamp);
+            bool changed = createCfpTree(envIndex, timeStamp);
+
             cfpNode node = root;
             cfpNode parent = null;
             List<cfpNode> stack = new List<cfpNode>();
@@ -1531,30 +2117,99 @@ namespace AasxServer
             }
 
             // once = true;
-            Program.signalNewData(1);
+            // if (root != null && root.bomTimestamp > lastCreateTimestamp)
+            if (changed || credentialsChanged)
+            {
+                Program.signalNewData(1);
+                lastCreateTimestamp = timeStamp;
+                credentialsChanged = false;
+            }
         }
 
         static void saveAASXtoTemp()
         {
+            bool newData = false;
             int envi = 0;
-            while (envi < Program.envFileName.Length)
+            while (envi < Program.env.Length)
             {
-                string fn = Program.envFileName[envi];
-
-                if (fn != null && fn != "")
+                if (!Program.withDb)
                 {
-                    fn = Path.GetFileName(fn);
-                    if (fn.ToLower().Contains("--save-temp"))
+                    string fn = Program.envFileName[envi];
+
+                    if (fn != null && fn != "")
+                    {
+                        fn = Path.GetFileName(fn);
+                        if (fn.ToLower().Contains("--save-temp"))
+                        {
+                            lock (Program.changeAasxFile)
+                            {
+                                Console.WriteLine("SAVE TEMP: " + fn);
+                                Program.env[envi].SaveAs("./temp/" + fn, true);
+                                DateTime timeStamp = DateTime.Now;
+                                foreach (var submodel in Program.env[envi].AasEnv.Submodels)
+                                {
+                                    submodel.TimeStampCreate = timeStamp;
+                                    submodel.SetTimeStamp(timeStamp);
+                                    submodel.SetAllParents(timeStamp);
+                                }
+                                newData = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Program.env[envi] != null && Program.env[envi].getWrite())
                     {
                         lock (Program.changeAasxFile)
                         {
-                            Console.WriteLine("SAVE TEMP: " + fn);
-                            Program.env[envi].SaveAs("./temp/" + fn, true);
+                            var aasList = Program.env[envi].AasEnv.AssetAdministrationShells;
+                            var aasIds = aasList.Select(x => x.Id).ToList();
+
+                            var submodelList = Program.env[envi].AasEnv.Submodels;
+                            var submodelIds = submodelList.Select(x => x.Id).ToList();
+
+                            Dictionary<string, long> aasToDeleteAASXNumsDic;
+
+                            using (AasContext db = new AasContext())
+                            {
+                                //Deleting all related Aas, Submodel and SME
+                                //Join zwischen Liste und DB Tabelle nicht möglich, deswegen Contains für AAS und Submodelle
+                                aasToDeleteAASXNumsDic = db.AasSets.Where(x => aasIds.Contains(x.AasId)).ToDictionary(x => x.AasId, x => x.AASXNum);
+                                db.AasSets.Where(x => aasIds.Contains(x.AasId)).ExecuteDelete();
+                                var submodelsToDeleteNums = db.SubmodelSets.Where(x => submodelIds.Contains(x.SubmodelId)).Select(x => x.SubmodelNum).ToList();
+
+                                db.SubmodelSets.Where(x => submodelIds.Contains(x.SubmodelId)).ExecuteDelete();
+
+                                var smeToDeleteNums = db.SMESets.Where(x => submodelsToDeleteNums.Contains(x.SubmodelNum)).Select(x => x.SMENum).ToList();
+                                db.SMESets.Where(x => submodelsToDeleteNums.Contains(x.SubmodelNum)).ExecuteDelete();
+
+                                db.IValueSets.Where(x => smeToDeleteNums.Contains(x.ParentSMENum)).ExecuteDelete();
+                                db.SValueSets.Where(x => smeToDeleteNums.Contains(x.ParentSMENum)).ExecuteDelete();
+                                db.DValueSets.Where(x => smeToDeleteNums.Contains(x.ParentSMENum)).ExecuteDelete();
+
+                                //Load Everything back in
+                                foreach (IAssetAdministrationShell aas in aasList)
+                                {
+                                    long assxNum = 0;
+                                    if (aasToDeleteAASXNumsDic.ContainsKey(aas.Id))
+                                    {
+                                        assxNum = aasToDeleteAASXNumsDic[aas.Id];
+                                    }
+                                    VisitorAASX.LoadAASInDB(db, aas, assxNum, Program.env[envi]);
+                                }
+                                db.SaveChanges();
+                            }
+                            //Program.saveEnv(envi);
+                            Program.env[envi].setWrite(false);
+                            newData = true;
                         }
                     }
                 }
                 envi++;
             }
+            if (newData)
+                Program.signalNewData(0);
         }
 
         static Thread tasksThread;

@@ -57,6 +57,9 @@ namespace AasxServerStandardBib.Services
             {
 
                 _packages[emptyPackageIndex].AasEnv.AssetAdministrationShells.Add(body);
+                var timeStamp = DateTime.UtcNow;
+                body.TimeStampCreate = timeStamp;
+                body.SetTimeStamp(timeStamp);
                 Program.signalNewData(2);
                 return _packages[emptyPackageIndex].AasEnv.AssetAdministrationShells[0]; //Considering it is the first AAS being added to empty package.
             }
@@ -128,11 +131,12 @@ namespace AasxServerStandardBib.Services
             return IsAssetAdministrationShellPresent(aasIdentifier, out _, out _);
         }
 
-
-
         private bool IsAssetAdministrationShellPresent(string aasIdentifier, out IAssetAdministrationShell output, out int packageIndex)
         {
             output = null; packageIndex = -1;
+
+            Program.loadPackageForAas(aasIdentifier, out output, out packageIndex);
+
             foreach (var package in _packages)
             {
                 if (package != null)
@@ -162,6 +166,9 @@ namespace AasxServerStandardBib.Services
                 var aasIndex = _packages[packageIndex].AasEnv.AssetAdministrationShells.IndexOf(aas);
                 _packages[packageIndex].AasEnv.AssetAdministrationShells.Remove(aas);
                 _packages[packageIndex].AasEnv.AssetAdministrationShells.Insert(aasIndex, body);
+                var timeStamp = DateTime.UtcNow;
+                body.TimeStampCreate = timeStamp;
+                body.SetTimeStamp(timeStamp);
                 Program.signalNewData(1); //0 not working, hence 1 = same tree, structure may change
 
                 _logger.LogDebug($"Successfully updated the AAS with requested AAS");
@@ -235,6 +242,9 @@ namespace AasxServerStandardBib.Services
         {
             output = null;
             packageIndex = -1;
+
+            Program.loadPackageForSubmodel(submodelIdentifier, out output, out packageIndex);
+
             foreach (var package in _packages)
             {
                 if (package != null)
@@ -245,7 +255,14 @@ namespace AasxServerStandardBib.Services
                         var submodels = env.Submodels.Where(a => a.Id.Equals(submodelIdentifier));
                         if (submodels.Any())
                         {
-                            output = submodels.First();
+                            if (!Program.withDb)
+                            {
+                                output = submodels.First();
+                            }
+                            else
+                            {
+                                output = DBRead.getSubmodel(submodelIdentifier);
+                            }
                             packageIndex = Array.IndexOf(_packages, package);
                             return true;
                         }
@@ -285,7 +302,6 @@ namespace AasxServerStandardBib.Services
                 throw new NotFoundException($"ConceptDescription with id {cdIdentifier} NOT found.");
             }
         }
-
 
         private bool IsConceptDescriptionPresent(string cdIdentifier, out IConceptDescription output, out int packageIndex)
         {
@@ -343,6 +359,9 @@ namespace AasxServerStandardBib.Services
             {
 
                 _packages[emptyPackageIndex].AasEnv.ConceptDescriptions.Add(body);
+                var timeStamp = DateTime.UtcNow; 
+                body.TimeStampCreate = timeStamp;
+                body.SetTimeStamp(timeStamp);
                 Program.signalNewData(2);
                 return _packages[emptyPackageIndex].AasEnv.ConceptDescriptions[0]; //Considering it is the first AAS being added to empty package.
             }
@@ -360,6 +379,9 @@ namespace AasxServerStandardBib.Services
                 var cdIndex = _packages[packageIndex].AasEnv.ConceptDescriptions.IndexOf(conceptDescription);
                 _packages[packageIndex].AasEnv.ConceptDescriptions.Remove(conceptDescription);
                 _packages[packageIndex].AasEnv.ConceptDescriptions.Insert(cdIndex, body);
+                var timeStamp = DateTime.UtcNow;
+                body.TimeStampCreate = timeStamp;
+                body.SetTimeStamp(timeStamp);
                 Program.signalNewData(1); //0 not working, hence 1 = same tree, structure may change
 
                 _logger.LogDebug($"Successfully updated the ConceptDescription.");
@@ -388,6 +410,9 @@ namespace AasxServerStandardBib.Services
                 var existingIndex = _packages[packageIndex].AasEnv.AssetAdministrationShells.IndexOf(aas);
                 _packages[packageIndex].AasEnv.AssetAdministrationShells.Remove(aas);
                 _packages[packageIndex].AasEnv.AssetAdministrationShells.Insert(existingIndex, newAas);
+                var timeStamp = DateTime.UtcNow;
+                newAas.TimeStampCreate = timeStamp;
+                newAas.SetTimeStamp(timeStamp);
                 Program.signalNewData(1);
             }
         }
@@ -400,6 +425,9 @@ namespace AasxServerStandardBib.Services
                 var existingIndex = _packages[packageIndex].AasEnv.Submodels.IndexOf(submodel);
                 _packages[packageIndex].AasEnv.Submodels.Remove(submodel);
                 _packages[packageIndex].AasEnv.Submodels.Insert(existingIndex, newSubmodel);
+                var timeStamp = DateTime.UtcNow;
+                newSubmodel.TimeStampCreate = timeStamp;
+                newSubmodel.SetParentAndTimestamp(timeStamp);
                 Program.signalNewData(1);
             }
         }
@@ -461,12 +489,40 @@ namespace AasxServerStandardBib.Services
             return output;
         }
 
-        public ISubmodel CreateSubmodel(ISubmodel newSubmodel)
+        public ISubmodel CreateSubmodel(ISubmodel newSubmodel, string aasIdentifier = null)
         {
+            //Check if Submodel exists
+            var found = IsSubmodelPresent(newSubmodel.Id, out _, out _);
+            if (found)
+            {
+                throw new DuplicateException($"Submodel with id {newSubmodel.Id} already exists.");
+            }
+
+            //Check if corresponding AAS exist. If yes, then add to the same environment
+            if (!string.IsNullOrEmpty(aasIdentifier))
+            {
+                var aasFound = IsAssetAdministrationShellPresent(aasIdentifier, out IAssetAdministrationShell aas, out int packageIndex);
+                if (aasFound)
+                {
+                    newSubmodel.SetAllParents(DateTime.UtcNow);
+                    aas.Submodels ??= new List<IReference>();
+                    aas.Submodels.Add(newSubmodel.GetReference());
+                    _packages[packageIndex].AasEnv.Submodels.Add(newSubmodel);
+                    var timeStamp = DateTime.UtcNow;
+                    aas.SetTimeStamp(timeStamp);
+                    newSubmodel.TimeStampCreate = timeStamp;
+                    newSubmodel.SetTimeStamp(timeStamp);
+                    AasxServer.Program.signalNewData(2);
+                    return newSubmodel; // TODO: jtikekar find proper solution
+                }
+            }
+
             if (EmptyPackageAvailable(out int emptyPackageIndex))
             {
-
                 _packages[emptyPackageIndex].AasEnv.Submodels.Add(newSubmodel);
+                var timeStamp = DateTime.UtcNow;
+                newSubmodel.TimeStampCreate = timeStamp;
+                newSubmodel.SetTimeStamp(timeStamp);
                 Program.signalNewData(2);
                 return _packages[emptyPackageIndex].AasEnv.Submodels[0]; //Considering it is the first AAS being added to empty package.
             }

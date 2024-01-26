@@ -66,6 +66,7 @@ namespace IO.Swagger.Controllers
             _paginationService = paginationService ?? throw new ArgumentNullException(nameof(pathModifierService));
             _authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
         }
+
         /// <summary>
         /// Deletes file content of an existing submodel element at a specified path within submodel elements hierarchy
         /// </summary>
@@ -204,6 +205,7 @@ namespace IO.Swagger.Controllers
         /// <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
         /// <param name="level">Determines the structural depth of the respective resource content</param>
         /// <param name="extent">Determines to which extent the resource is being serialized</param>
+        /// <param name="diff">Filters response, only elements changed after DateTime</param>
         /// <response code="200">List of found submodel elements</response>
         /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
         /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
@@ -222,7 +224,8 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
         [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
         [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
-        public virtual IActionResult GetAllSubmodelElements([FromRoute][Required] string submodelIdentifier, [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level, [FromQuery] ExtentEnum extent)
+        public virtual IActionResult GetAllSubmodelElements([FromRoute][Required] string submodelIdentifier,
+            [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level, [FromQuery] ExtentEnum extent, [FromQuery] string diff)
         {
             var decodedSubmodelIdentifier = _decoderService.Decode("submodelIdentifier", submodelIdentifier);
 
@@ -239,7 +242,21 @@ namespace IO.Swagger.Controllers
 
             var submodelElements = _submodelService.GetAllSubmodelElements(decodedSubmodelIdentifier);
 
-            var smePaginatedList = _paginationService.GetPaginatedList(submodelElements, new PaginationParameters(cursor, limit));
+            var filtered = new List<ISubmodelElement>();
+            DateTime _diff = new DateTime();
+            if (diff != null && diff != "")
+            {
+                try
+                {
+                    _diff = DateTime.Parse(diff).ToUniversalTime();
+                    filtered = filterSubmodelElements(submodelElements, _diff);
+                }
+                catch { }
+            }
+            else
+                filtered = submodelElements;
+
+            var smePaginatedList = _paginationService.GetPaginatedList(filtered, new PaginationParameters(cursor, limit));
             var smeLevelList = _levelExtentModifierService.ApplyLevelExtent(smePaginatedList.result, level, extent);
             var output = new PagedResult()
             {
@@ -249,6 +266,72 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(output);
         }
 
+        List<ISubmodelElement> filterSubmodelElements(List<ISubmodelElement> submodelElements, DateTime diff)
+        {
+            var output = new List<ISubmodelElement>();
+            var smeDiff = new List<ISubmodelElement>();
+
+            foreach (var sme in submodelElements)
+            {
+                if (sme.TimeStampTree >= diff)
+                {
+                    if (sme is SubmodelElementCollection smc)
+                    {
+                        smeDiff = filterSubmodelElements(smc.Value, diff);
+                        if (smeDiff.Count != 0)
+                        {
+                            SubmodelElementCollection smcDiff = new SubmodelElementCollection(
+                                extensions: smc.Extensions,
+                                category: smc.Category,
+                                idShort: smc.IdShort,
+                                displayName: smc.DisplayName,
+                                description: smc.Description,
+                                semanticId: smc.SemanticId,
+                                supplementalSemanticIds: smc.SupplementalSemanticIds,
+                                qualifiers: smc.Qualifiers,
+                                embeddedDataSpecifications: smc.EmbeddedDataSpecifications,
+                                value: smeDiff);
+                            smcDiff.Parent = smc.Parent;
+                            output.Add(smcDiff);
+                        }
+                        else if (smc.TimeStamp >= diff)
+                        {
+                            output.Add(smc);
+                        }
+                    }
+                    else if (sme is SubmodelElementList sml)
+                    {
+                        smeDiff = filterSubmodelElements(sml.Value, diff);
+                        if (smeDiff.Count != 0)
+                        {
+                            SubmodelElementList smlDiff = new SubmodelElementList(
+                                typeValueListElement: sml.TypeValueListElement,
+                                extensions: sml.Extensions,
+                                category: sml.Category,
+                                idShort: sml.IdShort,
+                                displayName: sml.DisplayName,
+                                description: sml.Description,
+                                semanticId: sml.SemanticId,
+                                supplementalSemanticIds: sml.SupplementalSemanticIds,
+                                qualifiers: sml.Qualifiers,
+                                embeddedDataSpecifications: sml.EmbeddedDataSpecifications,
+                                value: smeDiff);
+                            smlDiff.Parent = sml.Parent;
+                            output.Add(smlDiff);
+                        }
+                        else if (sml.TimeStamp >= diff)
+                        {
+                            output.Add(sml);
+                        }
+                    }
+                    else
+                        output.Add(sme);
+                }
+            }
+
+            return output;
+        }
+
         /// <summary>
         /// Returns the metadata attributes of all submodel elements including their hierarchy
         /// </summary>
@@ -256,6 +339,7 @@ namespace IO.Swagger.Controllers
         /// <param name="limit">The maximum number of elements in the response array</param>
         /// <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
         /// <param name="level">Determines the structural depth of the respective resource content</param>
+        /// <param name="diff">Filters response, only elements changed after DateTime</param>
         /// <response code="200">List of found submodel elements</response>
         /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
         /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
@@ -274,7 +358,8 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
         [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
         [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
-        public virtual IActionResult GetAllSubmodelElementsMetadataSubmodelRepo([FromRoute][Required] string submodelIdentifier, [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level)
+        public virtual IActionResult GetAllSubmodelElementsMetadataSubmodelRepo([FromRoute][Required] string submodelIdentifier,
+            [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level, [FromQuery] string diff)
         {
             var decodedSubmodelIdentifier = _decoderService.Decode("submodelIdentifier", submodelIdentifier);
 
@@ -291,7 +376,21 @@ namespace IO.Swagger.Controllers
 
             var smeList = _submodelService.GetAllSubmodelElements(decodedSubmodelIdentifier);
 
-            var smePagedList = _paginationService.GetPaginatedList(smeList, new PaginationParameters(cursor, limit));
+            var filtered = new List<ISubmodelElement>();
+            DateTime _diff = new DateTime();
+            if (diff != null && diff != "")
+            {
+                try
+                {
+                    _diff = DateTime.Parse(diff).ToUniversalTime();
+                    filtered = filterSubmodelElements(smeList, _diff);
+                }
+                catch { }
+            }
+            else
+                filtered = smeList;
+
+            var smePagedList = _paginationService.GetPaginatedList(filtered, new PaginationParameters(cursor, limit));
             var smeListLevel = _levelExtentModifierService.ApplyLevelExtent(smePagedList.result, level);
             var smeMetadataList = _mappingService.Map(smeListLevel, "metadata");
             var output = new MetadataPagedResult()
@@ -309,6 +408,7 @@ namespace IO.Swagger.Controllers
         /// <param name="limit">The maximum number of elements in the response array</param>
         /// <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
         /// <param name="level">Determines the structural depth of the respective resource content</param>
+        /// <param name="diff">Filters response, only elements changed after DateTime</param>
         /// <response code="200">List of found submodel elements in the Path notation</response>
         /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
         /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
@@ -327,7 +427,8 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
         [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
         [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
-        public virtual IActionResult GetAllSubmodelElementsPathSubmodelRepo([FromRoute][Required] string submodelIdentifier, [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] string level)
+        public virtual IActionResult GetAllSubmodelElementsPathSubmodelRepo([FromRoute][Required] string submodelIdentifier,
+            [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] string level, [FromQuery] string diff)
         {
             var decodedSubmodelIdentifier = _decoderService.Decode($"submodelIdentifier", submodelIdentifier);
             _logger.LogDebug($"Received request to get all the submodel elements from the submodel with id {decodedSubmodelIdentifier}");
@@ -343,9 +444,23 @@ namespace IO.Swagger.Controllers
 
             var submodelElementList = _submodelService.GetAllSubmodelElements(decodedSubmodelIdentifier);
 
+            var filtered = new List<ISubmodelElement>();
+            DateTime _diff = new DateTime();
+            if (diff != null && diff != "")
+            {
+                try
+                {
+                    _diff = DateTime.Parse(diff).ToUniversalTime();
+                    filtered = filterSubmodelElements(submodelElementList, _diff);
+                }
+                catch { }
+            }
+            else
+                filtered = submodelElementList;
+
             // TODO (jtikekar, 2023-09-04): pagination and modifier
             // TODO (jtikekar, 2023-09-04): not complete implemented
-            var output = _pathModifierService.ToIdShortPath(submodelElementList);
+            var output = _pathModifierService.ToIdShortPath(filtered);
             return new ObjectResult(output);
         }
 
@@ -409,6 +524,7 @@ namespace IO.Swagger.Controllers
         /// <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
         /// <param name="level">Determines the structural depth of the respective resource content</param>
         /// <param name="extent">Determines to which extent the resource is being serialized</param>
+        /// <param name="diff">Filters response, only elements changed after DateTime</param>
         /// <response code="200">List of found submodel elements</response>
         /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
         /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
@@ -427,7 +543,8 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
         [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
         [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
-        public virtual IActionResult GetAllSubmodelElementsValueOnlySubmodelRepo([FromRoute][Required] string submodelIdentifier, [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level, [FromQuery] ExtentEnum extent)
+        public virtual IActionResult GetAllSubmodelElementsValueOnlySubmodelRepo([FromRoute][Required] string submodelIdentifier,
+            [FromQuery] int? limit, [FromQuery] string cursor, [FromQuery] LevelEnum level, [FromQuery] ExtentEnum extent, [FromQuery] string diff)
         {
             var decodedSubmodelIdentifier = _decoderService.Decode("submodelIdentifier", submodelIdentifier);
             _logger.LogInformation($"Received request to get value of all the submodel elements from the submodel with id {decodedSubmodelIdentifier}");
@@ -443,7 +560,21 @@ namespace IO.Swagger.Controllers
 
             var submodelElements = _submodelService.GetAllSubmodelElements(decodedSubmodelIdentifier);
 
-            var smePagedList = _paginationService.GetPaginatedList(submodelElements, new PaginationParameters(cursor, limit));
+            var filtered = new List<ISubmodelElement>();
+            DateTime _diff = new DateTime();
+            if (diff != null && diff != "")
+            {
+                try
+                {
+                    _diff = DateTime.Parse(diff).ToUniversalTime();
+                    filtered = filterSubmodelElements(submodelElements, _diff);
+                }
+                catch { }
+            }
+            else
+                filtered = submodelElements;
+
+            var smePagedList = _paginationService.GetPaginatedList(filtered, new PaginationParameters(cursor, limit));
             var smeLevelExtent = _levelExtentModifierService.ApplyLevelExtent(smePagedList.result, level, extent);
             var smeValues = _mappingService.Map(smeLevelExtent, "value");
             var output = new ValueOnlyPagedResult()
@@ -727,6 +858,8 @@ namespace IO.Swagger.Controllers
 
             HttpContext.Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
             HttpContext.Response.ContentLength = fileSize;
+            if (fileName.ToLower().EndsWith(".svg"))
+                HttpContext.Response.ContentType = "image/svg+xml";
             HttpContext.Response.Body.WriteAsync(content);
             return new EmptyResult();
         }
@@ -875,6 +1008,7 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
+        //TODO:jtikekar @Andreas the route is same as GetSubmodelById
         /// <summary>
         /// Returns a specific Submodel
         /// </summary>
@@ -888,6 +1022,79 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         /// <response code="0">Default error handling for unmentioned status codes</response>
+        [HttpHead]
+        [Route("/submodels/{submodelIdentifier}")]
+        [ValidateModelState]
+        [SwaggerOperation("GetSubmodelPolicyHeader")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Submodel), description: "Requested Header")]
+        [SwaggerResponse(statusCode: 400, type: typeof(Result), description: "Bad Request, e.g. the request parameters of the format of the request body is wrong.")]
+        [SwaggerResponse(statusCode: 401, type: typeof(Result), description: "Unauthorized, e.g. the server refused the authorization attempt.")]
+        [SwaggerResponse(statusCode: 403, type: typeof(Result), description: "Forbidden")]
+        [SwaggerResponse(statusCode: 404, type: typeof(Result), description: "Not Found")]
+        [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
+        [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
+        public virtual IActionResult GetSubmodelPolicyHeader([FromRoute][Required] string submodelIdentifier)
+        {
+            var decodedSubmodelIdentifier = _decoderService.Decode("submodelIdentifier", submodelIdentifier);
+
+            _logger.LogInformation($"Received head request to get the submodel policy for id {decodedSubmodelIdentifier}");
+            Console.WriteLine($"Received head request to get the submodel policy for id {decodedSubmodelIdentifier}");
+
+            var submodel = _submodelService.GetSubmodelById(decodedSubmodelIdentifier);
+
+            var authResult = _authorizationService.AuthorizeAsync(User, submodel, "SecurityPolicy").Result;
+
+            // JUIJUI
+            // with HEAD the needed policy shall be returned
+            // access must be checked, but no given policy is ok
+            // to be changed
+
+            return Ok();
+
+            if (!authResult.Succeeded)
+            {
+                var failedReason = authResult.Failure.FailureReasons.First();
+                if (failedReason != null)
+                {
+                    throw new NotAllowed(failedReason.Message);
+                }
+            }
+
+            //jtikekar: handled by AuthorizationHandler
+            //string error = null;
+            //var access = false;
+            //bool withAllow = false;
+            //string getPolicy = null;
+            //// check, if access to submodel is allowed
+            //access = AasxRestServerLibrary.AasxHttpContextHelper.checkAccessLevelWithError(out error, null, "/submodels", "READ", out withAllow, out getPolicy,
+            //    submodel.IdShort, "sm", submodel, null);
+
+            //if (!access)
+            //{
+            //    throw new NotAllowed("Policy incorrect!");
+            //}
+
+            //Response.Headers.Add("policy", getPolicy);
+            //Response.Headers.Add("policyRequestedResource", Request.Path.Value);
+
+            return Ok();
+        }
+
+        //TODO:jtikekar @Andreas what about GetSubmodel from AAS-Repo?
+        /// <summary>
+        /// Returns a specific Submodel
+        /// </summary>
+        /// <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+        /// <param name="level">Determines the structural depth of the respective resource content</param>
+        /// <param name="extent">Determines to which extent the resource is being serialized</param>
+        /// <response code="200">Requested Submodel</response>
+        /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+        /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+        /// <response code="403">Forbidden</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <response code="0">Default error handling for unmentioned status codes</response>
+        // [HttpHead]
         [HttpGet]
         [Route("/submodels/{submodelIdentifier}")]
         [ValidateModelState]
@@ -912,11 +1119,92 @@ namespace IO.Swagger.Controllers
                 var failedReason = authResult.Failure.FailureReasons.First();
                 if (failedReason != null)
                 {
-                    throw new NotAllowed(failedReason.Message);
+                    if (failedReason.Message != "")
+                    {
+                        throw new NotAllowed(failedReason.Message);
+                    }
+                    else
+                    {
+                        throw new NotAllowed("Policy incorrect!");
+                    }
                 }
             }
 
+            //string policy = "";
+            //string policyRequestedResource = "";
+
+            //int index = -1;
+            //NameValueCollection query = HttpUtility.ParseQueryString(Request.QueryString.ToString());
+            //NameValueCollection headers = new NameValueCollection();
+            //foreach (var kvp in Request.Headers)
+            //{
+            //    headers.Add(kvp.Key, kvp.Value);
+            //    if (kvp.Key == "FORCE-POLICY")
+            //    {
+            //        Program.withPolicy = !(kvp.Value == "OFF");
+            //        Console.WriteLine("FORCE-POLICY " + kvp.Value);
+            //    }
+            //}
+
+            //string accessRights = null;
+            //if (!Program.noSecurity)
+            //{
+            //    accessRights = AasxRestServerLibrary.AasxHttpContextHelper.SecurityCheckWithPolicy(query, headers, ref index,
+            //        out policy, out policyRequestedResource);
+            //    string ar = "";
+            //    if (accessRights != null)
+            //        ar = accessRights;
+            //    Console.WriteLine(ar + " " + policy + " " + policyRequestedResource);
+            //}
+
+            ///*
+            //if (accessRights == null)
+            //{
+            //    // Look for policies in header instead of token
+            //    foreach (var kvp in Request.Headers)
+            //    {
+            //        if (kvp.Key == "policy")
+            //            policy = kvp.Value;
+            //        if (kvp.Key == "policyRequestedResource")
+            //            policyRequestedResource = kvp.Value;
+            //    }
+            //}
+
+            //string path = Request.Path.Value;
+            //if (accessRights != null && (policyRequestedResource == "" || !path.Contains(policyRequestedResource)))
+            //{
+            //    Console.WriteLine("Path: " + path);
+            //    Console.WriteLine("policyRequestedResource: " + policyRequestedResource);
+            //    throw new NotAllowed("Policy URL incorrect!");
+            //}
+            //*/
+
+            //string error = "";
+            //var access = false;
+            //bool withAllow = false;
+            //string getPolicy = null;
+            //// check, if access to submodel is allowed
+            ///*
+            //access = AasxRestServerLibrary.AasxHttpContextHelper.checkAccessLevelWithAllow(
+            //    null, "/submodels", "READ", out withAllow,
+            //        submodel.IdShort, "sm", submodel, policy);
+            //*/
+            //if (!Program.noSecurity)
+            //{
+            //    access = AasxRestServerLibrary.AasxHttpContextHelper.checkAccessLevelWithError(out error, accessRights, "/submodels", "READ", out withAllow, out getPolicy,
+            //    submodel.IdShort, "sm", submodel, policy);
+            //    if (!access)
+            //    {
+            //        if (error != "")
+            //            throw new NotAllowed(error);
+            //        throw new NotAllowed("Policy incorrect!");
+            //    }
+            //}
+
             var output = _levelExtentModifierService.ApplyLevelExtent(submodel, level, extent);
+
+            //TODO:jtikekar @Andreas, in earlier API policy set as getPolicy
+            //Response.Headers.Add("policy", policy);
             return new ObjectResult(output);
         }
 
@@ -1409,7 +1697,7 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 0 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(0, default(Result));
 
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -1459,7 +1747,7 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 0 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(0, default(Result));
 
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         /// <summary>
@@ -1771,6 +2059,7 @@ namespace IO.Swagger.Controllers
         /// Creates a new Submodel
         /// </summary>
         /// <param name="body">Submodel object</param>
+        /// <param name="aasIdentifier">The AAS’s unique id (UTF8-BASE64-URL-encoded)</param>
         /// <response code="201">Submodel created successfully</response>
         /// <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
         /// <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
@@ -1789,11 +2078,13 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 409, type: typeof(Result), description: "Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.")]
         [SwaggerResponse(statusCode: 500, type: typeof(Result), description: "Internal Server Error")]
         [SwaggerResponse(statusCode: 0, type: typeof(Result), description: "Default error handling for unmentioned status codes")]
-        public virtual IActionResult PostSubmodel([FromBody] Submodel body)
+        public virtual IActionResult PostSubmodel([FromBody] Submodel body, [FromQuery] string aasIdentifier)
         {
             _logger.LogInformation($"Received request to create a submodel.");
 
-            var output = _submodelService.CreateSubmodel(body);
+            var decodedAasIdentifier = _decoderService.Decode("aasIdentifier", aasIdentifier);
+
+            var output = _submodelService.CreateSubmodel(body, decodedAasIdentifier);
 
             return CreatedAtAction("PostSubmodel", output);
         }
@@ -1995,7 +2286,7 @@ namespace IO.Swagger.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="0">Default error handling for unmentioned status codes</response>
         [HttpPut]
-        [Route("/submodels/{submodelIdentifier}/submodelelements/{idShortPath}/attachment")]
+        [Route("/submodels/{submodelIdentifier}/submodel-elements/{idShortPath}/attachment")]
         [ValidateModelState]
         [SwaggerOperation("PutFileByPathSubmodelRepo")]
         [SwaggerResponse(statusCode: 204, type: typeof(Result), description: "Submodel element updated successfully")]

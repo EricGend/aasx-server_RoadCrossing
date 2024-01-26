@@ -49,24 +49,24 @@ jobs:
         with:
           username: adminshellio
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: adminshellio/aasx-server-core-for-demo
+          repository: adminshellio/aasx-server-aspnetcore-for-demo
           tag_with_ref: true
-          dockerfile: src/docker/Dockerfile-AasxServerCore
+          dockerfile: src/docker/Dockerfile-AasxServerAspNetCore
 
       - name: Build and publish AasxServerCore-arm32
         uses: docker/build-push-action@v1
         with:
           username: adminshellio
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: adminshellio/aasx-server-core-for-demo-arm32
+          repository: adminshellio/aasx-server-aspnetcore-for-demo-arm32
           tag_with_ref: true
-          dockerfile: src/docker/Dockerfile-AasxServerCore-arm32
+          dockerfile: src/docker/Dockerfile-AasxServerAspNetCore-arm32
 
       - name: Build and publish AasxServerCore-arm64
         uses: docker/build-push-action@v1
         with:
           username: adminshellio
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: adminshellio/aasx-server-core-for-demo-arm64
+          repository: adminshellio/aasx-server-aspnetcore-for-demo-arm64
           tag_with_ref: true
-          dockerfile: src/docker/Dockerfile-AasxServerCore-arm64
+          dockerfile: src/docker/Dockerfile-AasxServerAspNetCore-arm64

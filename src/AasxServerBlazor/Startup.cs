@@ -1,4 +1,5 @@
 ﻿using AasSecurity;
+using AasxServer;
 using AasxServerBlazor.Data;
 using AasxServerStandardBib.Extensions;
 using AasxServerStandardBib.Interfaces;
@@ -19,6 +20,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,6 +61,13 @@ namespace AasxServerBlazor
             services.Configure<KestrelServerOptions>(options =>
             {
                 options.AllowSynchronousIO = true;
+                options.Limits.MaxRequestBodySize = int.MaxValue;
+            });
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue;
+                x.MultipartHeadersLengthLimit = int.MaxValue;
             });
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -74,6 +83,7 @@ namespace AasxServerBlazor
                         .AllowAnyHeader();
                     });
             });
+
             services.AddScoped<BlazorSessionService>();
             // services.AddScoped<CredentialService>();
             services.AddSingleton<CredentialService>();
@@ -104,6 +114,11 @@ namespace AasxServerBlazor
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IAasRegistryService, AasRegistryService>();
             services.AddTransient<IAasDescriptorPaginationService, AasDescriptorPaginationService>();
+
+            // Add GraphQL services
+            services
+                .AddGraphQLServer()
+                .AddQueryType<Query>();
 
             // Add framework services.
             services
@@ -234,6 +249,7 @@ namespace AasxServerBlazor
                 });
                 endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapControllers();
+                endpoints.MapGraphQL();
             });
 
         }

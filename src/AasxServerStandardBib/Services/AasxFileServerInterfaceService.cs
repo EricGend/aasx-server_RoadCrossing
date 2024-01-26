@@ -1,11 +1,19 @@
 ﻿using AasxRestServerLibrary;
 using AasxServer;
+<<<<<<<< HEAD:src/IO.Swagger.V1RC03/Services/AasxFileServerInterfaceService.cs
+using AasxServerStandardBib.Logging;
+using AdminShellNS;
+using Extensions;
+using IO.Swagger.V1RC03.ApiModel;
+using IO.Swagger.V1RC03.Exceptions;
+========
 using AasxServerStandardBib.Exceptions;
 using AasxServerStandardBib.Interfaces;
 using AasxServerStandardBib.Logging;
 using AdminShellNS;
 using AdminShellNS.Models;
 using Extensions;
+>>>>>>>> upstream/main:src/AasxServerStandardBib/Services/AasxFileServerInterfaceService.cs
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -187,9 +195,14 @@ namespace AasxServerStandardBib.Services
                 {
                     _packages[emptyPackageIndex] = newAasx;
                     _envFileNames[emptyPackageIndex] = newFileName;
+                    var timeStamp = DateTime.UtcNow;
+                    newAasx.AasEnv.AssetAdministrationShells[0].TimeStampCreate = timeStamp;
+                    newAasx.AasEnv.AssetAdministrationShells[0].SetTimeStamp(timeStamp);
                     foreach (var submodel in newAasx.AasEnv.Submodels)
                     {
-                        submodel.SetAllParents();
+                        //submodel.SetAllParents();
+                        submodel.TimeStampCreate = timeStamp;
+                        submodel.SetParentAndTimestamp(timeStamp);
                     }
                     Program.signalNewData(2);
                     return emptyPackageIndex.ToString();

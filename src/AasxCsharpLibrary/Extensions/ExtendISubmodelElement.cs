@@ -1,6 +1,7 @@
 ﻿using AasxCompatibilityModels;
 using AdminShellNS;
 using AdminShellNS.Display;
+using AdminShellNS.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -287,7 +288,7 @@ namespace Extensions
                 {
                     var newInputVariables = new List<IOperationVariable>();
                     var newOutputVariables = new List<IOperationVariable>();
-                    if (sourceOperation.valueIn != null)
+                    if (!sourceOperation.valueIn.IsNullOrEmpty())
                     {
 
                         foreach (var inputVariable in sourceOperation.valueIn)
@@ -301,7 +302,7 @@ namespace Extensions
                             }
                         }
                     }
-                    if (sourceOperation.valueOut != null)
+                    if (!sourceOperation.valueOut.IsNullOrEmpty())
                     {
                         foreach (var outputVariable in sourceOperation.valueOut)
                         {
@@ -342,7 +343,7 @@ namespace Extensions
                 submodelElement.Description = ExtensionsUtil.ConvertDescriptionFromV10(sourceSubmodelElement.description);
             }
 
-            if (sourceSubmodelElement.semanticId != null)
+            if (sourceSubmodelElement.semanticId != null && !sourceSubmodelElement.semanticId.IsEmpty)
             {
                 var keyList = new List<IKey>();
                 foreach (var refKey in sourceSubmodelElement.semanticId.Keys)
@@ -365,9 +366,9 @@ namespace Extensions
                 //SubmodelElement does not have kind anymore
             }
 
-            if (sourceSubmodelElement.qualifiers != null && sourceSubmodelElement.qualifiers.Count != 0)
+            if (!sourceSubmodelElement.qualifiers.IsNullOrEmpty())
             {
-                if (submodelElement.Qualifiers == null && submodelElement.Qualifiers.Count != 0)
+                if (submodelElement.Qualifiers.IsNullOrEmpty())
                 {
                     submodelElement.Qualifiers = new List<IQualifier>();
                 }
@@ -380,18 +381,18 @@ namespace Extensions
                 }
             }
 
-            if (sourceSubmodelElement.hasDataSpecification != null)
+            if (sourceSubmodelElement.hasDataSpecification != null && sourceSubmodelElement.hasDataSpecification.reference.Count > 0)
             {
-                if (submodelElement.EmbeddedDataSpecifications == null)
-                {
-                    submodelElement.EmbeddedDataSpecifications = new List<IEmbeddedDataSpecification>();
-                }
+                submodelElement.EmbeddedDataSpecifications ??= new List<IEmbeddedDataSpecification>();
                 foreach (var dataSpecification in sourceSubmodelElement.hasDataSpecification.reference)
                 {
-                    submodelElement.EmbeddedDataSpecifications.Add(
-                        new EmbeddedDataSpecification(
-                            ExtensionsUtil.ConvertReferenceFromV10(dataSpecification, ReferenceTypes.ExternalReference),
-                            null));
+                    if (!dataSpecification.IsEmpty)
+                    {
+                        submodelElement.EmbeddedDataSpecifications.Add(
+                                        new EmbeddedDataSpecification(
+                                            ExtensionsUtil.ConvertReferenceFromV10(dataSpecification, ReferenceTypes.ExternalReference),
+                                            null));
+                    }
                 }
             }
         }
@@ -466,7 +467,7 @@ namespace Extensions
                     var newInputVariables = new List<IOperationVariable>();
                     var newOutputVariables = new List<IOperationVariable>();
                     var newInOutVariables = new List<IOperationVariable>();
-                    if (sourceOperation.inputVariable != null)
+                    if (!sourceOperation.inputVariable.IsNullOrEmpty())
                     {
 
                         foreach (var inputVariable in sourceOperation.inputVariable)
@@ -480,7 +481,7 @@ namespace Extensions
                             }
                         }
                     }
-                    if (sourceOperation.outputVariable != null)
+                    if (!sourceOperation.outputVariable.IsNullOrEmpty())
                     {
                         foreach (var outputVariable in sourceOperation.outputVariable)
                         {
@@ -494,7 +495,7 @@ namespace Extensions
                         }
                     }
 
-                    if (sourceOperation.inoutputVariable != null)
+                    if (!sourceOperation.inoutputVariable.IsNullOrEmpty())
                     {
                         foreach (var inOutVariable in sourceOperation.inoutputVariable)
                         {
@@ -528,7 +529,7 @@ namespace Extensions
             if (sourceSubmodelElement.description != null)
                 submodelElement.Description = ExtensionsUtil.ConvertDescriptionFromV20(sourceSubmodelElement.description);
 
-            if (sourceSubmodelElement.semanticId != null)
+            if (sourceSubmodelElement.semanticId != null && !sourceSubmodelElement.semanticId.IsEmpty)
             {
                 List<IKey> keyList = null;
                 if (sourceSubmodelElement.semanticId.Keys != null)
@@ -558,7 +559,7 @@ namespace Extensions
 
             if (sourceSubmodelElement.qualifiers != null && sourceSubmodelElement.qualifiers.Count != 0)
             {
-                if (submodelElement.Qualifiers == null || submodelElement.Qualifiers.Count == 0)
+                if (submodelElement.Qualifiers.IsNullOrEmpty())
                     submodelElement.Qualifiers = new List<IQualifier>();
 
                 foreach (var sourceQualifier in sourceSubmodelElement.qualifiers)
@@ -569,10 +570,9 @@ namespace Extensions
                 }
             }
 
-            if (sourceSubmodelElement.hasDataSpecification != null)
+            if (sourceSubmodelElement.hasDataSpecification != null && sourceSubmodelElement.hasDataSpecification.Count > 0)
             {
-                if (submodelElement.EmbeddedDataSpecifications == null)
-                    submodelElement.EmbeddedDataSpecifications = new List<IEmbeddedDataSpecification>();
+                submodelElement.EmbeddedDataSpecifications ??= new List<IEmbeddedDataSpecification>();
 
                 // TODO (jtikekar, 2023-09-04): DataSpecificationContent?? (as per old implementation)
                 foreach (var sourceDataSpec in sourceSubmodelElement.hasDataSpecification)

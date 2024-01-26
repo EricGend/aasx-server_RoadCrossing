@@ -28,16 +28,8 @@
  * ======================================================================*/
 
 using AdminShellNS;
-using Extensions;
-using Microsoft.IdentityModel.Tokens;
-using MimeKit;
-using Namotion.Reflection;
 using Opc.Ua;
 using Opc.Ua.Sample;
-using Opc.Ua.Server;
-using Org.BouncyCastle.Cms;
-using Org.BouncyCastle.Crypto.Tls;
-using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

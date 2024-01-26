@@ -1,21 +1,26 @@
-﻿using IdentityModel;
-using IdentityModel.Client;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.IO;
-using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http;
+using System.Text;
+using IdentityModel.Client;
+using IdentityModel;
+using Microsoft.IdentityModel.Tokens;
+using ScottPlot.Drawing.Colormaps;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Asn1.Ocsp;
+// using System.Drawing;
 
 namespace AasxServer
 {
     public class AasxCredentialsEntry
     {
+
         // input
         public string urlPrefix = string.Empty;
         public string type = string.Empty;
@@ -24,6 +29,13 @@ namespace AasxServer
         public string bearer = string.Empty;
         public DateTime bearerValidFrom = DateTime.MinValue;
         public DateTime bearerValidTo = DateTime.MinValue;
+    }
+
+    public class cs
+    {
+        // static for the moment
+        // service already prepared CredentialService.cs
+        public static List<AasxServer.AasxCredentialsEntry> credentials = new List<AasxServer.AasxCredentialsEntry>();
     }
 
     public class AasxCredentials
@@ -69,10 +81,14 @@ namespace AasxServer
                 }
             }
         }
+        public static void initAnonymous(List<AasxCredentialsEntry> cList)
+        {
+            initByFile(cList, "CREDENTIALS-ANONYMOUS.DAT");
+        }
 
         public static void initByEmail(List<AasxCredentialsEntry> cList, string email)
         {
-            cList.Clear();
+            initAnonymous(cList);
             var c = new AasxCredentialsEntry();
             c.urlPrefix = "*";
             c.type = "email";
@@ -82,7 +98,7 @@ namespace AasxServer
 
         public static void initByUserPW(List<AasxCredentialsEntry> cList, string user, string pw)
         {
-            cList.Clear();
+            initAnonymous(cList);
             var c = new AasxCredentialsEntry();
             c.urlPrefix = "*";
             c.type = "userpw";
@@ -91,11 +107,25 @@ namespace AasxServer
             cList.Add(c);
         }
 
-        public static bool get(List<AasxCredentialsEntry> cList, string urlPath, out string queryPara, out string userPW, out string urlEdcWrapper)
+        public static void initByEdc(List<AasxCredentialsEntry> cList, string user, string pw, string urlEdcWrapper)
+        {
+            initAnonymous(cList);
+            var c = new AasxCredentialsEntry();
+            c.urlPrefix = "*";
+            c.type = "edc";
+            c.parameters.Add(user);
+            c.parameters.Add(pw);
+            c.parameters.Add(urlEdcWrapper);
+            cList.Add(c);
+        }
+
+        public static bool get(List<AasxCredentialsEntry> cList, string urlPath, out string queryPara, out string userPW,
+            out string urlEdcWrapper, out string replace)
         {
             queryPara = "";
             userPW = "";
             urlEdcWrapper = "";
+            replace = "";
             List<string> qp = new List<string>();
             bool result = false;
 
@@ -157,70 +187,12 @@ namespace AasxServer
                                 }
                                 result = true;
                                 break;
+                            case "replace":
+                                if (cList[i].parameters.Count == 1)
+                                    replace = urlPath.Replace(u, cList[i].parameters[0]);
+                                result = true;
+                                break;
                         }
-                    }
-                }
-            }
-            for (int i = 0; i < qp.Count; i++)
-            {
-                if (i == 0)
-                    queryPara = qp[0];
-                else
-                    queryPara += "&" + qp[i];
-            }
-
-            return result;
-        }
-
-        public static bool get(List<AasxCredentialsEntry> cList, string urlPath, out string queryPara, out string userPW)
-        {
-            queryPara = "";
-            userPW = "";
-            List<string> qp = new List<string>();
-            bool result = false;
-
-            for (int i = 0; i < cList.Count; i++)
-            {
-                int len = cList[i].urlPrefix.Length;
-                string u = urlPath.Substring(0, len);
-                if (cList[i].urlPrefix == "*" || u == cList[i].urlPrefix)
-                {
-                    switch (cList[i].type)
-                    {
-                        case "email":
-                            qp.Add("Email=" + cList[i].parameters[0]);
-                            result = true;
-                            break;
-                        case "basicauth":
-                            if (cList[i].parameters.Count == 2)
-                            {
-                                qp.Add(cList[i].parameters[0] + ":" + cList[i].parameters[1]);
-                                result = true;
-                            }
-                            break;
-                        case "userpw":
-                            if (cList[i].parameters.Count == 2)
-                            {
-                                var upw = cList[i].parameters[0] + ":" + cList[i].parameters[1];
-                                var bytes = Encoding.ASCII.GetBytes(upw);
-                                var basicAuth64 = Convert.ToBase64String(bytes);
-                                // userPW = basicAuth64;
-                                qp.Add("_up=" + basicAuth64);
-                                result = true;
-                            }
-                            break;
-                        case "bearer":
-                            bearerCheckAndInit(cList[i]);
-                            qp.Add("bearer=" + cList[i].bearer);
-                            result = true;
-                            break;
-                        case "querypara":
-                            if (cList[i].parameters.Count == 2)
-                            {
-                                qp.Add(cList[i].parameters[0] + "=" + cList[i].parameters[1]);
-                                result = true;
-                            }
-                            break;
                     }
                 }
             }
@@ -274,6 +246,7 @@ namespace AasxServer
                 var client = new HttpClient(handler);
                 DiscoveryDocumentResponse disco = null;
 
+                client.Timeout = TimeSpan.FromSeconds(20);
                 var task = Task.Run(async () => { disco = await client.GetDiscoveryDocumentAsync(authServerEndPoint); });
                 task.Wait();
                 if (disco.IsError) return;
