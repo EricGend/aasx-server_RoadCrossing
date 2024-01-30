@@ -28,8 +28,11 @@
  * ======================================================================*/
 
 using AdminShellNS;
+using Extensions;
+using Microsoft.IdentityModel.Tokens;
 using Opc.Ua;
 using Opc.Ua.Sample;
+using Opc.Ua.Server;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -52,6 +55,8 @@ namespace AasOpcUaServer
     {
         private AdminShellPackageEnv[] thePackageEnv = null;
         private AasxUaServerOptions theServerOptions = null;
+        private Dictionary<string, string, System.Timers.Timer> activeV2xMessages = new Dictionary<string, string, System.Timers.Timer>();
+        private ISystemContext _context;
 
         #region Constructors
         /// <summary>
@@ -340,8 +345,6 @@ namespace AasOpcUaServer
             }
         }
 
-        //TODO: (ERIC) Das muss noch woandersd hin
-        ISystemContext _context;
         private ServiceResult HandleRsuEtsiMessage(ISystemContext context, MethodState method, IList<object> inputArguments, IList<object> outputArguments)
         {
             _context = context;
@@ -426,8 +429,6 @@ namespace AasOpcUaServer
 
             }
         }
-        //TODO: (ERIC) weiter hoch setzen
-        private Dictionary<string, string, System.Timers.Timer> activeV2xMessages = new Dictionary<string, string, System.Timers.Timer>();
 
         private void TimerForV2xMessage(string messageType, string messageId, int timerInMills)
         {
@@ -466,7 +467,9 @@ namespace AasOpcUaServer
         {
             var builder = new AasEntityBuilder(this, thePackageEnv, null, this.theServerOptions);
 
-            SubmodelElementCollection submodellElemet = null; //TODO: (ERIC)  (SubmodelElementCollection)builder.packages[0].AasEnv.Submodels.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageType);
+            var submodellList =  builder.packages[0].AasEnv.Submodels.Cast<Submodel>().ToList();
+            SubmodelElementCollection submodellElemet = (SubmodelElementCollection) submodellList.FirstOrDefault(x => x.IdShort.Equals("EnvironmentModel")).FindSubmodelElementByIdShort(v2xMessageType);
+
             submodellElemet.Value.Remove(submodellElemet.Value.FirstOrDefault(x => x.IdShort.Equals("originalStationId = " + originatorId)));
             var v2xMessageCollection = submodellElemet;
             var parentNodeName = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel";
@@ -475,9 +478,8 @@ namespace AasOpcUaServer
 
             //This should be wrong rn: 
 
-            //string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
-            //DeleteNode((ServerSystemContext) _context, new NodeId(instanceNodeString));
-            //TODO: (ERIC) Bei CAM wird beim updaten der timer der browsename nicht verändert, keine ahnung warum.
+            string instanceNodeString = "ns=3;s=AASROOT.RSU-nachrichtenzentriert.EnvironmentModel." + v2xMessageType + ".originalStationId = " + originatorId;
+            DeleteNode( (ServerSystemContext) _context, new NodeId(instanceNodeString));
         }
 
 
@@ -490,7 +492,7 @@ namespace AasOpcUaServer
             {
                 if (element.Parent.Name.ToString() == "root")
                 {
-                    //TODO: (ERIC) collection.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
+                    collection.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                 }
                 else
                 {
@@ -498,23 +500,23 @@ namespace AasOpcUaServer
 
                     if (element.HasElements) //Submodellcollections
                     {
-                        //TODO:(ERIC)  parent.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
+                        parent.AddChild(new SubmodelElementCollection(idShort: element.Name.ToString()));
                     }
                     else
                     {
-                        //TODO:(ERIC) if (element.Value.IsNullOrEmpty())  //Special items like ecoDrive: <type> <ecoDrive/> </type >
+                        if (element.Value.Length == 0)  //Special items like ecoDrive: <type> <ecoDrive/> </type >
                         {
-                            /*/TODO:(ERIC) parent.AddChild(new Property(DataTypeDefXsd.String,
+                            parent.AddChild(new Property(DataTypeDefXsd.String,
                                                     idShort: element.Name.ToString(),
                                                     value: element.Name.ToString()
                                                     ));
                         }
                         else //normal Properties
                         {
-                            //TODO:(ERIC) parent.AddChild(new Property(DataTypeDefXsd.String,
+                            parent.AddChild(new Property(DataTypeDefXsd.String,
                                                     idShort: element.Name.ToString(),
                                                     value: element.Value.ToString()
-                                                    ));*/
+                                                    ));
                         }
                     }
                 }
