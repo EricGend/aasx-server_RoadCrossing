@@ -1,0 +1,66 @@
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.deps.json
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.dll
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.pdb
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CopyComplete
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.dll
+D:\src\aasx-server_RoadCrossing\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CopyComplete
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.pdb
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.deps.json
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.dll
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\bin\Debug\netstandard2.0\jsoncanonicalizer.pdb
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.AssemblyReference.cache
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfoInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.AssemblyInfo.cs
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CoreCompileInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.csproj.CopyComplete
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.dll
+D:\src\AasxServer_git-HsCoburg\src\jsoncanonicalizer\obj\Debug\netstandard2.0\jsoncanonicalizer.pdb

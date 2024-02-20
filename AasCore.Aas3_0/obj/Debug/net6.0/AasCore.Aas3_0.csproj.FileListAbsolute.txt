@@ -1,0 +1,61 @@
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.deps.json
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\refint\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\aasx-server_RoadCrossing\src\AasCore.Aas3_0\obj\Debug\net6.0\ref\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\refint\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasCore.Aas3_0\obj\Debug\net6.0\ref\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\refint\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasCore.Aas3_0\obj\Debug\net6.0\ref\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\refint\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasCore.Aas3_0\obj\Debug\net6.0\ref\AasCore.Aas3_0.dll
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.deps.json
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.AssemblyReference.cache
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfoInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.AssemblyInfo.cs
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.csproj.CoreCompileInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\refint\AasCore.Aas3_0.dll
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\AasxServer_git-HsCoburg\src\AasCore.Aas3_0\obj\Debug\net6.0\ref\AasCore.Aas3_0.dll

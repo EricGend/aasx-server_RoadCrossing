@@ -1,0 +1,76 @@
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\refint\DataTransferObjects.dll
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+D:\src\aasx-server_RoadCrossing\src\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\refint\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\refint\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\refint\DataTransferObjects.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\refint\DataTransferObjects.dll
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+D:\src\AasxServer_git-HsCoburg\src\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll

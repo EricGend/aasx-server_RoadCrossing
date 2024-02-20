@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "r7FVOufdYF1fjopxzaVvcahnFJ5imcemXnsNgl4rZkXS3TZiDkK+AXmqhC2qacBjbLJRlwxnvDGfk75EAo9I8g==",
+  "success": true,
+  "projectFilePath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\es6numberserializer\\es6numberserializer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

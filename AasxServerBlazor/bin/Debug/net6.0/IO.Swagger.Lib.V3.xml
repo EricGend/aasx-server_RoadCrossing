@@ -1,0 +1,2442 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IO.Swagger.Lib.V3</name>
+    </assembly>
+    <members>
+        <member name="T:IO.Swagger.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:IO.Swagger.Controllers.AASXFileServerAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AASXFileServerAPIApiController.DeleteAASXByPackageId(System.String)">
+            <summary>
+            Deletes a specific AASX package from the server
+            </summary>
+            <param name="packageId">The package Id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AASXFileServerAPIApiController.GetAASXByPackageId(System.String)">
+            <summary>
+            Returns a specific AASX package from the server
+            </summary>
+            <param name="packageId">The package Id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested AASX package</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AASXFileServerAPIApiController.GetAllAASXPackageIds(System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Returns a list of available AASX packages at the server
+            </summary>
+            <param name="aasId">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <response code="200">Requested package list</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AASXFileServerAPIApiController.PostAASXPackage(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Creates an AASX package at the server
+            </summary>
+            <param name="fileName">Filename of the AASX package</param>
+            <param name="aasIds">Included AAS Ids</param>
+            <param name="file">AASX PAckage</param>
+            <returns></returns>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AASXFileServerAPIApiController.PutAASXPackageById(System.String,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Updates the AASX package at the server
+            </summary>
+            <param name="packageId">Package ID from the package list (BASE64-URL-encoded)</param>
+            <param name="fileName">AASX Package Name</param>
+            <param name="file">AASX Package</param>
+            <param name="aasIds">Included AAS Identifiers</param>
+            <returns></returns>
+        </member>
+        <member name="T:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteAssetAdministrationShellById(System.String)">
+            <summary>
+            Deletes an Asset Administration Shell
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Asset Administration Shell deleted successfully</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteFileByPathAasRepository(System.String,System.String,System.String)">
+            <summary>
+            Deletes file content of an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteSubmodelByIdAasRepository(System.String,System.String)">
+            <summary>
+            Deletes the submodel from the Asset Administration Shell and the Repository.
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Submodel deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteSubmodelElementByPathAasRepository(System.String,System.String,System.String)">
+            <summary>
+            Deletes a submodel element at a specified path within the submodel elements hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="204">Submodel element deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteSubmodelReferenceByIdAasRepository(System.String,System.String)">
+            <summary>
+            Deletes the submodel reference from the Asset Administration Shell. Does not delete the submodel itself!
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Submodel reference deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.DeleteThumbnailAasRepository(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Thumbnail deletion successful</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllAssetAdministrationShells(System.Collections.Generic.List{AasCore.Aas3_0.SpecificAssetId},System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Returns all Asset Administration Shells
+            </summary>
+            <param name="assetIds">A list of specific Asset identifiers. Each Asset identifier is a base64-url-encoded [SpecificAssetId](https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0.1#/components/schemas/SpecificAssetId)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <response code="200">Requested Asset Administration Shells</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllAssetAdministrationShellsReference(System.Collections.Generic.List{AasCore.Aas3_0.SpecificAssetId},System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Returns References to all Asset Administration Shells
+            </summary>
+            <param name="assetIds">A list of specific Asset identifiers. Each Asset identifier is a base64-url-encoded [SpecificAssetId](https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.0.1#/components/schemas/SpecificAssetId)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <response code="200">Requested Asset Administration Shells as a list of References</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelElementsAasRepository(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelElementsMetadataAasRepository(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelElementsPathAasRepository(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">List of found submodel elements in the Path notation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelElementsReferenceAasRepository(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns all submodel elements as a list of References
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of References of the found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelElementsValueOnlyAasRepository(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy in the ValueOnly representation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of found submodel elements in their ValueOnly representation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAllSubmodelReferencesAasRepository(System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Returns all submodel references
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <response code="200">Requested submodel references</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAssetAdministrationShellById(System.String)">
+            <summary>
+            Returns a specific Asset Administration Shell
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Asset Administration Shell</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAssetAdministrationShellByIdReferenceAasRepository(System.String)">
+            <summary>
+            Returns a specific Asset Administration Shell as a Reference
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Asset Administration Shell</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetAssetInformationAasRepository(System.String)">
+            <summary>
+            Returns the Asset Information
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Asset Information</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetFileByPathAasRepository(System.String,System.String,System.String)">
+            <summary>
+            Downloads file content from a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Requested file</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetOperationAsyncResultAasRepository(System.String,System.String,System.String,System.String)">
+            <summary>
+            Returns the Operation result of an asynchronous invoked Operation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetOperationAsyncResultValueOnlyAasRepository(System.String,System.String,System.String,System.String)">
+            <summary>
+            Returns the ValueOnly notation of the Operation result of an asynchronous invoked Operation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetOperationAsyncStatusAasRepository(System.String,System.String,System.String,System.String)">
+            <summary>
+            Returns the Operation status of an asynchronous invoked Operation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Operation result object containing information that the &#x27;executionState&#x27; is still &#x27;Running&#x27;</response>
+            <response code="302">The target resource is available but at a different location.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelByIdAasRepository(System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns the Submodel
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelByIdMetadataAasRepository(System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the Submodel&#x27;s metadata elements
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelByIdPathAasRepository(System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the Submodel&#x27;s metadata elements
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodel in Path notation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelByIdReferenceAasRepository(System.String,System.String)">
+            <summary>
+            Returns the Submodel as a Reference
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Submodel as a Reference</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelByIdValueOnlyAasRepository(System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns the Submodel&#x27;s ValueOnly representation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelElementByPathAasRepository(System.String,System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelElementByPathMetadataAasRepository(System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the metadata attributes if a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelElementByPathPathAasRepository(System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path in the Path notation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested submodel element in the Path notation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelElementByPathReferenceAasRepository(System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the Reference of a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested submodel element in its ValueOnly representation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetSubmodelElementByPathValueOnlyAasRepository(System.String,System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path in the ValueOnly representation
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested submodel element in its ValueOnly representation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.GetThumbnailAasRepository(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">The thumbnail of the Asset Information.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.InvokeOperationAasRepository(IO.Swagger.Models.OperationRequest,System.String,System.String,System.String)">
+            <summary>
+            Synchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.InvokeOperationAsyncAasRepository(IO.Swagger.Models.OperationRequest,System.String,System.String,System.String)">
+            <summary>
+            Asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="202">The server has accepted the request.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.InvokeOperationAsyncValueOnlyAasRepository(System.Object,System.String,System.String,System.String)">
+            <summary>
+            Asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="202">The server has accepted the request.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.InvokeOperationValueOnlyAasRepository(System.Object,System.String,System.String,System.String)">
+            <summary>
+            Synchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelAasRepository(AasCore.Aas3_0.Submodel,System.String,System.String,System.String)">
+            <summary>
+            Updates the Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelByIdMetadataAasRepository(DataTransferObjects.MetadataDTOs.SubmodelMetadata,System.String,System.String,System.String)">
+            <summary>
+            Updates the metadata attributes of the Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelByIdValueOnlyAasRepository(DataTransferObjects.ValueDTOs.SubmodelValue,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates teh values of the Submodel
+            </summary>
+            <param name="body">Submodel object in the ValueOnly representation</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelElementValueByPathAasRepository(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates an existing submodel element value at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">The updated value of the submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelElementValueByPathMetadata(DataTransferObjects.MetadataDTOs.ISubmodelElementMetadata,System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the metadata attributes of an existing submodel element value at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">The updated metadata attributes of the submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PatchSubmodelElementValueByPathValueOnly(DataTransferObjects.ValueDTOs.ISubmodelElementValue,System.String,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the value of an existing submodel element value at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">The updated value of the submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PostAssetAdministrationShell(AasCore.Aas3_0.AssetAdministrationShell)">
+            <summary>
+            Creates a new Asset Administration Shell
+            </summary>
+            <param name="body">Asset Administration Shell object</param>
+            <response code="201">Asset Administration Shell created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PostSubmodelElementAasRepository(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new submodel element
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="201">Submodel element created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PostSubmodelElementByPathAasRepository(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="201">Submodel element created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PostSubmodelReferenceAasRepository(AasCore.Aas3_0.Reference,System.String)">
+            <summary>
+            Creates a submodel reference at the Asset Administration Shell
+            </summary>
+            <param name="body">Reference to the Submodel</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="201">Submodel reference created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PutAssetAdministrationShellById(AasCore.Aas3_0.AssetAdministrationShell,System.String)">
+            <summary>
+            Updates an existing Asset Administration Shell
+            </summary>
+            <param name="body">Asset Administration Shell object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Asset Administration Shell updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PutAssetInformationAasRepository(AasCore.Aas3_0.AssetInformation,System.String)">
+            <summary>
+            Updates the Asset Information
+            </summary>
+            <param name="body">Asset Information object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Asset Information updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PutSubmodelByIdAasRepository(AasCore.Aas3_0.Submodel,System.String,System.String)">
+            <summary>
+            Updates the Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PutSubmodelElementByPathAasRepository(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.String)">
+            <summary>
+            Updates an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.AssetAdministrationShellRepositoryAPIApiController.PutFileByPath(System.String,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads file content to an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="file">File to upload</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request</response>
+            <response code="404">Not Found</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="T:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController.DeleteConceptDescriptionById(System.String)">
+            <summary>
+            Deletes a Concept Description
+            </summary>
+            <param name="cdIdentifier">The Concept Description’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Concept Description deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController.GetAllConceptDescriptions(System.String,System.String,System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Returns all Concept Descriptions
+            </summary>
+            <param name="idShort">The Concept Description’s IdShort</param>
+            <param name="isCaseOf">IsCaseOf reference (UTF8-BASE64-URL-encoded)</param>
+            <param name="dataSpecificationRef">DataSpecification reference (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <response code="200">Requested Concept Descriptions</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController.GetConceptDescriptionById(System.String)">
+            <summary>
+            Returns a specific Concept Description
+            </summary>
+            <param name="cdIdentifier">The Concept Description’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Concept Description</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController.PostConceptDescription(AasCore.Aas3_0.ConceptDescription)">
+            <summary>
+            Creates a new Concept Description
+            </summary>
+            <param name="body">Concept Description object</param>
+            <response code="201">Concept Description created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="403">Forbidden</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.ConceptDescriptionRepositoryAPIApiController.PutConceptDescriptionById(AasCore.Aas3_0.ConceptDescription,System.String)">
+            <summary>
+            Updates an existing Concept Description
+            </summary>
+            <param name="body">Concept Description object</param>
+            <param name="cdIdentifier">The Concept Description’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Concept Description updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="T:IO.Swagger.Controllers.DescriptionAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.DescriptionAPIApiController.GetDescription">
+            <summary>
+            Returns the self-describing information of a network resource (ServiceDescription)
+            </summary>
+            <response code="200">Requested Description</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+        </member>
+        <member name="T:IO.Swagger.Controllers.SerializationAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SerializationAPIApiController.GenerateSerializationByIds(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Nullable{System.Boolean})">
+            <summary>
+            Returns an appropriate serialization based on the specified format (see SerializationFormat)
+            </summary>
+            <param name="aasIds">The Asset Administration Shells&#x27; unique ids (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIds">The Submodels&#x27; unique ids (UTF8-BASE64-URL-encoded)</param>
+            <param name="includeConceptDescriptions">Include Concept Descriptions?</param>
+            <response code="200">Requested serialization based on SerializationFormat</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="T:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.DeleteFileByPathSubmodelRepo(System.String,System.String)">
+            <summary>
+            Deletes file content of an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.DeleteSubmodelById(System.String)">
+            <summary>
+            Deletes a Submodel
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Submodel deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.DeleteSubmodelElementByPathSubmodelRepo(System.String,System.String)">
+            <summary>
+            Deletes a submodel element at a specified path within the submodel elements hierarchy
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="204">Submodel element deleted successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelElements(System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelElementsMetadataSubmodelRepo(System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the metadata attributes of all submodel elements including their hierarchy
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelElementsPathSubmodelRepo(System.String,System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            Returns all submodel elements including their hierarchy in the Path notation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of found submodel elements in the Path notation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelElementsReferenceSubmodelRepo(System.String,System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            Returns the References of all submodel elements
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelElementsValueOnlySubmodelRepo(System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all submodel elements including their hierarchy in the ValueOnly representation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">List of found submodel elements</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodels(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all Submodels
+            </summary>
+            <param name="semanticId">The value of the semantic id reference (BASE64-URL-encoded)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodels</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelsMetadata(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the metadata attributes of all Submodels
+            </summary>
+            <param name="semanticId">The value of the semantic id reference (BASE64-URL-encoded)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodels</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelsPath(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns all Submodels in the Path notation
+            </summary>
+            <param name="semanticId">The value of the semantic id reference (BASE64-URL-encoded)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodels</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelsReference(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the References for all Submodels
+            </summary>
+            <param name="semanticId">The value of the semantic id reference (BASE64-URL-encoded)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">References of the requested Submodels</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetAllSubmodelsValueOnly(System.String,System.String,System.Nullable{System.Int32},System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns all Submodels in their ValueOnly representation
+            </summary>
+            <param name="semanticId">The value of the semantic id reference (BASE64-URL-encoded)</param>
+            <param name="idShort">The Asset Administration Shell’s IdShort</param>
+            <param name="limit">The maximum number of elements in the response array</param>
+            <param name="cursor">A server-generated identifier retrieved from pagingMetadata that specifies from which position the result listing should continue</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodels</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetFileByPathSubmodelRepo(System.String,System.String)">
+            <summary>
+            Downloads file content from a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="200">Requested file</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="405">Method not allowed - Download only valid for File submodel element</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetOperationAsyncResult(System.String,System.String,System.String)">
+            <summary>
+            Returns the Operation result of an asynchronously invoked Operation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetOperationAsyncResultValueOnly(System.String,System.String,System.String)">
+            <summary>
+            Returns the Operation result of an asynchronously invoked Operation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Value of the operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetOperationAsyncStatus(System.String,System.String,System.String)">
+            <summary>
+            Returns the status of an asynchronously invoked Operation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="handleId">The returned handle id of an operation’s asynchronous invocation used to request the current state of the operation’s execution (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Operation result object containing information that the &#x27;executionState&#x27; is still &#x27;Running&#x27;</response>
+            <response code="302">The target resource is available but at a different location.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelById(System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific Submodel
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelByIdMetadata(System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the metadata attributes of a specific Submodel
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodel in the metadata representation</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelByIdPath(System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns a specific Submodel in the Path notation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelByIdReference(System.String)">
+            <summary>
+            Returns the Reference of a specific Submodel
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelByIdValueOnly(System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific Submodel in the ValueOnly representation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested Submodel</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelElementByPathMetadataSubmodelRepo(System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the matadata attributes of a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Metadata attributes of the requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelElementByPathPathSubmodelRepo(System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path in the Path notation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelElementByPathReferenceSubmodelRepo(System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Returns the Referene of a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelElementByPathSubmodelRepo(System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.GetSubmodelElementByPathValueOnlySubmodelRepo(System.String,System.String,IO.Swagger.Models.LevelEnum,IO.Swagger.Models.ExtentEnum)">
+            <summary>
+            Returns a specific submodel element from the Submodel at a specified path in the ValueOnly representation
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <param name="extent">Determines to which extent the resource is being serialized</param>
+            <response code="200">Requested submodel element</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.InvokeOperationAsync(IO.Swagger.Models.OperationRequest,System.String,System.String)">
+            <summary>
+            Asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="202">The server has accepted the request.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="405">Method not allowed - Invoke only valid for Operation submodel element</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.InvokeOperationAsyncValueOnly(System.Object,System.String,System.String,System.String)">
+            <summary>
+            Asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="202">The server has accepted the request.</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.InvokeOperationSubmodelRepo(IO.Swagger.Models.OperationRequest,System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Synchronously or asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="_async">Determines whether an operation invocation is performed asynchronously or synchronously</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="405">Method not allowed - Invoke only valid for Operation submodel element</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.InvokeOperationValueOnly(System.Object,System.String,System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Synchronously or asynchronously invokes an Operation at a specified path
+            </summary>
+            <param name="body">Operation request object</param>
+            <param name="aasIdentifier">The Asset Administration Shell’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="_async">Determines whether an operation invocation is performed asynchronously or synchronously</param>
+            <response code="200">Operation result object</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelById(AasCore.Aas3_0.Submodel,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates an existing Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelByIdMetadata(DataTransferObjects.MetadataDTOs.SubmodelMetadata,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the metadata attributes of an existing Submodel
+            </summary>
+            <param name="body">The metadata attributes of the Submodel object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelByIdValueOnly(DataTransferObjects.ValueDTOs.SubmodelValue,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the values of an existing Submodel
+            </summary>
+            <param name="body">Submodel object in its ValueOnly representation</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelElementByPathMetadataSubmodelRepo(DataTransferObjects.MetadataDTOs.ISubmodelElementMetadata,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the metadata attributes an existing SubmodelElement
+            </summary>
+            <param name="body">Metadata attributes of the SubmodelElement</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">SubmodelElement updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelElementByPathSubmodelRepo(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates an existing SubmodelElement
+            </summary>
+            <param name="body">SubmodelElement object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">SubmodelElement updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PatchSubmodelElementByPathValueOnlySubmodelRepo(DataTransferObjects.ValueDTOs.ISubmodelElementValue,System.String,System.String,IO.Swagger.Models.LevelEnum)">
+            <summary>
+            Updates the value of an existing SubmodelElement
+            </summary>
+            <param name="body">The SubmodelElement in its ValueOnly representation</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PostSubmodel(AasCore.Aas3_0.Submodel)">
+            <summary>
+            Creates a new Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <response code="201">Submodel created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PostSubmodelElementByPathSubmodelRepo(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a new submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <response code="201">Submodel element created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PostSubmodelElementSubmodelRepo(AasCore.Aas3_0.ISubmodelElement,System.String,System.Boolean)">
+            <summary>
+            Creates a new submodel element
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="201">Submodel element created successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="409">Conflict, a resource which shall be created exists already. Might be thrown if a Submodel or SubmodelElement with the same ShortId is contained in a POST request.</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PutSubmodelById(AasCore.Aas3_0.Submodel,System.String)">
+            <summary>
+            Updates an existing Submodel
+            </summary>
+            <param name="body">Submodel object</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <response code="204">Submodel updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PutSubmodelElementByPathSubmodelRepo(AasCore.Aas3_0.ISubmodelElement,System.String,System.String,System.String)">
+            <summary>
+            Updates an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="body">Requested submodel element</param>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="level">Determines the structural depth of the respective resource content</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request, e.g. the request parameters of the format of the request body is wrong.</response>
+            <response code="401">Unauthorized, e.g. the server refused the authorization attempt.</response>
+            <response code="403">Forbidden</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Controllers.SubmodelRepositoryAPIApiController.PutFileByPathSubmodelRepo(System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads file content to an existing submodel element at a specified path within submodel elements hierarchy
+            </summary>
+            <param name="submodelIdentifier">The Submodel’s unique id (UTF8-BASE64-URL-encoded)</param>
+            <param name="idShortPath">IdShort path to the submodel element (dot-separated)</param>
+            <param name="file">File to upload</param>
+            <response code="204">Submodel element updated successfully</response>
+            <response code="400">Bad Request</response>
+            <response code="404">Not Found</response>
+            <response code="0">Default error handling for unmentioned status codes</response>
+        </member>
+        <member name="M:IO.Swagger.Lib.V3.Services.PathModifierService.ToIdShortPath(AasCore.Aas3_0.IClass)">
+            <summary>
+            Serialize an instance of the meta-model into a JSON object.
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:IO.Swagger.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:IO.Swagger.Filters.BasePathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">OpenApiDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:IO.Swagger.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Filters.GeneratePathParamsValidationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="T:IO.Swagger.Models.BaseOperationResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.BaseOperationResult.ExecutionState">
+            <summary>
+            Gets or Sets ExecutionState
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.BaseOperationResult.Success">
+            <summary>
+            Gets or Sets Success
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.BaseOperationResult.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.BaseOperationResult.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.BaseOperationResult.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.BaseOperationResult.Equals(IO.Swagger.Models.BaseOperationResult)">
+            <summary>
+            Returns true if BaseOperationResult instances are equal
+            </summary>
+            <param name="other">Instance of BaseOperationResult to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.BaseOperationResult.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.Description">
+            <summary>
+            The Description object enables servers to present their capabilities to the clients, in particular which profiles they implement. At least one defined profile is required. Additional, proprietary attributes might be included. Nevertheless, the server must not expect that a regular client understands them.
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Models.Description.ProfilesEnum">
+            <summary>
+            Gets or Sets Profiles
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.AssetAdministrationShellServiceSpecificationV30Enum">
+            <summary>
+            Enum AssetAdministrationShellServiceSpecificationV30Enum for AssetAdministrationShellServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.AssetAdministrationShellServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum AssetAdministrationShellServiceSpecificationV30MinimalProfileEnum for AssetAdministrationShellServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.SubmodelServiceSpecificationV30Enum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30Enum for SubmodelServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.SubmodelServiceSpecificationV30ValueProfileEnum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30ValueProfileEnum for SubmodelServiceSpecification/V3.0-ValueProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.SubmodelServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30MinimalProfileEnum for SubmodelServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.AasxFileServerServiceSpecificationV30Enum">
+            <summary>
+            Enum AasxFileServerServiceSpecificationV30Enum for AasxFileServerServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RegistryServiceSpecificationV30Enum">
+            <summary>
+            Enum RegistryServiceSpecificationV30Enum for RegistryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RegistryServiceSpecificationV30AssetAdministrationShellRegistryEnum">
+            <summary>
+            Enum RegistryServiceSpecificationV30AssetAdministrationShellRegistryEnum for RegistryServiceSpecification/V3.0- AssetAdministrationShellRegistry
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RegistryServiceSpecificationV30SubmodelRegistryEnum">
+            <summary>
+            Enum RegistryServiceSpecificationV30SubmodelRegistryEnum for RegistryServiceSpecification/V3.0-SubmodelRegistry
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum RepositoryServiceSpecificationV30Enum for RepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum RepositoryServiceSpecificationV30MinimalProfileEnum for RepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.AssetAdministrationShellRepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum AssetAdministrationShellRepositoryServiceSpecificationV30Enum for AssetAdministrationShellRepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.AssetAdministrationShellRepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum AssetAdministrationShellRepositoryServiceSpecificationV30MinimalProfileEnum for AssetAdministrationShellRepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.SubmodelRepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum SubmodelRepositoryServiceSpecificationV30Enum for SubmodelRepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.SubmodelRepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum SubmodelRepositoryServiceSpecificationV30MinimalProfileEnum for SubmodelRepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Description.ProfilesEnum.RegistryAndDiscoveryServiceSpecificationV30Enum">
+            <summary>
+            Enum RegistryAndDiscoveryServiceSpecificationV30Enum for RegistryAndDiscoveryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Description.Profiles">
+            <summary>
+            Gets or Sets Profiles
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.Description.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Description.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Description.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Description.Equals(IO.Swagger.Models.Description)">
+            <summary>
+            Returns true if Description instances are equal
+            </summary>
+            <param name="other">Instance of Description to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Description.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.ExecutionState">
+            <summary>
+            Gets or Sets ExecutionState
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.InitiatedEnum">
+            <summary>
+            Enum InitiatedEnum for Initiated
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.RunningEnum">
+            <summary>
+            Enum RunningEnum for Running
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.CompletedEnum">
+            <summary>
+            Enum CompletedEnum for Completed
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.CanceledEnum">
+            <summary>
+            Enum CanceledEnum for Canceled
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.FailedEnum">
+            <summary>
+            Enum FailedEnum for Failed
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ExecutionState.TimeoutEnum">
+            <summary>
+            Enum TimeoutEnum for Timeout
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Models.GetPathItemsResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.GetPathItemsResult.Result">
+            <summary>
+            Gets or Sets Result
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.GetPathItemsResult.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetPathItemsResult.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetPathItemsResult.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetPathItemsResult.Equals(IO.Swagger.Models.GetPathItemsResult)">
+            <summary>
+            Returns true if GetPathItemsResult instances are equal
+            </summary>
+            <param name="other">Instance of GetPathItemsResult to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetPathItemsResult.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.GetReferencesResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.GetReferencesResult.Result">
+            <summary>
+            Gets or Sets Result
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.GetReferencesResult.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetReferencesResult.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetReferencesResult.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetReferencesResult.Equals(IO.Swagger.Models.GetReferencesResult)">
+            <summary>
+            Returns true if GetReferencesResult instances are equal
+            </summary>
+            <param name="other">Instance of GetReferencesResult to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetReferencesResult.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.GetSubmodelElementsResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.GetSubmodelElementsResult.Result">
+            <summary>
+            Gets or Sets Result
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.GetSubmodelElementsResult.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetSubmodelElementsResult.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetSubmodelElementsResult.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetSubmodelElementsResult.Equals(IO.Swagger.Models.GetSubmodelElementsResult)">
+            <summary>
+            Returns true if GetSubmodelElementsResult instances are equal
+            </summary>
+            <param name="other">Instance of GetSubmodelElementsResult to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.GetSubmodelElementsResult.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Message.Code">
+            <summary>
+            Gets or Sets Code
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Message.CorrelationId">
+            <summary>
+            Gets or Sets CorrelationId
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Models.Message.MessageTypeEnum">
+            <summary>
+            Gets or Sets MessageType
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Message.MessageTypeEnum.UndefinedEnum">
+            <summary>
+            Enum UndefinedEnum for Undefined
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Message.MessageTypeEnum.InfoEnum">
+            <summary>
+            Enum InfoEnum for Info
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Message.MessageTypeEnum.WarningEnum">
+            <summary>
+            Enum WarningEnum for Warning
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Message.MessageTypeEnum.ErrorEnum">
+            <summary>
+            Enum ErrorEnum for Error
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.Message.MessageTypeEnum.ExceptionEnum">
+            <summary>
+            Enum ExceptionEnum for Exception
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Message.MessageType">
+            <summary>
+            Gets or Sets MessageType
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Message.Text">
+            <summary>
+            Gets or Sets Text
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Message.Timestamp">
+            <summary>
+            Gets or Sets Timestamp
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.Message.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Message.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Message.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Message.Equals(IO.Swagger.Models.Message)">
+            <summary>
+            Returns true if Message instances are equal
+            </summary>
+            <param name="other">Instance of Message to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Message.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.OperationRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationRequest.InoutputArguments">
+            <summary>
+            Gets or Sets InoutputArguments
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationRequest.InputArguments">
+            <summary>
+            Gets or Sets InputArguments
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationRequest.RequestId">
+            <summary>
+            Gets or Sets RequestId
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationRequest.Timeout">
+            <summary>
+            Gets or Sets Timeout
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationRequest.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationRequest.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationRequest.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationRequest.Equals(IO.Swagger.Models.OperationRequest)">
+            <summary>
+            Returns true if OperationRequest instances are equal
+            </summary>
+            <param name="other">Instance of OperationRequest to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationRequest.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.OperationResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationResult.ExecutionResult">
+            <summary>
+            Gets or Sets ExecutionResult
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationResult.ExecutionState">
+            <summary>
+            Gets or Sets ExecutionState
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationResult.InoutputArguments">
+            <summary>
+            Gets or Sets InoutputArguments
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationResult.OutputArguments">
+            <summary>
+            Gets or Sets OutputArguments
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.OperationResult.RequestId">
+            <summary>
+            Gets or Sets RequestId
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationResult.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationResult.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationResult.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationResult.Equals(IO.Swagger.Models.OperationResult)">
+            <summary>
+            Returns true if OperationResult instances are equal
+            </summary>
+            <param name="other">Instance of OperationResult to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.OperationResult.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.PagedResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Models.PagedResultPagingMetadata">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.PagedResultPagingMetadata.cursor">
+            <summary>
+            Gets or Sets Cursor
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.PaginationParameters.Limit">
+            The maximum size of the result list.
+        </member>
+        <member name="P:IO.Swagger.Models.PaginationParameters.Cursor">
+            The position from which to resume a result listing.
+        </member>
+        <member name="T:IO.Swagger.Models.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.Result.Messages">
+            <summary>
+            Gets or Sets Messages
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.Result.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Result.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Result.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Result.Equals(IO.Swagger.Models.Result)">
+            <summary>
+            Returns true if Result instances are equal
+            </summary>
+            <param name="other">Instance of Result to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.Result.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Models.ServiceDescription">
+            <summary>
+            The Description object enables servers to present their capabilities to the clients, in particular which profiles they implement. At least one defined profile is required. Additional, proprietary attributes might be included. Nevertheless, the server must not expect that a regular client understands them.
+            </summary>
+        </member>
+        <member name="T:IO.Swagger.Models.ServiceDescription.ProfilesEnum">
+            <summary>
+            Gets or Sets Profiles
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.AssetAdministrationShellServiceSpecificationV30Enum">
+            <summary>
+            Enum AssetAdministrationShellServiceSpecificationV30Enum for AssetAdministrationShellServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.AssetAdministrationShellServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum AssetAdministrationShellServiceSpecificationV30MinimalProfileEnum for AssetAdministrationShellServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.SubmodelServiceSpecificationV30Enum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30Enum for SubmodelServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.SubmodelServiceSpecificationV30ValueProfileEnum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30ValueProfileEnum for SubmodelServiceSpecification/V3.0-ValueProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.SubmodelServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum SubmodelServiceSpecificationV30MinimalProfileEnum for SubmodelServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.AasxFileServerServiceSpecificationV30Enum">
+            <summary>
+            Enum AasxFileServerServiceSpecificationV30Enum for AasxFileServerServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RegistryServiceSpecificationV30Enum">
+            <summary>
+            Enum RegistryServiceSpecificationV30Enum for RegistryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RegistryServiceSpecificationV30AssetAdministrationShellRegistryEnum">
+            <summary>
+            Enum RegistryServiceSpecificationV30AssetAdministrationShellRegistryEnum for RegistryServiceSpecification/V3.0- AssetAdministrationShellRegistry
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RegistryServiceSpecificationV30SubmodelRegistryEnum">
+            <summary>
+            Enum RegistryServiceSpecificationV30SubmodelRegistryEnum for RegistryServiceSpecification/V3.0-SubmodelRegistry
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum RepositoryServiceSpecificationV30Enum for RepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum RepositoryServiceSpecificationV30MinimalProfileEnum for RepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.AssetAdministrationShellRepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum AssetAdministrationShellRepositoryServiceSpecificationV30Enum for AssetAdministrationShellRepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.AssetAdministrationShellRepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum AssetAdministrationShellRepositoryServiceSpecificationV30MinimalProfileEnum for AssetAdministrationShellRepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.SubmodelRepositoryServiceSpecificationV30Enum">
+            <summary>
+            Enum SubmodelRepositoryServiceSpecificationV30Enum for SubmodelRepositoryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.SubmodelRepositoryServiceSpecificationV30MinimalProfileEnum">
+            <summary>
+            Enum SubmodelRepositoryServiceSpecificationV30MinimalProfileEnum for SubmodelRepositoryServiceSpecification/V3.0-MinimalProfile
+            </summary>
+        </member>
+        <member name="F:IO.Swagger.Models.ServiceDescription.ProfilesEnum.RegistryAndDiscoveryServiceSpecificationV30Enum">
+            <summary>
+            Enum RegistryAndDiscoveryServiceSpecificationV30Enum for RegistryAndDiscoveryServiceSpecification/V3.0
+            </summary>
+        </member>
+        <member name="P:IO.Swagger.Models.ServiceDescription.Profiles">
+            <summary>
+            Gets or Sets Profiles
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Models.ServiceDescription.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.ServiceDescription.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.ServiceDescription.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.ServiceDescription.Equals(IO.Swagger.Models.ServiceDescription)">
+            <summary>
+            Returns true if ServiceDescription instances are equal
+            </summary>
+            <param name="other">Instance of ServiceDescription to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:IO.Swagger.Models.ServiceDescription.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:IO.Swagger.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:IO.Swagger.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:IO.Swagger.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IO.Swagger.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

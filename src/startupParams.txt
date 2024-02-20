@@ -1,1 +1,0 @@
---opc --name KreuzungOPCUA --no-security --data-path C:\Users\erige\Desktop\MasterThesis\ASS-Files

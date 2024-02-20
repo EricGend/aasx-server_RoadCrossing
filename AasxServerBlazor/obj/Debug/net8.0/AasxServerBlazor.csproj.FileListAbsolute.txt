@@ -1,0 +1,681 @@
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS_ABAC.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\IEC61360.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleClient.Config.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleServer.Config.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.staticwebassets.runtime.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.Development.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\ZveiTimeSeriesDataV10.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.sh
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.bat
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.staticwebassets.runtime.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\LICENSE.TXT
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.exe
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\2022-02-15_IDTA_AAS-Logo_Final_RGB.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\all.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css.map
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\FONT-LICENSE
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.eot
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.otf
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.svg
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.woff
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\ICON-LICENSE
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\README.md
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\site.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\treeStyles.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\encrypted.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\favicon.ico
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Icon_AASX_256x256_W.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\images\scottplot\smc_timeseries.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\LICENSE.TXT
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Logo_IDTA.jpg
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed_ and_verified.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\SpecPI40_t.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\swagger\swagger-original.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.eot
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.svg
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.ttf
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff2
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.eot
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.svg
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.ttf
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff2
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.eot
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.svg
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.ttf
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff2
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\zvei_2021_RZ_RGB.png
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.deps.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.runtimeconfig.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Grapevine.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IdentityModel.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\JetBrains.Annotations.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\jose-jwt.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\MailKit.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\MimeKit.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\MQTTnet.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Namotion.Reflection.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\NJsonSchema.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Bindings.Https.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Client.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Configuration.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Core.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Client.Common.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Server.Common.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Security.Certificates.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Server.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\QRCoder.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\ScottPlot.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Newtonsoft.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.CommandLine.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.ComponentModel.Composition.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.IO.Packaging.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.Private.ServiceModel.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.Primitives.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.build.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.development.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.AasxServerBlazor.Microsoft.AspNetCore.StaticWebAssets.props
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.build.AasxServerBlazor.props
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AasxServerBlazor.props
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AasxServerBlazor.props
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.pack.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\scopedcss\bundle\AasxServerBlazor.styles.css
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CopyComplete
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\refint\AasxServerBlazor.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.genruntimeconfig.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerBlazor\obj\Debug\net8.0\ref\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\refint\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\ZveiTimeSeriesDataV10.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.sh
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.bat
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\LICENSE.TXT
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.staticwebassets.runtime.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.staticwebassets.runtime.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.exe
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\2022-02-15_IDTA_AAS-Logo_Final_RGB.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\all.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\FONT-LICENSE
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.eot
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.otf
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.svg
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.woff
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\ICON-LICENSE
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\README.md
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\site.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\treeStyles.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\encrypted.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\favicon.ico
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Icon_AASX_256x256_W.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\images\scottplot\smc_timeseries.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\LICENSE.TXT
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Logo_IDTA.jpg
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed_ and_verified.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\SpecPI40_t.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\swagger\swagger-original.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.eot
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.svg
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.ttf
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff2
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.eot
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.svg
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.ttf
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff2
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.eot
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.svg
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.ttf
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff2
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\zvei_2021_RZ_RGB.png
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.runtimeconfig.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Grapevine.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IdentityModel.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\JetBrains.Annotations.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\jose-jwt.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\MailKit.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\MimeKit.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\MQTTnet.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Namotion.Reflection.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\NJsonSchema.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Bindings.Https.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Client.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Configuration.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Core.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Client.Common.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Server.Common.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Security.Certificates.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Server.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\QRCoder.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\ScottPlot.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Newtonsoft.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.CommandLine.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.ComponentModel.Composition.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.Private.ServiceModel.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.Primitives.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.AasxServerBlazor.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.build.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\scopedcss\bundle\AasxServerBlazor.styles.css
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.genruntimeconfig.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerBlazor\obj\Debug\net8.0\ref\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\ZveiTimeSeriesDataV10.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.sh
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.bat
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\LICENSE.TXT
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.staticwebassets.runtime.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.staticwebassets.runtime.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.exe
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\2022-02-15_IDTA_AAS-Logo_Final_RGB.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\all.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\FONT-LICENSE
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.eot
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.otf
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.svg
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.woff
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\ICON-LICENSE
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\README.md
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\site.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\treeStyles.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\encrypted.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\favicon.ico
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Icon_AASX_256x256_W.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\images\scottplot\smc_timeseries.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\LICENSE.TXT
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Logo_IDTA.jpg
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed_ and_verified.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\SpecPI40_t.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\swagger\swagger-original.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.eot
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.svg
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.ttf
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff2
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.eot
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.svg
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.ttf
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff2
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.eot
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.svg
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.ttf
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff2
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\zvei_2021_RZ_RGB.png
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.runtimeconfig.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Grapevine.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IdentityModel.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\JetBrains.Annotations.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\jose-jwt.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\MailKit.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\MimeKit.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\MQTTnet.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Namotion.Reflection.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\NJsonSchema.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Bindings.Https.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Client.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Configuration.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Core.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Client.Common.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Server.Common.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Security.Certificates.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Server.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\QRCoder.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\ScottPlot.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Newtonsoft.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.CommandLine.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.ComponentModel.Composition.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.Private.ServiceModel.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.Primitives.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.AasxServerBlazor.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.build.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AasxServerBlazor.props
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\scopedcss\bundle\AasxServerBlazor.styles.css
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\refint\AasxServerBlazor.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.genruntimeconfig.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerBlazor\obj\Debug\net8.0\ref\AasxServerBlazor.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.staticwebassets.runtime.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\appsettings.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimeconfig.template.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\ZveiTimeSeriesDataV10.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.sh
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\startForDemo.bat
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.staticwebassets.runtime.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\LICENSE.TXT
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.exe
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\2022-02-15_IDTA_AAS-Logo_Final_RGB.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\all.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\bootstrap\bootstrap.min.css.map
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\FONT-LICENSE
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.eot
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.otf
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\font\fonts\open-iconic.woff
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\ICON-LICENSE
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\open-iconic\README.md
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\site.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\css\treeStyles.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\db-schema.jpg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\encrypted.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\favicon.ico
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Icon_AASX_256x256_W.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\images\scottplot\smc_timeseries.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\LICENSE.TXT
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\Logo_IDTA.jpg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\signed_ and_verified.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\bom.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\doc.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\np.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\pcf v1.0.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\pcf.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\sm_icons\tech.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\SpecPI40_t.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\swagger\swagger-original.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.eot
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.ttf
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-brands-400.woff2
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.eot
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.ttf
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-regular-400.woff2
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.eot
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.svg
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.ttf
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\webfonts\fa-solid-900.woff2
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\wwwroot\zvei_2021_RZ_RGB.png
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.runtimeconfig.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Grapevine.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\GreenDonut.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Abstractions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.AspNetCore.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Authorization.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Execution.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Execution.Abstractions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Fetching.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Language.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Language.SyntaxTree.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Language.Utf8.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Language.Visitors.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Language.Web.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Subscriptions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Subscriptions.InMemory.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Transport.Sockets.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Types.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Types.CursorPagination.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Types.Mutations.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Types.OffsetPagination.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Types.Scalars.Upload.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Utilities.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Utilities.Introspection.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\HotChocolate.Validation.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Humanizer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IdentityModel.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\JetBrains.Annotations.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\jose-jwt.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\MailKit.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Extensions.DiagnosticAdapter.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\MimeKit.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Mnemosyne.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\MQTTnet.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Namotion.Reflection.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\NJsonSchema.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Npgsql.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Bindings.Https.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Client.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Configuration.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Core.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Client.Common.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Gds.Server.Common.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Security.Certificates.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Opc.Ua.Server.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\QRCoder.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\ScottPlot.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\SpookilySharp.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\SQLitePCLRaw.core.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Newtonsoft.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.CodeDom.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.CommandLine.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.ComponentModel.Composition.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.Private.ServiceModel.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.Primitives.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.ServiceModel.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\alpine-arm\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\alpine-arm64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\alpine-x64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net7.0\e_sqlite3.a
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasSecurity.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxServerStandardBib.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\es6numberserializer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Lib.V3.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\IO.Swagger.Registry.Lib.V3.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\jsoncanonicalizer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasCore.Aas3_0.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\AasxCsharpLibrary.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\DataTransferObjects.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.RazorAssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.AasxServerBlazor.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.build.AasxServerBlazor.props
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.AasxServerBlazor.props
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.AasxServerBlazor.props
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\scopedcss\bundle\AasxServerBlazor.styles.css
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.csproj.CopyComplete
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\refint\AasxServerBlazor.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.genruntimeconfig.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\obj\Debug\net8.0\ref\AasxServerBlazor.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerBlazor\bin\Debug\net8.0\ProjNET.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerBlazor\obj\Debug\net8.0\refint\AasxServerBlazor.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerBlazor\obj\Debug\net8.0\AasxServerBlazor.pdb

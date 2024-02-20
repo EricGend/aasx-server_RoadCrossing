@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "mt5adKuI+F6vhk0Xh9wsrftg1LWdtRoftM/k3pVJvZ+lUnHbj4bG5lyE42Nry0eO4iQc+NJ/qrMqg4FVM1Ao3w==",
+  "success": true,
+  "projectFilePath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eri5287m\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json' 12.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

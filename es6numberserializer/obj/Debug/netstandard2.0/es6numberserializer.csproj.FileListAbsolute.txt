@@ -1,0 +1,51 @@
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.deps.json
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\aasx-server_RoadCrossing\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.pdb
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.deps.json
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\bin\Debug\netstandard2.0\es6numberserializer.pdb
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.AssemblyReference.cache
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfoInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.AssemblyInfo.cs
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.csproj.CoreCompileInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.dll
+D:\src\AasxServer_git-HsCoburg\src\es6numberserializer\obj\Debug\netstandard2.0\es6numberserializer.pdb

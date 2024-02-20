@@ -1,0 +1,119 @@
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS_ABAC.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\IEC61360.xsd
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleClient.Config.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleServer.Config.xml
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\LICENSE.txt
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.deps.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.AssemblyReference.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfoInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfo.cs
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CoreCompileInputs.cache
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.sourcelink.json
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CopyComplete
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\refint\AasxServerStandardBib.dll
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.pdb
+D:\src\aasx-server_RoadCrossing\src\AasxServerStandardBib\obj\Debug\net6.0\ref\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\LICENSE.txt
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\refint\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.deps.json
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\Masterarbeit neues Repo\src\AasxServerStandardBib\obj\Debug\net6.0\ref\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\LICENSE.txt
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.deps.json
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.AssemblyReference.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfoInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfo.cs
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CoreCompileInputs.cache
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CopyComplete
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\refint\AasxServerStandardBib.dll
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\eri5287m\Desktop\MasterarbeitNeuesRepo\src\AasxServerStandardBib\obj\Debug\net6.0\ref\AasxServerStandardBib.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\AAS_ABAC.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\Resources\schemaV201\IEC61360.xsd
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleClient.Config.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\Opc.Ua.SampleServer.Config.xml
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\LICENSE.txt
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.deps.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.runtimeconfig.json
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasxCsharpLibrary.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\jsoncanonicalizer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\AasCore.Aas3_0.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\bin\Debug\net6.0\es6numberserializer.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.AssemblyReference.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfoInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfo.cs
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CoreCompileInputs.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CopyComplete
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\refint\AasxServerStandardBib.dll
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.pdb
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.genruntimeconfig.cache
+C:\Users\erige\source\aasx_opc-ua_CrossingServer\aasx_opc-ua_CrossingServer\src\AasxServerStandardBib\obj\Debug\net6.0\ref\AasxServerStandardBib.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.AssemblyReference.cache
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.GeneratedMSBuildEditorConfig.editorconfig
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfoInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.AssemblyInfo.cs
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.csproj.CoreCompileInputs.cache
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\refint\AasxServerStandardBib.dll
+D:\src\AasxServer_git-HsCoburg\src\AasxServerStandardBib\obj\Debug\net6.0\AasxServerStandardBib.pdb

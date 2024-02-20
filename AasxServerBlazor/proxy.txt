@@ -1,0 +1,2 @@
+c:/dat/proxy.dat
+/mnt/c/dat/proxy.dat

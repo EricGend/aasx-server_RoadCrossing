@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ndTqCBzou9+nmM02cWBH1RE+wGUcv/rrOylO1z5PphQRwwDAazqzbrhzvYqg6AUHVEYObsSOgDzD04AuypgyIA==",
+  "success": true,
+  "projectFilePath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\DataTransferObjects\\DataTransferObjects.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eri5287m\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MK/deAmsWdcNLpO8fne9ZtIUjjjYaKuKR2NVORBkJSQN0OxAxxBwt3ZCG8eINuzfGI+Bld4YE/xgr4el9x0Lew==",
+  "success": true,
+  "projectFilePath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\jsoncanonicalizer\\jsoncanonicalizer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eri5287m\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\eri5287m\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

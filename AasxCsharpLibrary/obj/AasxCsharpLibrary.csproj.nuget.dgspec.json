@@ -1,0 +1,178 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasxCsharpLibrary\\AasxCsharpLibrary.csproj": {}
+  },
+  "projects": {
+    "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj": {
+      "version": "1.0.0-rc1",
+      "restore": {
+        "projectUniqueName": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj",
+        "projectName": "AasCore.Aas3_0",
+        "projectPath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj",
+        "packagesPath": "C:\\Users\\eri5287m\\.nuget\\packages\\",
+        "outputPath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\eri5287m\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasxCsharpLibrary\\AasxCsharpLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasxCsharpLibrary\\AasxCsharpLibrary.csproj",
+        "projectName": "AasxCsharpLibrary",
+        "projectPath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasxCsharpLibrary\\AasxCsharpLibrary.csproj",
+        "packagesPath": "C:\\Users\\eri5287m\\.nuget\\packages\\",
+        "outputPath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasxCsharpLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\eri5287m\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj": {
+                "projectPath": "D:\\src\\AasxServer_github\\aasx-server_RoadCrossing\\AasCore.Aas3_0\\AasCore.Aas3_0.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2022.1.0, )"
+            },
+            "NJsonSchema": {
+              "target": "Package",
+              "version": "[10.8.0, )"
+            },
+            "Namotion.Reflection": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "System.ComponentModel.Composition": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.IO.Packaging": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.26, 6.0.26]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
